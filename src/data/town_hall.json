@@ -1,0 +1,18 @@
+{
+  "small_celebration": {
+    "wood": 6400,
+    "clay": 6650,
+    "iron": 5940,
+    "crop": 1340,
+    "max_cp": 500,
+    "base_time": "24:00:00"
+  },
+  "large_celebration": {
+    "wood": 29700,
+    "clay": 33250,
+    "iron": 32000,
+    "crop": 6700,
+    "max_cp": 2000,
+    "base_time": "43:08:11"
+  }
+}

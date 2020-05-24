@@ -1,0 +1,26 @@
+<template>
+    <div class="flex p-2 flex-wrap">
+        <div class="flex mr-1"><ResImg type="lumber"></ResImg> {{ resources.lumber }}</div>
+        <div class="flex mr-1"><ResImg type="clay"></ResImg> {{ resources.clay }}</div>
+        <div class="flex mr-1"><ResImg type="iron"></ResImg> {{ resources.iron }}</div>
+        <div class="flex mr-1"><ResImg type="crop"></ResImg> {{ resources.crop }}</div>
+        <div class="w-full flex items-center border-t pt-1 mt-1" v-if="total">
+            <ResImg type="resources"></ResImg> {{resources.lumber + resources.clay + resources.iron + resources.crop }}
+        </div>
+    </div>
+</template>
+
+<script>
+    import ResImg from '../atoms/ResImg.vue'
+
+    export default {
+        name: 'ResList',
+        components: {
+            ResImg
+        },
+        props: {
+            resources: Object,
+            total: Boolean
+        }
+    }
+</script>
