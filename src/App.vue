@@ -6,9 +6,10 @@
           </iframe>
       </div>
 
-      <div class="flex items-start flex-wrap flex-grow" :class="(glorymode ? 'justify-start' : 'justify-center')">
+      <div class="flex items-start flex-wrap flex-grow flex-col sm:flex-row" :class="(glorymode ? 'justify-start' : 'justify-center')">
           <FeederTraderoutes></FeederTraderoutes>
           <NPCCalc></NPCCalc>
+          <CropScouter></CropScouter>
       </div>
 
       <div class="w-full flex justify-center items-center border-t p-4 bg-white">
@@ -21,12 +22,14 @@
 <script>
 import FeederTraderoutes from './components/FeederTraderoutes.vue'
 import NPCCalc from './components/NPCCalc.vue'
+import CropScouter from './components/CropScouter.vue'
 
 export default {
     name: 'app',
     components: {
         FeederTraderoutes,
-        NPCCalc
+        NPCCalc,
+        CropScouter
     },
     data() {
         return {

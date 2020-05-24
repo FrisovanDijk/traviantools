@@ -1,5 +1,5 @@
 <template>
-    <div class="m-4 border border-gray-500 rounded shadow-md bg-white" style="width: 300px">
+    <div class="sm:mx-4 my-4 border border-gray-500 rounded shadow-md bg-white" style="width: 300px">
         <h1 class="text-lg font-bold bg-green-600 text-gray-100 p-2">Hourly feeder traderoute</h1>
 
         <div class="bg-red-300 text-red-900 px-2 py-2" v-if="result.message != ''">
