@@ -2,10 +2,6 @@
     <div class="sm:mx-4 my-4 border border-gray-500 rounded shadow-md bg-white" style="width: 300px">
         <h1 class="text-lg font-bold bg-green-600 text-gray-100 p-2">Hourly feeder traderoute</h1>
 
-        <div class="bg-red-300 text-red-900 px-2 py-2" v-if="result.message != ''">
-            {{ result.message }}
-        </div>
-
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2 mt-2" v-on:change="handleSubmit">
             <h2>Production</h2>
             <div class="flex">
@@ -72,25 +68,18 @@
                     lumber: 0,
                     clay: 0,
                     iron: 0,
-                    crop: 0,
-                    message: ""
+                    crop: 0
                 }
             }
         },
         methods: {
             handleSubmit() {
-                this.result.message = ""
-
                 const celebration = this.celebrationCost(this.party, this.townHall)
 
                 this.result.lumber = this.production.lumber - celebration.lumber
                 this.result.clay = this.production.clay - celebration.clay
                 this.result.iron = this.production.iron - celebration.iron
                 this.result.crop = this.production.crop - celebration.crop
-
-                if(isNaN(this.result.lumber) || isNaN(this.result.clay)
-                        || isNaN(this.result.iron) || isNaN(this.result.crop)
-                ) { this.result.message = "Please enter numbers (copying may fail)"}
             },
             celebrationCost(type, level) {
                 const celebrations = {

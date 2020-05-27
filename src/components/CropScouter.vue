@@ -75,10 +75,10 @@
                     dcrop = cropscout.scouts[1].crop - cropscout.scouts[0].crop
 
                 cropscout.production = {
-                    lumber: (3600*dlumber/dt)*10,
-                    clay: (3600*dclay/dt)*10,
-                    iron: (3600*diron/dt)*10,
-                    crop: (3600*dcrop/dt)*10
+                    lumber: Math.round((3600*dlumber/dt)*10),
+                    clay: Math.round((3600*dclay/dt)*10),
+                    iron: Math.round((3600*diron/dt)*10),
+                    crop: Math.round((3600*dcrop/dt)*10)
                 }
             },
             resetSingle(cropscout) {
