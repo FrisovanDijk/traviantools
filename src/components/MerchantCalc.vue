@@ -13,7 +13,7 @@
             </label>
             <label class="mt-2 mx-2 flex items-baseline">
                 Capacity:
-                <input type="text" v-model="capacity" class="border border-gray-600 rounded-sm px-2 ml-1">
+                <input type="text" v-model="capacity" class="border border-gray-600 rounded-sm px-2 ml-1 w-16">
             </label>
         </div>
 
@@ -21,7 +21,7 @@
 
         <h2 class="mt-2 py-1 mx-2 font-bold">Merchant trips</h2>
         <div class="bg-yellow-200">
-            <div class="px-3 pt-2 pb-1"><span class="font-bold">{{ trip.trips }}</span> trips of</div>
+            <div class="px-3 py-1"><span class="font-bold">{{ trip.trips }}</span> trips of</div>
             <ResList :resources="trip" class="pt-0"></ResList>
         </div>
     </div>
