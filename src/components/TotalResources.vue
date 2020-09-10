@@ -1,7 +1,5 @@
 <template>
-    <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Total resources</h1>
-
+    <CardContainer title="Total resources" @close:view="$emit('close:view')">
         <ResRowSum @total="setTotal"></ResRowSum>
 
         <h2 class="mt-2 py-1 mx-2 font-bold">Total sum</h2>
@@ -9,18 +7,20 @@
                  :resources="total"
                  :total="true"
         ></ResList>
-    </div>
+    </CardContainer>
 </template>
 
 <script>
     import ResRowSum from './molecules/ResRowSum.vue'
     import ResList from './molecules/ResList.vue'
+    import CardContainer from "./molecules/CardContainer";
 
     export default {
         name: 'TotalResources',
         components: {
             ResRowSum,
-            ResList
+            ResList,
+            CardContainer
         },
         data() {
             return {

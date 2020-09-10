@@ -1,5 +1,5 @@
 <template>
-        <div class="mt-2 flex-grow flex flex-col">
+        <div class="flex-grow flex flex-col">
             <div class="flex justify-between px-6">
                 <span class="mr-2">#</span>
                 <ResImg type="lumber"></ResImg>

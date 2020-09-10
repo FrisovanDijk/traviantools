@@ -1,8 +1,6 @@
 <template>
-    <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Cropscouter</h1>
-
-        <div class="mt-2 border-b border-gray-800 flex-grow flex flex-col"
+    <CardContainer title="Cropscouter" @close:view="$emit('close:view')">
+        <div class="mb-2 border-b border-gray-800 flex-grow flex flex-col"
              v-for="(cropscout, index) in cropscouts"
              :key="index"
         >
@@ -38,22 +36,24 @@
             ></ResList>
         </div>
 
-        <div class="flex justify-end m-2">
+        <div class="flex justify-end m-2 mt-0">
             <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetAll">reset all</button>
             <button class="bg-blue-600 hover:bg-blue-400 px-2 pb-1 rounded text-md text-white" @click="addCropscout">add target</button>
         </div>
-    </div>
+    </CardContainer>
 </template>
 
 <script>
     import ResImg from './atoms/ResImg.vue'
     import ResList from './molecules/ResList.vue'
+    import CardContainer from "./molecules/CardContainer";
 
     export default {
         name: 'CropScouter',
         components: {
             ResImg,
-            ResList
+            ResList,
+            CardContainer
         },
         data() {
             return {

@@ -1,5 +1,5 @@
 <template>
-    <CardContainer title="Building cost">
+    <CardContainer title="Building cost" @close:view="$emit('close:view')">
         <div class="flex justify-between text-sm uppercase mb-1 px-2">
             <div class="flex"><div class="mr-8 pr-1">#</div>Building</div>
             <div class="flex"><div class="mr-6 pr-1">From</div>To</div>
@@ -124,10 +124,9 @@
                     }
 
                     const item = this.selections[i]
-                    if(Number(item.toLevel) < Number(item.fromLevel)) item.toLevel = Number(item.fromLevel)+1
+                    if(Number(item.toLevel) <= Number(item.fromLevel)) item.toLevel = Number(item.fromLevel)+1
 
                     for(let j = item.fromLevel; j <= item.toLevel - 1; j++) {
-                        console.log(j)
                         const res = this.buildings[item.name][j]
                         subtotal.lumber += res.wood
                         subtotal.clay += res.clay

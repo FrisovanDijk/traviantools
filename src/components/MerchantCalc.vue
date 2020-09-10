@@ -1,8 +1,6 @@
 <template>
-    <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Merchant trips</h1>
-
-        <div class="mt-2 flex-grow flex flex-col" @change="calcMerchants">
+    <CardContainer title="Merchant trips" @close:view="$emit('close:view')">
+        <div class="flex-grow flex flex-col" @change="calcMerchants">
             <ResRowSum @total="updateTotal"></ResRowSum>
 
             <label class="mt-2 mx-2 flex items-baseline">
@@ -24,18 +22,20 @@
             <div class="px-3 py-1"><span class="font-bold">{{ trip.trips }}</span> trips of</div>
             <ResList :resources="trip" class="pt-0"></ResList>
         </div>
-    </div>
+    </CardContainer>
 </template>
 
 <script>
     import ResRowSum from './molecules/ResRowSum.vue'
     import ResList from './molecules/ResList.vue'
+    import CardContainer from "./molecules/CardContainer";
 
     export default {
         name: 'MerchantCalc',
         components: {
             ResRowSum,
-            ResList
+            ResList,
+            CardContainer
         },
         data() {
             return {
