@@ -142,7 +142,7 @@
                     total.cp     += subtotal.cp * item.amount
                 }
 
-                total.cpRes = Math.round(((total.lumber + total.clay + total.iron + total.cp) / total.cp)*100)/100
+                total.cpRes = Math.round(((total.lumber + total.clay + total.iron + total.crop) / total.cp)*100)/100
 
                 this.total = total
             },

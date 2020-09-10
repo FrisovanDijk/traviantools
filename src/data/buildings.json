@@ -597,8 +597,8 @@
     {"level":20,"wood":16880,"clay":14155,"iron":13610,"crop":7620,"total_res":52265,"pop":3,"time":"26:41:10","cp":38,"cp_diff":6,"durability":3}
   ],
   "Tournament Square": [
-    {"level":1,"wood":" 1750","clay":2250,"iron":1530,"crop":240,"total_res":4020,"pop":1,"time":"00:58:20","cp":1,"cp_diff":1,"speed":1.2},
-    {"level":2,"wood":" 2240","clay":2880,"iron":1960,"crop":305,"total_res":5145,"pop":1,"time":"01:12:40","cp":1,"cp_diff":0,"speed":1.4},
+    {"level":1,"wood":1750,"clay":2250,"iron":1530,"crop":240,"total_res":4020,"pop":1,"time":"00:58:20","cp":1,"cp_diff":1,"speed":1.2},
+    {"level":2,"wood":2240,"clay":2880,"iron":1960,"crop":305,"total_res":5145,"pop":1,"time":"01:12:40","cp":1,"cp_diff":0,"speed":1.4},
     {"level":3,"wood":2865,"clay":3685,"iron":2505,"crop":395,"total_res":9450,"pop":1,"time":"01:29:20","cp":2,"cp_diff":1,"speed":1.6},
     {"level":4,"wood":3670,"clay":3685,"iron":3210,"crop":505,"total_res":11070,"pop":1,"time":"01:48:30","cp":2,"cp_diff":0,"speed":1.8},
     {"level":5,"wood":4700,"clay":6040,"iron":4105,"crop":645,"total_res":15490,"pop":1,"time":"02:11:00","cp":2,"cp_diff":0,"speed":2},

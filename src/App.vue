@@ -29,7 +29,7 @@
               </template>
               <div v-if="components.length < 1"
                    :key="-1"
-                   class="bg-white p-4 mt-4 mx-2"
+                   class="bg-white p-4 mt-4 mx-2 list-item"
               >
                   Use the menu to open calculators. You can open multiple of the same type.
               </div>
