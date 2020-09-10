@@ -1,5 +1,5 @@
 <template>
-    <CardContainer title="NPC Calculator">
+    <CardContainer title="Building cost">
         <div class="flex justify-between text-sm uppercase mb-1 px-2">
             <div class="flex"><div class="mr-8 pr-1">#</div>Building</div>
             <div class="flex"><div class="mr-6 pr-1">From</div>To</div>
@@ -65,11 +65,15 @@
                  :resources="total"
                  :total="true"
         ></ResList>
+        <div class="bg-yellow-200 p-2 pt-0">
+            <div class="flex">+{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
+        </div>
     </CardContainer>
 
 </template>
 
 <script>
+    import ResImg from "./atoms/ResImg";
     import ResList from './molecules/ResList.vue'
     import buildingsJson from '../data/buildings.json'
     import CardContainer from "./molecules/CardContainer"
@@ -78,7 +82,8 @@
         name: 'NPCCalculator',
         components: {
             ResList,
-            CardContainer
+            CardContainer,
+            ResImg
         },
         data() {
             return {
@@ -88,7 +93,9 @@
                     lumber: 0,
                     clay: 0,
                     iron: 0,
-                    crop: 0
+                    crop: 0,
+                    cp: 0,
+                    cpRes: 0
                 }
             }
         },
@@ -101,7 +108,9 @@
                     lumber: 0,
                     clay: 0,
                     iron: 0,
-                    crop: 0
+                    crop: 0,
+                    cp: 0,
+                    cpRes: 0
                 }
 
                 for(let i = 0; i < this.selections.length; i++) {
@@ -109,7 +118,9 @@
                         lumber: 0,
                         clay: 0,
                         iron: 0,
-                        crop: 0
+                        crop: 0,
+                        cp: 0,
+                        cpRes: 0
                     }
 
                     const item = this.selections[i]
@@ -122,13 +133,17 @@
                         subtotal.clay += res.clay
                         subtotal.iron += res.iron
                         subtotal.crop += res.crop
+                        subtotal.cp += res.cp_diff
                     }
 
                     total.lumber += subtotal.lumber * item.amount
                     total.clay   += subtotal.clay * item.amount
                     total.iron   += subtotal.iron * item.amount
                     total.crop   += subtotal.crop * item.amount
+                    total.cp     += subtotal.cp * item.amount
                 }
+
+                total.cpRes = Math.round(((total.lumber + total.clay + total.iron + total.cp) / total.cp)*100)/100
 
                 this.total = total
             },
