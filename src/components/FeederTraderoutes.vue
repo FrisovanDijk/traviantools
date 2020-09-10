@@ -1,9 +1,9 @@
 <template>
     <div class="sm:mx-4 my-4 border border-gray-500 rounded shadow-md bg-white" style="width: 300px">
-        <h1 class="text-lg font-bold bg-green-600 text-gray-100 p-2">Hourly feeder traderoute</h1>
+        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Hourly feeder traderoute</h1>
 
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2 mt-2" v-on:change="handleSubmit">
-            <h2>Production</h2>
+            <h2 class="text-sm uppercase">Production</h2>
             <div class="flex">
                 <ResImg type="lumber"></ResImg>
                 <input type="text" v-model="production.lumber" alt="lumber" class="border border-gray-600 rounded-sm px-2 m-1">

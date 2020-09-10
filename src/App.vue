@@ -7,10 +7,11 @@
       </div>
 
       <div class="flex justify-center flex-wrap flex-grow flex-col sm:flex-row" :class="(glorymode ? 'items-end' : 'items-center sm:items-start')">
+          <NPCCalculator></NPCCalculator>
           <FeederTraderoutes></FeederTraderoutes>
-          <NPCCalc></NPCCalc>
           <MerchantCalc></MerchantCalc>
           <CropScouter></CropScouter>
+          <TotalResources></TotalResources>
       </div>
 
       <div class="w-full flex justify-center items-center border-t p-4 bg-white text-sm">
@@ -27,17 +28,19 @@
 
 <script>
 import FeederTraderoutes from './components/FeederTraderoutes.vue'
-import NPCCalc from './components/NPCCalc.vue'
+import TotalResources from './components/TotalResources.vue'
 import CropScouter from './components/CropScouter.vue'
 import MerchantCalc from './components/MerchantCalc.vue'
+import NPCCalculator from "./components/NPCCalculator";
 
 export default {
     name: 'app',
     components: {
         FeederTraderoutes,
-        NPCCalc,
+        TotalResources,
         CropScouter,
-        MerchantCalc
+        MerchantCalc,
+        NPCCalculator
     },
     data() {
         return {

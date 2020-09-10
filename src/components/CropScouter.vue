@@ -1,6 +1,6 @@
 <template>
     <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-bold bg-green-600 text-gray-100 p-2">Cropscouter</h1>
+        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Cropscouter</h1>
 
         <div class="mt-2 border-b border-gray-800 flex-grow flex flex-col"
              v-for="(cropscout, index) in cropscouts"
@@ -75,10 +75,10 @@
                     dcrop = cropscout.scouts[1].crop - cropscout.scouts[0].crop
 
                 cropscout.production = {
-                    lumber: Math.round((3600*dlumber/dt)*10),
-                    clay: Math.round((3600*dclay/dt)*10),
-                    iron: Math.round((3600*diron/dt)*10),
-                    crop: Math.round((3600*dcrop/dt)*10)
+                    lumber: Math.round((3600*dlumber/dt)),
+                    clay: Math.round((3600*dclay/dt)),
+                    iron: Math.round((3600*diron/dt)),
+                    crop: Math.round((3600*dcrop/dt))
                 }
             },
             resetSingle(cropscout) {

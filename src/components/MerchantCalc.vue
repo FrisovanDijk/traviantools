@@ -1,6 +1,6 @@
 <template>
     <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-bold bg-green-600 text-gray-100 p-2">Merchant trips</h1>
+        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">Merchant trips</h1>
 
         <div class="mt-2 flex-grow flex flex-col" @change="calcMerchants">
             <ResRowSum @total="updateTotal"></ResRowSum>
