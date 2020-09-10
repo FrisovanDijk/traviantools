@@ -1,41 +1,57 @@
 <template>
-    <div class="my-4 sm:mx-4 border border-gray-500 rounded shadow-md flex flex-col bg-white" style="width: 300px">
-        <h1 class="text-lg font-semibold bg-green-600 text-gray-100 p-2">NPC Calculator</h1>
+    <CardContainer title="NPC Calculator">
+        <div class="flex justify-between text-sm uppercase mb-1 px-2">
+            <div class="flex"><div class="mr-8 pr-1">#</div>Building</div>
+            <div class="flex"><div class="mr-6 pr-1">From</div>To</div>
+        </div>
+        <div v-for="(selection, index) in selections"
+             :key="index"
+             class="flex mb-2 justify-between px-2"
+             @change="updateTotals"
+        >
 
-        <div class="p-2">
-            <div class="flex justify-between text-sm uppercase">
-                <div>Building</div>
-                <div>Level</div>
-            </div>
-            <div v-for="(selection, index) in selections"
-                 :key="index"
-                 class="flex mt-2 justify-between"
-                 @change="updateTotals"
+            <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
+                    v-model="selection.amount"
             >
-
-                <select class="w-full border-gray-600 border mr-4"
-                        v-model="selection.name"
+                <option v-for="n in 15"
+                        :key="n"
                 >
-                    <option v-for="(building,key) in buildings"
-                            :key="key"
-                            :selected="selection.name === key"
-                    >
-                        {{ key }}
-                    </option>
-                </select>
+                    {{ n }}
+                </option>
+            </select>
 
-                <select class="border border-gray-600 w-12 flex-shrink-0"
-                        v-model="selection.level"
+            <select class="w-40 border-gray-600 border mr-1 text-sm"
+                    v-model="selection.name"
+            >
+                <option v-for="(building,key) in buildings"
+                        :key="key"
+                        :selected="selection.name === key"
                 >
-                    <option v-for="(level,key) in buildings[selection.name]"
-                            :key="key"
-                            :selected="selection.name === key"
-                    >
-                        {{ level.level }}
-                    </option>
-                </select>
+                    {{ key }}
+                </option>
+            </select>
 
-            </div>
+            <select class="border border-gray-600 w-10 flex-shrink-0 text-sm mr-1"
+                    v-model="selection.fromLevel"
+            >
+                <option v-for="(level,key) in buildings[selection.name]"
+                        :key="key"
+                        :selected="selection.name === key"
+                >
+                    {{ level.level - 1 }}
+                </option>
+            </select>
+
+            <select class="border border-gray-600 w-10 flex-shrink-0 text-sm"
+                    v-model="selection.toLevel"
+            >
+                <option v-for="(level,key) in buildings[selection.name]"
+                        :key="key"
+                        :selected="selection.name === key"
+                >
+                    {{ level.level }}
+                </option>
+            </select>
         </div>
 
         <div class="flex justify-end mt-1 mx-2">
@@ -49,17 +65,20 @@
                  :resources="total"
                  :total="true"
         ></ResList>
-    </div>
+    </CardContainer>
+
 </template>
 
 <script>
     import ResList from './molecules/ResList.vue'
     import buildingsJson from '../data/buildings.json'
+    import CardContainer from "./molecules/CardContainer"
 
     export default {
         name: 'NPCCalculator',
         components: {
-            ResList
+            ResList,
+            CardContainer
         },
         data() {
             return {
@@ -86,26 +105,48 @@
                 }
 
                 for(let i = 0; i < this.selections.length; i++) {
-                    const totalres = this.buildings[this.selections[i].name][this.selections[i].level - 1]
-                    total.lumber += totalres.wood
-                    total.clay += totalres.clay
-                    total.iron += totalres.iron
-                    total.crop += totalres.crop
+                    const subtotal = {
+                        lumber: 0,
+                        clay: 0,
+                        iron: 0,
+                        crop: 0
+                    }
+
+                    const item = this.selections[i]
+                    if(Number(item.toLevel) < Number(item.fromLevel)) item.toLevel = Number(item.fromLevel)+1
+
+                    for(let j = item.fromLevel; j <= item.toLevel - 1; j++) {
+                        console.log(j)
+                        const res = this.buildings[item.name][j]
+                        subtotal.lumber += res.wood
+                        subtotal.clay += res.clay
+                        subtotal.iron += res.iron
+                        subtotal.crop += res.crop
+                    }
+
+                    total.lumber += subtotal.lumber * item.amount
+                    total.clay   += subtotal.clay * item.amount
+                    total.iron   += subtotal.iron * item.amount
+                    total.crop   += subtotal.crop * item.amount
                 }
 
                 this.total = total
             },
             addSelection() {
                 this.selections.push({
+                    amount: 1,
                     name: 'Barracks',
-                    level: 1
+                    fromLevel: 0,
+                    toLevel: 1
                 })
                 this.updateTotals()
             },
             resetRows() {
                 this.selections = [{
+                    amount: 1,
                     name: 'Barracks',
-                    level: 1
+                    fromLevel: 0,
+                    toLevel: 1
                 }]
                 this.updateTotals()
             }
