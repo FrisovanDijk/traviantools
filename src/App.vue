@@ -71,6 +71,11 @@ export default {
             componentId: 0
         }
     },
+    mounted() {
+        this.addComponent('NPCCalculator')
+        this.addComponent('FeederTraderoutes')
+        this.addComponent('MerchantCalc')
+    },
     methods: {
         toggleGloryMode() {
             this.glorymode = !this.glorymode
