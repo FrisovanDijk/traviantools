@@ -6,6 +6,8 @@
           </iframe>
       </div>
 
+      <BackgroundImage v-if="!glorymode"></BackgroundImage>
+
       <div class="flex flex-col flex-grow">
           <ul class="max-w-full mx-auto mt-4 rounded border border-gray-500 text-white font-semibold uppercase text-sm flex flex-wrap justify-between">
               <li @click="addComponent('NPCCalculator')"     class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Building cost</li>
@@ -42,7 +44,7 @@
               Handy calculators for the browser game <a href="https://www.travian.com" target="_blank" class="underline">Travian</a>,
               free and open source on <a href="https://github.com/FrisovanDijk/traviantools" target="_blank" class="underline">GitHub</a>.
               Made by <a href="https://www.frisovandijk.com" target="_blank" class="underline">Friso van Dijk</a>.
-              Imagery of <a href="https://www.traviangames.com" target="_blank" class="underline">Travian Games GmbH</a>.
+              Background image from <a href="https://www.unsplash.com" target="_blank" class="underline">Unsplash</a>.
           </div>
       </div>
   </div>
@@ -54,6 +56,7 @@ import TotalResources from './components/TotalResources.vue'
 import CropScouter from './components/CropScouter.vue'
 import MerchantCalc from './components/MerchantCalc.vue'
 import NPCCalculator from "./components/NPCCalculator";
+import BackgroundImage from "./components/BackgroundImage";
 
 export default {
     name: 'app',
@@ -62,7 +65,8 @@ export default {
         TotalResources,
         CropScouter,
         MerchantCalc,
-        NPCCalculator
+        NPCCalculator,
+        BackgroundImage
     },
     data() {
         return {
@@ -71,7 +75,7 @@ export default {
             componentId: 0
         }
     },
-    mounted() {
+    created() {
         this.addComponent('NPCCalculator')
         this.addComponent('FeederTraderoutes')
         this.addComponent('MerchantCalc')
