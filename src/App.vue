@@ -9,14 +9,11 @@
       <BackgroundImage v-if="!glorymode"></BackgroundImage>
 
       <div class="flex flex-col flex-grow">
-          <ul class="max-w-full mx-auto mt-4 rounded border border-gray-500 text-white font-semibold uppercase text-sm flex flex-wrap justify-between">
-              <li @click="addComponent('NPCCalculator')"     class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Building cost</li>
-              <li @click="addComponent('FeederTraderoutes')" class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Feeder traderoute</li>
-              <li @click="addComponent('MerchantCalc')"      class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Merchant trips</li>
-              <li @click="addComponent('CropScouter')"       class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Cropscout</li>
-              <li @click="addComponent('TotalResources')"    class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Total resources</li>
-              <li @click="components = []"                          class="w-1/2 text-center border border-gray-500 bg-orange-900 flex items-center justify-center lg:w-auto cursor-pointer py-2 px-4 hover:bg-orange-800">Clear all</li>
-          </ul>
+
+          <AppMenuBar @add="addComponent"
+                      @reset="components = []"
+          ></AppMenuBar>
+
           <transition-group name="list"
                             tag="div"
                             class="flex sm:justify-center flex-wrap flex-grow flex-col sm:flex-row"
@@ -28,25 +25,18 @@
                   <MerchantCalc      class="list-item" :key="component.id" @close:view="closeComponent(component)" v-if="component.name === 'MerchantCalc'"></MerchantCalc>
                   <CropScouter       class="list-item" :key="component.id" @close:view="closeComponent(component)" v-if="component.name === 'CropScouter'"></CropScouter>
                   <TotalResources    class="list-item" :key="component.id" @close:view="closeComponent(component)" v-if="component.name === 'TotalResources'"></TotalResources>
+                  <CPNextVillage     class="list-item" :key="component.id" @close:view="closeComponent(component)" v-if="component.name === 'CPNextVillage'"></CPNextVillage>
               </template>
               <div v-if="components.length < 1"
                    :key="-1"
-                   class="bg-white p-4 mt-4 mx-2 list-item"
+                   class="bg-white p-4 mt-4 mx-2 list-item border"
               >
                   Use the menu to open calculators. You can open multiple of the same type.
               </div>
           </transition-group>
       </div>
 
-      <div class="w-full flex justify-center items-center border-t p-2 bg-white text-sm">
-          <button class="bg-red-700 hover:bg-red-500 text-white px-2 rounded mx-4 py-1" @click="toggleGloryMode">Glory mode</button>
-          <div class="mx-2 max-w-lg">
-              Handy calculators for the browser game <a href="https://www.travian.com" target="_blank" class="underline">Travian</a>,
-              free and open source on <a href="https://github.com/FrisovanDijk/traviantools" target="_blank" class="underline">GitHub</a>.
-              Made by <a href="https://www.frisovandijk.com" target="_blank" class="underline">Friso van Dijk</a>.
-              Background image from <a href="https://www.unsplash.com" target="_blank" class="underline">Unsplash</a>.
-          </div>
-      </div>
+      <AppFooter @glorymode="toggleGloryMode"></AppFooter>
   </div>
 </template>
 
@@ -56,7 +46,11 @@ import TotalResources from './components/TotalResources.vue'
 import CropScouter from './components/CropScouter.vue'
 import MerchantCalc from './components/MerchantCalc.vue'
 import NPCCalculator from "./components/NPCCalculator";
-import BackgroundImage from "./components/BackgroundImage";
+import CPNextVillage from "./components/CPNextVillage";
+
+import BackgroundImage from "./components/AppBackgroundImage";
+import AppFooter from "./components/molecules/AppFooter";
+import AppMenuBar from "./components/molecules/AppMenuBar";
 
 export default {
     name: 'app',
@@ -66,7 +60,10 @@ export default {
         CropScouter,
         MerchantCalc,
         NPCCalculator,
-        BackgroundImage
+        CPNextVillage,
+        BackgroundImage,
+        AppFooter,
+        AppMenuBar
     },
     data() {
         return {
@@ -78,7 +75,7 @@ export default {
     created() {
         this.addComponent('NPCCalculator')
         this.addComponent('FeederTraderoutes')
-        this.addComponent('MerchantCalc')
+        this.addComponent('CPNextVillage')
     },
     methods: {
         toggleGloryMode() {
