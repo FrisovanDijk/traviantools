@@ -1,54 +1,54 @@
 <script setup>
     import TheNavbar from '@/components/TheNavbar.vue'
     import Calculators from '@/components/Calculators.vue'
+    import CalculatorsMenu from '@/components/CalculatorsMenu.vue'
     import { ref, watch, onBeforeMount } from 'vue'
+    import { userData } from '@/stores/userData.js'
 
-    const data = ref({
-        tabs: [
-            {
-                name: 'Home',
-                calculators: []
-            }
-        ],
-        currentTab: 0
-    })
-
-    const storeLocal = () => {
-        localStorage.setItem("data", JSON.stringify(data.value.tabs))
-    }
-
+    // Load from local storage
     onBeforeMount(() => {
         if(localStorage.getItem('data')) {
-            data.value.tabs = JSON.parse(localStorage.getItem('data'))
+            userData.tabs = JSON.parse(localStorage.getItem('data'))
         }
     })
 
-    watch(data.value, () => {
-        localStorage.setItem("data", JSON.stringify(data.value.tabs))
+    // Watch for changes to save to local storage
+    watch(userData, () => {
+        localStorage.setItem("data", JSON.stringify(userData.tabs))
     }, {
         deep: true
     })
 
     // Tabs
     const switchTab = (i) => {
-        data.value.currentTab = i
+        userData.currentTab = i
     }
 
     let newTabName = ref('')
     const addTab = (name) => {
-        const newTab = {
-            name: name,
-            calculators: []
+        if(name.length > 0) {
+            userData.tabs.push({
+                name: name,
+                calculators: []
+            })
+            newTabName.value = ''
         }
-        data.value.tabs.push(newTab)
-        newTabName.value = ''
     }
 
     const clearTabs = () => {
-        data.value.tabs = [{
+        userData.currentTab = 0
+        userData.tabs = [{
             name: 'Tab 1',
             calculators: []
         }]
+    }
+
+    // Calculators
+    const addCalculator = (calculator) => {
+        userData.tabs[userData.currentTab].calculators.push({
+            name: calculator.name,
+            calculator: JSON.parse(JSON.stringify(calculator.calculator))
+        })
     }
 </script>
 
@@ -61,10 +61,10 @@
         <!-- Sidebar -->
         <div class="w-48 p-4">
             <ul>
-                <li v-for="(tab, index) in data.tabs"
+                <li v-for="(tab, index) in userData.tabs"
                     class="py-1 my-2 hover:bg-green-100 px-2 rounded cursor-pointer"
                     :class="[
-                index === data.currentTab ? 'underline bg-green-200' : 'bg-slate-200'
+                index === userData.currentTab ? 'underline bg-green-200' : 'bg-slate-200'
             ]"
                     @click="switchTab(index)"
                 >{{ tab.name }}
@@ -82,8 +82,11 @@
                 <button @click="clearTabs" class="py-1 px-3 bg-rose-600 mt-2 rounded font-semibold text-white text-sm">Clear all tabs</button>
             </div>
         </div>
+
+        <CalculatorsMenu class="mt-6" @add:calculator="addCalculator"/>
+
         <div class="flex-1 p-6">
-            <Calculators :calculators="data.tabs[data.currentTab].calculators" />
+            <Calculators />
         </div>
     </div>
 </template>

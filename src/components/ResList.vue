@@ -1,5 +1,5 @@
 <script setup>
-    import ResImg from '../atoms/ResImg.vue'
+    import ResImg from '@/components/ResImg.vue'
 
     defineProps({
         resources: Object,
