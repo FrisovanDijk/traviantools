@@ -12,9 +12,6 @@
     const buildings = buildingsJson
 
     let calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
-    console.log(userData.tabs[userData.currentTab])
-    console.log(props.index)
-    console.log(calculator)
 
     onBeforeMount(() => {
         if(calculator.selections.length < 1) {
