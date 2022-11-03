@@ -11,7 +11,7 @@
     })
     const buildings = buildingsJson
 
-    let calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
 
     onBeforeMount(() => {
         if(calculator.selections.length < 1) {
@@ -96,10 +96,14 @@
 
         total.value = localTotal
     }
+
+    const close = () => {
+        userData.tabs[userData.currentTab].calculators[props.index] = {}
+    }
 </script>
 
 <template>
-    <CalculatorWrapper title="Building cost" @close:view="$emit('close:view')">
+    <CalculatorWrapper title="Building cost" @close:calculator="close">
         <div class="flex justify-between text-sm uppercase mb-1 px-2">
             <div class="flex"><div class="mr-8 pr-1">#</div>Building</div>
             <div class="flex"><div class="mr-6 pr-1">From</div>To</div>

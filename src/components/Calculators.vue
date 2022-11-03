@@ -4,9 +4,12 @@
 </script>
 
 <template>
-    <div class="flex space-4">
+    <div class="flex space-4 flex-wrap items-start">
         <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators">
-            <NPCCalculator v-if="item.name === 'NPCCalculator'" :index="index" :key="`${userData.currentTab}.${index}`" />
+            <NPCCalculator v-if="item.name === 'NPCCalculator'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
         </template>
     </div>
 </template>
