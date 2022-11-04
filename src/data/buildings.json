@@ -362,6 +362,28 @@
     {"level":19,"wood":66355,"clay":35730,"iron":56145,"crop":45940,"total_res":204170,"pop":4,"time":"22:51:40","cp":96,"cp_diff":16,"training_bonus":"19%"},
     {"level":20,"wood":84935,"clay":45735,"iron":71870,"crop":58800,"total_res":261340,"pop":4,"time":"26:41:10","cp":115,"cp_diff":19,"training_bonus":"20%"}
   ],
+  "Hospital": [
+    {"level":1,"wood":320,"clay":280,"iron":420,"crop":360,"total_res":1380,"pop":4,"time":"00:50:00","cp":5,"cp_diff":5},
+    {"level":2,"wood":410,"clay":360,"iron":540,"crop":460,"total_res":1770,"pop":2,"time":"01:03:00","cp":6,"cp_diff":1},
+    {"level":3,"wood":525,"clay":460,"iron":690,"crop":590,"total_res":2265,"pop":2,"time":"01:18:05","cp":7,"cp_diff":1},
+    {"level":4,"wood":670,"clay":585,"iron":880,"crop":755,"total_res":2890,"pop":2,"time":"01:35:34","cp":8,"cp_diff":1},
+    {"level":5,"wood":860,"clay":750,"iron":1125,"crop":965,"total_res":3700,"pop":2,"time":"01:55:52","cp":10,"cp_diff":2},
+    {"level":6,"wood":1100,"clay":960,"iron":1445,"crop":1235,"total_res":4740,"pop":3,"time":"02:19:24","cp":12,"cp_diff":2},
+    {"level":7,"wood":1405,"clay":1230,"iron":1845,"crop":1585,"total_res":6065,"pop":3,"time":"02:46:42","cp":14,"cp_diff":2},
+    {"level":8,"wood":1800,"clay":1575,"iron":2365,"crop":2025,"total_res":7765,"pop":3,"time":"03:18:23","cp":17,"cp_diff":3},
+    {"level":9,"wood":2305,"clay":2020,"iron":3025,"crop":2595,"total_res":9945,"pop":3,"time":"03:55:07","cp":21,"cp_diff":4},
+    {"level":10,"wood":2950,"clay":2585,"iron":3875,"crop":3320,"total_res":12730,"pop":3,"time":"04:37:44","cp":25,"cp_diff":4},
+    {"level":11,"wood":3780,"clay":3305,"iron":4960,"crop":4250,"total_res":16295,"pop":3,"time":"05:27:11","cp":30,"cp_diff":5},
+    {"level":12,"wood":4835,"clay":4230,"iron":6345,"crop":5440,"total_res":22375,"pop":3,"time":"06:24:32","cp":36,"cp_diff":6},
+    {"level":13,"wood":6190,"clay":5415,"iron":8125,"crop":6965,"total_res":26695,"pop":3,"time":"07:31:03","cp":43,"cp_diff":7},
+    {"level":14,"wood":7925,"clay":6930,"iron":10400,"crop":8915,"total_res":34170,"pop":3,"time":"08:48:13","cp":51,"cp_diff":8},
+    {"level":15,"wood":10140,"clay":8875,"iron":13310,"crop":11410,"total_res":43475,"pop":3,"time":"10:17:44","cp":62,"cp_diff":11},
+    {"level":16,"wood":12980,"clay":11360,"iron":17035,"crop":14605,"total_res":55980,"pop":4,"time":"12:01:34","cp":74,"cp_diff":12},
+    {"level":17,"wood":16615,"clay":14540,"iron":21810,"crop":18690,"total_res":71655,"pop":4,"time":"14:02:02","cp":89,"cp_diff":15},
+    {"level":18,"wood":21270,"clay":18610,"iron":27915,"crop":23925,"total_res":91720,"pop":4,"time":"16:21:45","cp":106,"cp_diff":17},
+    {"level":19,"wood":27225,"clay":23820,"iron":35730,"crop":30625,"total_res":117400,"pop":4,"time":"19:03:50","cp":128,"cp_diff":22},
+    {"level":20,"wood":34845,"clay":30490,"iron":45735,"crop":39200,"total_res":150270,"pop":4,"time":"22:11:51","cp":153,"cp_diff":2}
+  ],
   "Iron Foundry": [
     {"level":1,"wood":200,"clay":450,"iron":510,"crop":120,"total_res":1280,"pop":6,"time":"01:08:00","cp":1,"cp_diff":1},
     {"level":2,"wood":360,"clay":810,"iron":920,"crop":215,"total_res":2305,"pop":3,"time":"02:02:00","cp":1,"cp_diff":0},

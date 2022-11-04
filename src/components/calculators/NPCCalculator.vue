@@ -51,6 +51,7 @@
             fromLevel: 0,
             toLevel: 1
         }]
+        updateTotals()
     }
 
     const updateTotals = () => {
