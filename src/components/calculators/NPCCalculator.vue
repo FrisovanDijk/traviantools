@@ -25,6 +25,10 @@
         updateTotals()
     })
 
+    const close = () => {
+        userData.tabs[userData.currentTab].calculators[props.index] = {}
+    }
+
     const total = ref({
         lumber: 0,
         clay: 0,
@@ -96,10 +100,6 @@
         localTotal.cpRes = Math.round(((localTotal.lumber + localTotal.clay + localTotal.iron + localTotal.crop) / localTotal.cp)*100)/100
 
         total.value = localTotal
-    }
-
-    const close = () => {
-        userData.tabs[userData.currentTab].calculators[props.index] = {}
     }
 </script>
 
