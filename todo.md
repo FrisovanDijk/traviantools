@@ -1,2 +1,4 @@
 - Removing tabs
 - Renaming tabs
+- Clear all tabs confirmation
+- Empty state

@@ -92,7 +92,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Building cost" @close:calculator="close">
+    <CalculatorWrapper title="Hourly feeder traderoute" @close:calculator="close">
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2" v-on:change="handleSubmit">
             <h2 class="text-sm uppercase">Production</h2>
             <div class="flex">

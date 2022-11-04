@@ -74,18 +74,18 @@
             <div class="flex mt-6">
                 <form @submit.prevent="addTab(newTabName)">
                     <input type="text" id="name" class="w-full border-slate-400 border-2 rounded py-0.5 px-1" v-model="newTabName">
-                    <button type="submit" class="py-1 px-3 bg-emerald-600 mt-2 rounded font-semibold text-white text-sm">Add tab</button>
+                    <button type="submit" class="py-1 px-3 bg-emerald-600 hover:bg-emerald-400 mt-2 rounded font-semibold text-white text-sm">Add tab</button>
                 </form>
             </div>
 
             <div class="flex mt-6">
-                <button @click="clearTabs" class="py-1 px-3 bg-rose-600 mt-2 rounded font-semibold text-white text-sm">Clear all tabs</button>
+                <button @click="clearTabs" class="py-1 px-3 bg-rose-600 hover:bg-rose-400 mt-2 rounded font-semibold text-white text-sm">Clear all tabs</button>
             </div>
         </div>
 
         <CalculatorsMenu class="mt-6" @add:calculator="addCalculator"/>
 
-        <div class="flex-1 p-6">
+        <div class="flex-1 p-2">
             <Calculators />
         </div>
     </div>
