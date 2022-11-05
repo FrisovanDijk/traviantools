@@ -112,12 +112,12 @@
                     <p class="mr-12 pr-2">CP</p>
                     <p class="">TH level</p>
                 </div>
-                <div class="mt-1"
+                <div class="mt-1 flex items-center"
                      v-for="(party, index) in calculator.parties"
                      :key="index"
                 >
-                    <label class="mt-1 text-sm uppercase"><input class="w-12 border px-1 mx-1" type="number" v-model="party.amount" min="0"></label>
-                    <label class="mt-1 text-sm uppercase">
+                    <label class="text-sm uppercase"><input class="w-12 border px-1 mx-1" type="number" v-model="party.amount" min="0"></label>
+                    <label class="text-sm uppercase">
                         <select v-model="party.type"
                                 class="w-20 border px-1 mr-1"
                         >
@@ -125,7 +125,7 @@
                             <option>Great</option>
                         </select>
                     </label>
-                    <label class="mt-1 text-sm uppercase">
+                    <label class="text-sm uppercase">
                         <input class="w-16 border px-1 mx-1 disabled:bg-slate-200 disabled:text-slate-200"
                                type="number"
                                v-model="party.cp"
@@ -134,24 +134,29 @@
                                :disabled="party.type === 'Great'"
                         >
                     </label>
-                    <label class="mt-1 text-sm uppercase">
+                    <label class="text-sm uppercase">
                         <select v-model="party.townHall"
                                 class="w-12 border px-1 mx-1"
                         >
                             <option v-for="(item, index) in 20" :key="index">{{ item }}</option>
                         </select>
                     </label>
-                    <button class="bg-red-400 px-2 pb-1 rounded text-xl leading-none hover:bg-red-300"
+                    <button class="bg-red-400 rounded leading-none hover:bg-red-300 p-0.5"
                             @click="removeParty(party)"
+                            v-if="calculator.parties.length > 1"
                     >
-                        -
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
                     </button>
                 </div>
                 <div class="mt-2 flex justify-end">
-                    <button class="bg-green-400 px-1 pb-1 rounded text-xl leading-none hover:bg-green-300"
+                    <button class="bg-green-400 rounded leading-none hover:bg-green-300 p-0.5"
                             @click="addParty"
                     >
-                        +
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
                     </button>
                 </div>
             </div>

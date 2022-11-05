@@ -51,6 +51,10 @@
             calculator: (calculator.calculator ? JSON.parse(JSON.stringify(calculator.calculator)) : false)
         })
     }
+
+    const clearTab = () => {
+        userData.tabs[userData.currentTab].calculators = []
+    }
 </script>
 
 <template>
@@ -84,7 +88,10 @@
             </div>
         </div>
 
-        <CalculatorsMenu class="mt-6" @add:calculator="addCalculator"/>
+        <CalculatorsMenu class="mt-6"
+                         @add:calculator="addCalculator"
+                         @clear:tab="clearTab"
+        />
 
         <div class="flex-1 p-2">
             <Calculators />

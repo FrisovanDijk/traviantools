@@ -1,7 +1,4 @@
 - Removing tabs
 - Renaming tabs
 - Clear all tabs confirmation
-- Empty state
-- Help menu item (open instruction tab)
-- Clear tab menu item
 - Mobile menu
