@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-image: url("img/bg2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-}
+/*body {*/
+/*    background-image: url("https://www.frisovandijk.com/public/travian/img/bg2.jpg");*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center center;*/
+/*    background-attachment: fixed;*/
+/*}*/
