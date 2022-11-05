@@ -83,7 +83,7 @@
 </script>
 
 <template>
-    <div class="flex flex-col space-y-2">
+    <div class="flex flex-col space-y-2 p-1 py-2 bg-emerald-50 rounded">
         <div class="bg-emerald-600 text-white p-2 rounded cursor-pointer hover:bg-emerald-400"
              v-for="item in menu"
              @click="$emit('add:calculator', {name: item.name, calculator: item.calculator})">
