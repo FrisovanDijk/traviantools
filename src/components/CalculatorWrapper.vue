@@ -3,6 +3,10 @@
         title: {
             type: String,
             default: 'Title'
+        },
+        close: {
+            type: Boolean,
+            default: true
         }
     })
 </script>
@@ -12,6 +16,7 @@
         <div class="bg-rose-800 hover:bg-rose-600 text-white absolute rounded px-2 font-semibold flex items-center justify-center cursor-pointer"
              style="right: 4px; top: 4px; width: 22px; height: 22px;"
              @click="$emit('close:calculator')"
+             v-if="close"
         >
             <div style="margin-top: -1px;">X</div>
         </div>

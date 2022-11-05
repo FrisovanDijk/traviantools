@@ -48,7 +48,7 @@
     const addCalculator = (calculator) => {
         userData.tabs[userData.currentTab].calculators.push({
             name: calculator.name,
-            calculator: JSON.parse(JSON.stringify(calculator.calculator))
+            calculator: (calculator.calculator ? JSON.parse(JSON.stringify(calculator.calculator)) : false)
         })
     }
 </script>
