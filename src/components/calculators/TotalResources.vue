@@ -11,20 +11,13 @@
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
 
     onBeforeMount(() => {
-        calcMerchants()
+        calcTotal()
     })
 
     const close = () => {
         userData.tabs[userData.currentTab].calculators[props.index] = {}
     }
 
-    const trip = ref({
-        trips: 0,
-        lumber: 0,
-        clay: 0,
-        iron: 0,
-        crop: 0
-    })
     const total = ref({
         sum: 0,
         lumber: 0,
@@ -33,7 +26,7 @@
         crop: 0
     })
 
-    const calcMerchants = () => {
+    const calcTotal = () => {
         resetTotal()
         for(let i = 0; i < calculator.rows.length; i++) {
             let amount = calculator.rows[i].amount
@@ -42,17 +35,6 @@
             total.value.iron += calculator.rows[i].iron * amount
             total.value.crop += calculator.rows[i].crop * amount
             total.value.sum = total.value.lumber + total.value.clay + total.value.iron + total.value.crop
-        }
-
-        const capacity = calculator.merchants * calculator.capacity
-        const trips = Math.ceil(total.value.sum / capacity)
-
-        trip.value = {
-            trips: trips,
-            lumber: total.value.lumber / trips,
-            clay: total.value.clay / trips,
-            iron: total.value.iron / trips,
-            crop: total.value.crop / trips
         }
     }
 
@@ -85,8 +67,8 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Number of merchant trips" @close:calculator="close">
-        <div class="flex-grow flex flex-col" @change="calcMerchants">
+    <CalculatorWrapper title="Total resources" @close:calculator="close">
+        <div class="flex-grow flex flex-col" @change="calcTotal">
             <div class="flex-grow flex flex-col">
                 <div class="flex justify-between px-6">
                     <span class="mr-2">#</span>
@@ -111,23 +93,11 @@
                     <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">add row</button>
                 </div>
             </div>
-
-            <label class="mt-2 mx-2 flex items-baseline">
-                Merchants:
-                <select v-model="calculator.merchants" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="available in 20" :key="available">{{ available }}</option>
-                </select>
-            </label>
-            <label class="mt-2 mx-2 flex items-baseline">
-                Capacity:
-                <input type="text" v-model="calculator.capacity" class="border border-gray-600 rounded-sm px-2 ml-1 w-16">
-            </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Merchant trips</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">Totals</h2>
         <div class="bg-yellow-200">
-            <div class="px-3 py-1"><span class="font-bold">{{ trip.trips }}</span> trips of</div>
-            <ResList :resources="trip" class="pt-0"></ResList>
+            <ResList :resources="total"></ResList>
         </div>
     </CalculatorWrapper>
 </template>

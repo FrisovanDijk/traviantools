@@ -3,6 +3,7 @@
     import FeederAutomation from "@/components/calculators/FeederAutomation.vue";
     import VillageTimer from "@/components/calculators/VillageTimer.vue";
     import MerchantTrips from "@/components/calculators/MerchantTrips.vue";
+    import TotalResources from "@/components/calculators/TotalResources.vue";
     import { userData } from '@/stores/userData.js'
 </script>
 
@@ -26,6 +27,11 @@
                            />
 
             <MerchantTrips v-else-if="item.name === 'MerchantTrips'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <TotalResources v-else-if="item.name === 'TotalResources'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />
