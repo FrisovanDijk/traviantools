@@ -60,9 +60,9 @@
     }
 
     const resetRows = () => {
-        rows.value = []
+        calculator.rows = []
         addRow()
-        calcMerchants()
+        calcTotal()
     }
 </script>
 

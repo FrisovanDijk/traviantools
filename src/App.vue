@@ -44,16 +44,23 @@
         }]
     }
 
+    const clearTab = () => {
+        userData.currentTab = 0
+        userData.tabs.splice(userData.currentTab, 1)
+        if(userData.tabs.length === 0) {
+            userData.tabs = [{
+                name: 'Tab 1',
+                calculators: []
+            }]
+        }
+    }
+
     // Calculators
     const addCalculator = (calculator) => {
         userData.tabs[userData.currentTab].calculators.push({
             name: calculator.name,
             calculator: (calculator.calculator ? JSON.parse(JSON.stringify(calculator.calculator)) : false)
         })
-    }
-
-    const clearTab = () => {
-        userData.tabs[userData.currentTab].calculators = []
     }
 </script>
 

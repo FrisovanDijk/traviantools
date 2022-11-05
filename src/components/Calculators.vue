@@ -43,7 +43,7 @@
                            />
         </template>
         <template v-if="userData.tabs[userData.currentTab].calculators.length === 0" class="m-4 rounded border bg-white p-4" style="width: 310px">
-            <Help key="STATICHELP" />
+            <Help :key="STATICHELP" />
         </template>
     </div>
 </template>
