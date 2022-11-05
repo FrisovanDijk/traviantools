@@ -69,9 +69,9 @@
         <TheNavbar />
     </header>
 
-    <div class="w-full flex">
+    <div class="w-full flex items-start">
         <!-- Sidebar -->
-        <div class="w-48 p-4">
+        <div class="w-48 p-4 hidden sm:block">
             <ul>
                 <li v-for="(tab, index) in userData.tabs"
                     class="py-1 my-2 hover:bg-green-100 px-2 rounded cursor-pointer"
@@ -95,12 +95,12 @@
             </div>
         </div>
 
-        <CalculatorsMenu class="mt-6"
+        <CalculatorsMenu class="mt-6 ml-2 sm:mr-4"
                          @add:calculator="addCalculator"
                          @clear:tab="clearTab"
         />
 
-        <div class="flex-1 p-2">
+        <div class="flex-1 p-2 mt-4">
             <Calculators />
         </div>
     </div>

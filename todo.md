@@ -1,7 +1,5 @@
-- Removing tabs
 - Renaming tabs
 - Clear all tabs confirmation
-- Mobile menu
 - Remove individual rows on BuildingCost
 - Remove individual rows on MerchantTrips
 - Remove individual rows on TotalResources

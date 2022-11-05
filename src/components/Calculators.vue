@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <div class="flex space-4 flex-wrap items-start">
+    <div class="flex gap-4 flex-wrap items-start">
         <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators">
 
             <NPCCalculator v-if="item.name === 'NPCCalculator'"
