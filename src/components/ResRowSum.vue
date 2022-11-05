@@ -1,63 +1,25 @@
 <script setup>
     import ResImg from '@/components/ResImg.vue'
-    import { ref, onBeforeMounted } from 'vue'
+    import { ref, onBeforeMount } from 'vue'
 
-    const rows = ref([])
-    const total = ref(
-        {
-            sum: 0,
-            lumber: 0,
-            clay: 0,
-            iron: 0,
-            crop: 0
+    const props = defineProps({
+        rows: {
+            type: Array,
+            default: () => {[{
+                sum: 0,
+                lumber: 0,
+                clay: 0,
+                iron: 0,
+                crop: 0
+            }]}
         }
-    )
-
-    const addRow = () => {
-        const newRow = {
-            amount: 1,
-            lumber: 0,
-            clay: 0,
-            iron: 0,
-            crop: 0
-        }
-
-        rows.value.push(newRow)
-    }
-
-    onBeforeMounted(() => {
-        addRow()
     })
 
-    const resetTotal = () => {
-        total.value = {
-            sum: 0,
-            lumber: 0,
-            clay: 0,
-            iron: 0,
-            crop: 0
-        }
-    }
 
-    const sumRows = () => {
-        resetTotal()
-        for(let i = 0; i < rows.value.length; i++) {
-            let amount = rows.value[i].amount
-            total.value.lumber += rows.value[i].lumber * amount
-            total.value.clay += rows.value[i].clay * amount
-            total.value.iron += rows.value[i].iron * amount
-            total.value.crop += rows.value[i].crop * amount
-            total.value.sum = total.value.lumber + total.value.clay + total.value.iron + total.value.crop
-        }
 
-        this.$emit('total', total.value)
-    }
 
-    const resetRows = () => {
-        rows.value = []
-        addRow()
-        sumRows()
-    }
+
+
 </script>
 
 <template>

@@ -2,6 +2,7 @@
     import NPCCalculator from "@/components/calculators/NPCCalculator.vue";
     import FeederAutomation from "@/components/calculators/FeederAutomation.vue";
     import VillageTimer from "@/components/calculators/VillageTimer.vue";
+    import MerchantTrips from "@/components/calculators/MerchantTrips.vue";
     import { userData } from '@/stores/userData.js'
 </script>
 
@@ -20,6 +21,11 @@
                            />
 
             <VillageTimer v-else-if="item.name === 'VillageTimer'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <MerchantTrips v-else-if="item.name === 'MerchantTrips'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />
