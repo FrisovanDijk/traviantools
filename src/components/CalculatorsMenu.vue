@@ -32,7 +32,15 @@
                 '  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
                 '</svg>\n',
             calculator: {
-                name: 'VillageTimer'
+                cpLeft: 0,
+                cpDaily: 0,
+                helmet: 'None',
+                parties: [{
+                    amount: 0,
+                    type: 'Small',
+                    cp: 500,
+                    townHall: 1
+                }]
             }
         },
         {
