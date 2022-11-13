@@ -48,14 +48,8 @@
         updateTotals()
     }
 
-    const resetRows = () => {
-        calculator.selections = [{
-            amount: 1,
-            name: 'Barracks',
-            fromLevel: 0,
-            toLevel: 1
-        }]
-        updateTotals()
+    const removeSelection = (selection) => {
+        calculator.selections.splice(calculator.selections.indexOf(selection), 1)
     }
 
     const updateTotals = () => {
@@ -105,63 +99,90 @@
 
 <template>
     <CalculatorWrapper title="Building cost" @close:calculator="close">
-        <div class="flex justify-between text-sm uppercase mb-1 px-2">
-            <div class="flex"><div class="mr-8 pr-1">#</div>Building</div>
-            <div class="flex"><div class="mr-6 pr-1">From</div>To</div>
-        </div>
-        <div v-for="(selection, index) in calculator.selections"
-             :key="index"
-             class="flex mb-2 justify-between px-2"
-             @change="updateTotals"
-        >
-
-            <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
-                    v-model="selection.amount"
+        <table class="text-sm mx-2">
+            <tr class="uppercase pb-1">
+                <th class="font-normal">#</th>
+                <th class="font-normal">Building</th>
+                <th class="font-normal">From</th>
+                <th class="font-normal">To</th>
+                <th class="font-normal"></th>
+            </tr>
+            <tr v-for="(selection, index) in calculator.selections"
+                :key="index"
+                @change="updateTotals"
             >
-                <option v-for="n in 15"
-                        :key="n"
-                >
-                    {{ n }}
-                </option>
-            </select>
+                <td>
+                    <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
+                            v-model="selection.amount"
+                    >
+                        <option v-for="n in 15"
+                                :key="n"
+                        >
+                            {{ n }}
+                        </option>
+                    </select>
+                </td>
 
-            <select class="w-40 border-gray-600 border mr-1 text-sm"
-                    v-model="selection.name"
+                <td>
+                    <select class="w-32 border-gray-600 border mr-1 text-sm"
+                            v-model="selection.name"
+                    >
+                        <option v-for="(building,key) in buildings"
+                                :key="key"
+                                :selected="selection.name === key"
+                        >
+                            {{ key }}
+                        </option>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="border border-gray-600 w-10 flex-shrink-0 text-sm mr-1"
+                            v-model="selection.fromLevel"
+                    >
+                        <option v-for="(level,key) in buildings[selection.name]"
+                                :key="key"
+                                :selected="selection.name === key"
+                        >
+                            {{ level.level - 1 }}
+                        </option>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="border border-gray-600 w-10 flex-shrink-0 text-sm"
+                            v-model="selection.toLevel"
+                    >
+                        <option v-for="(level,key) in buildings[selection.name]"
+                                :key="key"
+                                :selected="selection.name === key"
+                        >
+                            {{ level.level }}
+                        </option>
+                    </select>
+                </td>
+
+                <td>
+                    <button class="bg-red-400 rounded leading-none hover:bg-red-300 p-0.5 ml-0.5"
+                            @click="removeSelection(selection)"
+                            v-if="calculator.selections.length > 1"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <div class="flex justify-end mt-2 mx-2 space-x-2">
+            <button class="bg-green-400 rounded leading-none hover:bg-green-300 p-0.5"
+                    @click="addSelection"
             >
-                <option v-for="(building,key) in buildings"
-                        :key="key"
-                        :selected="selection.name === key"
-                >
-                    {{ key }}
-                </option>
-            </select>
-
-            <select class="border border-gray-600 w-10 flex-shrink-0 text-sm mr-1"
-                    v-model="selection.fromLevel"
-            >
-                <option v-for="(level,key) in buildings[selection.name]"
-                        :key="key"
-                        :selected="selection.name === key"
-                >
-                    {{ level.level - 1 }}
-                </option>
-            </select>
-
-            <select class="border border-gray-600 w-10 flex-shrink-0 text-sm"
-                    v-model="selection.toLevel"
-            >
-                <option v-for="(level,key) in buildings[selection.name]"
-                        :key="key"
-                        :selected="selection.name === key"
-                >
-                    {{ level.level }}
-                </option>
-            </select>
-        </div>
-
-        <div class="flex justify-end mt-1 mx-2">
-            <button class="bg-rose-600 hover:bg-rose-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">reset</button>
-            <button class="bg-emerald-600 hover:bg-emerald-400 px-2 pb-1 rounded text-md text-white" @click="addSelection">add row</button>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+            </button>
         </div>
 
 
