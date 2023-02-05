@@ -45,7 +45,6 @@
     }
 
     const clearTab = () => {
-        userData.currentTab = 0
         userData.tabs.splice(userData.currentTab, 1)
         if(userData.tabs.length === 0) {
             userData.tabs = [{
@@ -53,6 +52,7 @@
                 calculators: []
             }]
         }
+        userData.currentTab = 0
     }
 
     // Calculators

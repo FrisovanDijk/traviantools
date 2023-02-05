@@ -97,7 +97,7 @@
 
         <h2 class="mt-2 py-1 mx-2 font-bold">Totals</h2>
         <div class="bg-yellow-200">
-            <ResList :resources="total"></ResList>
+            <ResList :resources="total" :total="true"></ResList>
         </div>
     </CalculatorWrapper>
 </template>

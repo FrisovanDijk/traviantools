@@ -666,7 +666,7 @@
       "pop": 0,
       "time": 0,
       "cp": 1,
-      "cp_diff": 2
+      "cp_diff": 1
     },
     {
       "level": 2,
@@ -1091,7 +1091,7 @@
       "pop": 0,
       "time": 0,
       "cp": 1,
-      "cp_diff": 2
+      "cp_diff": 1
     },
     {
       "level": 2,

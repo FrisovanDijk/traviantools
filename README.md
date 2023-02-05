@@ -1,29 +1,11 @@
-# travian-tools
+# Friso's Travian Tools
 
-This template should help get you started developing with Vue 3 in Vite.
+Built with Vue 3 and Vite.
 
-## Recommended IDE Setup
+## Ideas list
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+- [ ] Bug: Fix deleting tab (always deletes the first now)
+- [ ] Crop builder (when to build grain mill/bakery/HM)
+- [ ] ROI calculator (how long for res to pay back)
+- [ ] Simming build creator
+- [ ] Hero travel time and res gain from animal kills vs putting all points in resources

@@ -1,0 +1,74 @@
+[
+  {
+    "crop": 15,
+    "lumber": 1,
+    "clay": 1,
+    "iron": 1
+  },
+  {
+    "crop": 9,
+    "lumber": 3,
+    "clay": 3,
+    "iron": 3
+  },
+  {
+    "crop": 6,
+    "lumber": 4,
+    "clay": 4,
+    "iron": 4
+  },
+  {
+    "crop": 6,
+    "lumber": 4,
+    "clay": 5,
+    "iron": 3
+  },
+  {
+    "crop": 6,
+    "lumber": 3,
+    "clay": 5,
+    "iron": 4
+  },
+  {
+    "crop": 6,
+    "lumber": 5,
+    "clay": 4,
+    "iron": 3
+  },
+  {
+    "crop": 6,
+    "lumber": 5,
+    "clay": 3,
+    "iron": 4
+  },
+  {
+    "crop": 6,
+    "lumber": 3,
+    "clay": 4,
+    "iron": 5
+  },
+  {
+    "crop": 6,
+    "lumber": 4,
+    "clay": 3,
+    "iron": 5
+  },
+  {
+    "crop": 7,
+    "lumber": 4,
+    "clay": 4,
+    "iron": 3
+  },
+  {
+    "crop": 7,
+    "lumber": 4,
+    "clay": 3,
+    "iron": 4
+  },
+  {
+    "crop": 7,
+    "lumber": 3,
+    "clay": 4,
+    "iron": 4
+  }
+]

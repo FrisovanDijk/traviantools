@@ -4,6 +4,7 @@
     import VillageTimer from "@/components/calculators/VillageTimer.vue";
     import MerchantTrips from "@/components/calculators/MerchantTrips.vue";
     import TotalResources from "@/components/calculators/TotalResources.vue";
+    import ROICalculator from "@/components/calculators/ROICalculator.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
 </script>
@@ -33,6 +34,11 @@
                            />
 
             <TotalResources v-else-if="item.name === 'TotalResources'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <ROICalculator v-else-if="item.name === 'ROICalculator'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />

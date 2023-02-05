@@ -50,6 +50,7 @@
 
     const removeSelection = (selection) => {
         calculator.selections.splice(calculator.selections.indexOf(selection), 1)
+        updateTotals()
     }
 
     const updateTotals = () => {
