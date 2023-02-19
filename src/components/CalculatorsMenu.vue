@@ -101,7 +101,21 @@
                         type2: ''
                     }
                 ],
-                goldBonus: true
+                goldBonus: true,
+                buildingType: 'crop',
+                buildingToLevel: 1,
+                simulateFieldTo10: true,
+                fields: {
+                    crop: [{level: 10, amount: 6}],
+                    lumber: [{level: 10, amount: 4}],
+                    clay: [{level: 10, amount: 4}],
+                    iron: [{level: 10, amount: 4}]
+                },
+                hmToLevel: 10,
+                hmOasis: {
+                    type1: 'crop',
+                    type2: ''
+                }
             }
         }
     ]
