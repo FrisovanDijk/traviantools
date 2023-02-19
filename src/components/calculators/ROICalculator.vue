@@ -76,11 +76,22 @@
             if(calculator.buildingType === 'clay') buildingType = 'Brickyard'
             if(calculator.buildingType === 'iron') buildingType = 'Iron Foundry'
 
+            let prodGross = 0
+            let highestFieldRow = 0 // Highest field to simulate to 10
+            calculator.fields[calculator.buildingType].forEach((row) => {
+                if(row.amount > 0) {
+                    prodGross += row.amount * productionJson[row.level]
+                    if(Number(row.level) > highestFieldRow) highestFieldRow = Number(row.level)
+                    console.log(row.level)
+                    console.log(highestFieldRow)
+                }
+            })
+
             // Get building cost
             let cost = buildingsJson[buildingType][toLevel-1].total_res
             let addLevels = 1
             // Get building cost for all levels up to that level when simulating a lv10 field
-            if(calculator.simulateFieldTo10) {
+            if(calculator.simulateFieldTo10 && highestFieldRow < 10) {
                 cost = 0
                 addLevels = toLevel
                 for(let i = 0; i < toLevel; i++) {
@@ -88,19 +99,11 @@
                 }
             }
 
-            let prodGross = 0
-            let highestFieldRow = 0 // Highest field to simulate to 10
-            calculator.fields[calculator.buildingType].forEach((row) => {
-                if(row.amount > 0) {
-                    prodGross += row.amount * productionJson[row.level]
-                    if(Number(row.level) > highestFieldRow) highestFieldRow = Number(row.level)
-                }
-            })
-
             let productionDelta = 0.05 * addLevels * prodGross
 
             // Simulate highest field to lv10
             if(calculator.simulateFieldTo10 && highestFieldRow < 10) {
+                console.log(true)
                 let simFieldCost = 0
                 let simFieldProdDelta = 0
 
