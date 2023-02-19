@@ -78,9 +78,11 @@
 
             // Get building cost
             let cost = buildingsJson[buildingType][toLevel-1].total_res
+            let addLevels = 1
             // Get building cost for all levels up to that level when simulating a lv10 field
             if(calculator.simulateFieldTo10) {
                 cost = 0
+                addLevels = toLevel
                 for(let i = 0; i < toLevel; i++) {
                     cost += buildingsJson[buildingType][i].total_res
                 }
@@ -95,7 +97,7 @@
                 }
             })
 
-            let productionDelta = 0.05 * prodGross
+            let productionDelta = 0.05 * addLevels * prodGross
 
             // Simulate highest field to lv10
             if(calculator.simulateFieldTo10 && highestFieldRow < 10) {
@@ -109,7 +111,7 @@
                 }
 
                 cost += simFieldCost
-                productionDelta += simFieldProdDelta
+                productionDelta += simFieldProdDelta + 0.05 * addLevels * simFieldProdDelta
             }
 
             const totalProductionDelta = productionDelta * (calculator.goldBonus ? 1.25 : 1)

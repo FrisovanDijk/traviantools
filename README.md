@@ -4,7 +4,7 @@ Built with Vue 3 and Vite.
 
 ## Ideas list
 
-- [ ] Bug: Fix deleting tab (always deletes the first now)
+- [x] Bug: Fix deleting tab (always deletes the first now)
 - [ ] Crop builder (when to build grain mill/bakery/HM)
 - [x] ROI calculator (how long for res to pay back)
 - [x] ROI calculator: building ROI simulate putting a field to 10
