@@ -5,7 +5,6 @@ Built with Vue 3 and Vite.
 ## Ideas list
 
 - [x] Bug: Fix deleting tab (always deletes the first now)
-- [ ] Crop builder (when to build grain mill/bakery/HM)
 - [x] ROI calculator (how long for res to pay back)
 - [x] ROI calculator: building ROI simulate putting a field to 10
 - [ ] Simming build creator
@@ -14,3 +13,4 @@ Built with Vue 3 and Vite.
 - [ ] CP efficiency vs. goal
 - [ ] Add hospital to NPCCalculator
 - [x] Also show total without crop in total resources
+- [ ] Add (1/2/3/6/8/12/24) hour selector to feeder automation
