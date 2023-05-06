@@ -36,7 +36,8 @@
             wood: 0,
             clay: 0,
             iron: 0,
-            crop: 0
+            crop: 0,
+            total_res: 0
         }
 
         calculator.units.forEach((row) => {
@@ -59,6 +60,9 @@
         cost.time_cav = Math.round(cost.time_cav / 3600)
         cost.time_siege = Math.round(cost.time_siege / 3600)
         cost.time_hospital = Math.round(cost.time_hospital / 3600)
+
+        cost.total_res = cost.wood + cost.clay + cost.iron + cost.crop
+        cost.no_crop = cost.wood + cost.clay + cost.iron
 
         return cost
     }
@@ -139,7 +143,7 @@
                 <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">add row</button>
             </div>
 
-            <h2 class="mt-2 py-1 mx-2 font-bold">Total cost cost</h2>
+            <h2 class="mt-2 py-1 mx-2 font-bold">Total cost</h2>
             <div class="bg-yellow-200 p-2">
                 <template v-if="getCost()">
                     <template v-if="getCost().time_inf">Barracks time: {{ getCost().time_inf }} hours</template>
@@ -153,6 +157,10 @@
                         <div class="flex"><ResImg type="clay" /> {{ getCost().clay }}</div>
                         <div class="flex"><ResImg type="iron" /> {{ getCost().iron }}</div>
                         <div class="flex"><ResImg type="crop" /> {{ getCost().crop }}</div>
+                    </div>
+                    <div class="flex justify-between gap-1 mt-2">
+                        <div class="flex"><ResImg type="resources" /> {{ getCost().total_res }}</div>
+                        <div class="flex"><ResImg type="nocrop" /> {{ getCost().no_crop }}</div>
                     </div>
                 </template>
                 <div v-else>

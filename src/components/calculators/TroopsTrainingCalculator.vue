@@ -263,7 +263,7 @@
                 <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().siege.amount }}</span> {{ getTroops().siege.type }}</span><br/>
                 <div class="flex mt-1 justify-between">
                     <div class="flex"><ResImg type="resources" />{{ getTroops().cost }}</div>
-                    <div class="flex"><ResImg type="nocrop" />{{ getTroops().consumption }}</div>
+                    <div class="flex"><ResImg type="crop" />{{ getTroops().consumption }}/hr</div>
                 </div>
             </template>
             <div v-else>
