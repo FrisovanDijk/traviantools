@@ -29,10 +29,10 @@
     const handleSubmit = () => {
         const celebration = celebrationCost(calculator.party, calculator.townHall)
 
-        result.value.lumber = calculator.production.lumber - celebration.lumber
-        result.value.clay =   calculator.production.clay - celebration.clay
-        result.value.iron =   calculator.production.iron - celebration.iron
-        result.value.crop =   calculator.production.crop - celebration.crop
+        result.value.lumber = calculator.hours * (calculator.production.lumber - celebration.lumber)
+        result.value.clay =   calculator.hours * (calculator.production.clay - celebration.clay)
+        result.value.iron =   calculator.hours * (calculator.production.iron - celebration.iron)
+        result.value.crop =   calculator.hours * (calculator.production.crop - celebration.crop)
     }
 
     const celebrationCost = (type, level) => {
@@ -92,7 +92,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Hourly feeder traderoute" @close:calculator="close">
+    <CalculatorWrapper title="Automating feeder traderoute" @close:calculator="close">
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2" v-on:change="handleSubmit">
             <h2 class="text-sm uppercase">Production</h2>
             <div class="flex">
@@ -112,7 +112,7 @@
                 <input type="text" v-model="calculator.production.crop" alt="crop" class="border border-gray-600 rounded-sm px-2 m-1">
             </div>
 
-            <label class="mt-1">
+            <label class="mt-2">
                 Party:
                 <select v-model="calculator.party" class="border border-gray-500 px-1">
                     <option>none</option>
@@ -120,15 +120,22 @@
                     <option>great</option>
                 </select>
             </label>
-            <label class="mt-1">
+            <label class="mt-2">
                 Town Hall:
                 <select v-model="calculator.townHall" class="border border-gray-500 px-1">
                     <option v-for="level in 20" v-bind:key="level">{{ level }}</option>
                 </select>
             </label>
+            <label class="mt-4">
+                Repeat every
+                <select v-model="calculator.hours" class="border border-gray-500 px-1">
+                    <option v-for="hours in [1,2,3,4,6,8,12,16,24]" v-bind:key="hours">{{ hours }}</option>
+                </select>
+                hour(s)
+            </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Hourly traderoute</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">Traderoute</h2>
         <ResList class="bg-yellow-200"
                  :resources="result"
         ></ResList>

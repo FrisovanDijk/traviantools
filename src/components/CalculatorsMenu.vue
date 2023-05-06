@@ -23,7 +23,8 @@
                     crop: 0
                 },
                 party: "none",
-                townHall: 1
+                townHall: 1,
+                hours: 1
             }
         },
         {
