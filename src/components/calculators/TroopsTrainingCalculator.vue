@@ -147,7 +147,7 @@
 
 
             <div class="flex px-4 mt-4 bg-orange-100 py-3">
-                <div class="flex border-r mr-4 border-gray-600 w-20">
+                <div class="flex border-r mr-4 border-gray-600 w-16">
                     <label class="">
                         <span class="text-xs font-semibold uppercase">Barracks</span><br/>
                         <select v-model="calculator.barracks.amount" class="border border-gray-500 px-1 mt-2">
@@ -185,7 +185,7 @@
             </div>
 
             <div class="flex px-4 bg-emerald-100 py-3">
-                <div class="flex border-r pr-4 mr-4 border-gray-600 w-20">
+                <div class="flex border-r pr-4 mr-4 border-gray-600 w-16">
                     <label class="">
                         <span class="text-xs font-semibold uppercase">Stables</span><br/>
                         <select v-model="calculator.stables.amount" class="border border-gray-500 px-1 mt-2">
@@ -229,9 +229,9 @@
             </div>
 
             <div class="flex px-4 bg-blue-100 py-3">
-                <div class="flex border-r pr-4 mr-4 border-gray-600 w-20">
+                <div class="flex border-r pr-4 mr-4 border-gray-600 w-16">
                     <label class="">
-                        <span class="text-xs font-semibold uppercase">Workshop</span><br/>
+                        <span class="text-xs font-semibold uppercase">Siege</span><br/>
                         <select v-model="calculator.workshop.amount" class="border border-gray-500 px-1 mt-2">
                             <option v-for="(amount, index) in 30" v-bind:key="amount">{{ index }}</option>
                         </select>

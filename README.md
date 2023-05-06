@@ -10,7 +10,7 @@ Built with Vue 3 and Vite.
 - [x] Also show total without crop in total resources
 - [x] Add hospital to NPCCalculator
 - [x] Add hour selector to feeder automation
-- [ ] Troop numbers based on buildings, bonuses and training time
+- [x] Troop numbers based on buildings, bonuses and training time
 - [ ] Training time for given number of troops based on modifiers (hospital, bonuses, helmet)
 - [ ] Simming build creator
 - [ ] Hero travel time and res gain from animal kills vs putting all points in resources
