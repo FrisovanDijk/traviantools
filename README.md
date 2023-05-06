@@ -9,7 +9,7 @@ Built with Vue 3 and Vite.
 - [x] ROI calculator: building ROI simulate putting a field to 10
 - [x] Also show total without crop in total resources
 - [x] Add hospital to NPCCalculator
-- [ ] Add (1/2/3/6/8/12/24) hour selector to feeder automation
+- [x] Add hour selector to feeder automation
 - [ ] Troop numbers based on buildings, bonuses and training time
 - [ ] Training time for given number of troops based on modifiers (hospital, bonuses, helmet)
 - [ ] Simming build creator

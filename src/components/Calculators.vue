@@ -5,6 +5,7 @@
     import MerchantTrips from "@/components/calculators/MerchantTrips.vue";
     import TotalResources from "@/components/calculators/TotalResources.vue";
     import ROICalculator from "@/components/calculators/ROICalculator.vue";
+    import TroopsTrainingCalculator from "@/components/calculators/TroopsTrainingCalculator.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
 </script>
@@ -39,6 +40,11 @@
                            />
 
             <ROICalculator v-else-if="item.name === 'ROICalculator'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <TroopsTrainingCalculator v-else-if="item.name === 'TroopsTraining'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />
