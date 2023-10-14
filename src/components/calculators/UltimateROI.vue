@@ -51,8 +51,9 @@
         }
         /**
          *  Steps based on type:
-         *  crop, clay, lumber, iron: { type, level, roi, fieldID}
-         *  building: { type, fieldType, level, roi, fieldID, sim10}
+         *  crop, clay, lumber, iron: { type, level, roi, fieldID }
+         *  building: { type, fieldType, level, roi, fieldID, sim10 }
+         *  oasis: { type, level, roi }
          */
         let memory = [] // Remember previously calculated steps to increase performance
         const build = [] // Simulated build queue
@@ -64,12 +65,19 @@
                 fields[type].push({
                     id: i,
                     type: type,
-                    level: 0
+                    level: 1
                 })
             }
             memory.push(calculateFieldROI(fields, type))
             memory.push(calculateBuildingROI(fields, type))
         })
+        let oasiscount = 0
+        for(let i = 0; i < 3; i++) {
+            if(calculator.oases[i].type1) oasiscount++
+        }
+        if(5 + oasiscount * 5 > fields.buildings.hm) {
+            memory.push(calculateOasisROI(fields))
+        }
 
         // Start simulation
         let running = true
@@ -79,8 +87,9 @@
             // Select lowest ROI
             const lowROI = memory.reduce((curr, prev) => (curr.roi <= prev.roi && curr.level < 20) ? curr : prev)
 
-            const getBuildMessage = buildMessage(lowROI)
-            build.push(getBuildMessage)
+            // Set UI text for next step
+            const getBuildMessage = buildMessage(lowROI, build[build.length-1])
+            if(getBuildMessage) build.push(getBuildMessage)
 
             // If type is field, then up the level
             if(lowROI.type === 'crop' || lowROI.type === 'lumber' || lowROI.type === 'clay' || lowROI.type === 'iron' ) {
@@ -106,6 +115,19 @@
                     memory = memory.filter((step) => { return step.fieldType !== lowROI.type })
                     const newBuildingStep = calculateBuildingROI(fields, lowROI.type)
                     memory.push(newBuildingStep)
+                }
+
+                // Calculate relevant HM for next oasis
+                if(5 + oasiscount * 5 > fields.buildings.hm) {
+                    let tier = 0
+                    if(fields.buildings.hm / 5 > 0) {
+                        tier = fields.buildings.hm / 5 - 1
+                    }
+                    if(calculator.oases[tier].type1 === lowROI.type || calculator.oases[tier].type2 === lowROI.type) {
+                        memory = memory.filter((step) => { return step.type !== 'oasis' })
+                        const newBuildingStep = calculateOasisROI(fields)
+                        memory.push(newBuildingStep)
+                    }
                 }
             }
 
@@ -141,11 +163,36 @@
                 }
             }
 
-            // If type is oasis, update level + active oasis and recalculate relevant res
+            // If type is oasis, update level + active oasis or waterworks, and recalculate relevant res
+            if(lowROI.type === 'oasis') {
+                fields.buildings.hm = lowROI.level
 
+                memory = memory.filter((step) => { return step.type !== 'oasis' })
+                if(5 + oasiscount * 5 > fields.buildings.hm) {
+                    const newBuildingStep = calculateOasisROI(fields)
+                    memory.push(newBuildingStep)
 
-            // If type is waterworks, update building level and recalculate relevant res
+                    let nextType1 = calculator.oases[fields.buildings.hm / 5 - 1].type1
+                    let nextType2 = calculator.oases[fields.buildings.hm / 5 - 1].type2
+                    if(nextType1) {
+                        memory = memory.filter((step) => { return step.type !== nextType1 })
+                        let lowField = fields[nextType1].reduce((curr, prev) => (curr.level >= prev.level) ? prev : curr)
+                        if(lowField.level < calculator.simTo) {
+                            const newStep = calculateFieldROI(fields, nextType1)
+                            memory.push(newStep)
+                        }
 
+                        if(nextType2) {
+                            memory = memory.filter((step) => { return step.type !== nextType2 })
+                            let lowField = fields[nextType2].reduce((curr, prev) => (curr.level >= prev.level) ? prev : curr)
+                            if(lowField.level < calculator.simTo) {
+                                const newStep = calculateFieldROI(fields, nextType2)
+                                memory.push(newStep)
+                            }
+                        }
+                    }
+                }
+            }
 
             // With every change recalculate ROI for HM + WW, res buildings
 
@@ -176,7 +223,7 @@
             }
         }
 
-        let fieldCost = calculateFieldCost(lowField.type, lowField.level + 1, fields.buildings[fieldType])
+        let fieldCost = calculateFieldCost(lowField.type, lowField.level + 1, fields.buildings[fieldType], fields.buildings.hm)
 
         return {
             type: lowField.type,
@@ -186,7 +233,7 @@
         }
     }
 
-    const calculateFieldCost = (fieldType, toLevel, buildingLevel) => {
+    const calculateFieldCost = (fieldType, toLevel, buildingLevel, hmLevel) => {
         let buildingType = 'Cropland'
         if(fieldType === 'lumber') buildingType = 'Woodcutter'
         if(fieldType === 'clay') buildingType = 'Clay Pit'
@@ -194,13 +241,22 @@
 
         const cost = buildingsJson[buildingType][toLevel-1].total_res
         let productionDelta = productionJson[toLevel] - productionJson[toLevel-1]
-        productionDelta += productionDelta * 0.05 * buildingLevel
+        let netDelta = productionDelta + productionDelta * 0.05 * buildingLevel
 
-        // TODO add oases to productionDelta
+        if(hmLevel > 0) {
+            const tier = hmLevel / 5 - 1
+            for(let i = 0; i < tier; i++) {
+                if(calculator.oases[i].type1 === fieldType) netDelta += 0.25 * productionDelta
+                if(calculator.oases[i].type2 === fieldType) netDelta += 0.25 * productionDelta
+            }
+        }
+
+        // Gold
+        netDelta *= (calculator.goldBonus ? 1.25 : 1)
 
         return {
             cost: cost,
-            productionDelta: productionDelta
+            productionDelta: netDelta
         }
     }
 
@@ -230,9 +286,14 @@
         let cost = buildingsJson[buildingType][currLevel].total_res
         let productionDelta = 0.05 * prodGross
 
+        // Gold
+        productionDelta *= (calculator.goldBonus ? 1.25 : 1)
+
+        if(highField.level < 5) { cost = 9999999; productionDelta = 1}
+
         // Get building cost for all levels up to that level when simulating a lv10 field
         if(sim10) {
-            const sim10Outcome = simTo10(highField, fields.buildings[highField.type], prodGross)
+            const sim10Outcome = simTo10(highField, fields.buildings[highField.type], prodGross, fields.buildings.hm)
 
             if(buildingType === 'Grain Mill' && sim10Outcome.cost / sim10Outcome.productionDelta > cost / productionDelta ) {
                 return {
@@ -263,14 +324,14 @@
         }
     }
 
-    const simTo10 = (highField, buildingLevel, totalProduction, cost = 0, productionDelta = 0, count = 0) => {
+    const simTo10 = (highField, buildingLevel, totalProduction, hmLevel = 0, cost = 0, productionDelta = 0, count = 0) => {
         let oldCost = cost
         let oldProductionDelta = productionDelta
 
         // Determine field cost and production delta at first run
         if(highField.level < 10 && cost === 0 && productionDelta === 0) {
             for(let i = highField.level + 1; i <= 10; i++) {
-                let fieldCost = calculateFieldCost(highField.type, i, buildingLevel);
+                let fieldCost = calculateFieldCost(highField.type, i, buildingLevel, hmLevel);
                 cost += fieldCost.cost
                 productionDelta += fieldCost.productionDelta
             }
@@ -287,23 +348,82 @@
             buildingType = 'Bakery'
             tempLevel = buildingLevel - 5
         }
-        cost += buildingsJson[buildingType][tempLevel].total_res
-        productionDelta += totalProduction * 0.05
+
+        // Avoid bug that temp level can go too high
+        if(tempLevel === 5) {
+            cost = 999999999; productionDelta = 1
+        } else {
+            cost += buildingsJson[buildingType][tempLevel].total_res
+            productionDelta += totalProduction * 0.05
+        }
+
+        // Gold
+        productionDelta *= (calculator.goldBonus ? 1.25 : 1)
 
         // If old ROI is better than new ROI, return
-        if(oldCost / oldProductionDelta < cost / productionDelta && productionDelta > 0) {
+        if(oldCost / oldProductionDelta < cost / productionDelta && productionDelta > 0 && oldProductionDelta > 0) {
             return {
-                buildingLevel: ( buildingLevel ),
+                buildingLevel: buildingLevel,
                 cost: oldCost,
                 productionDelta: oldProductionDelta
             }
         }
         // Otherwise try again
         buildingLevel++
-        return simTo10({ level: 10, type: highField.type}, buildingLevel, totalProduction, cost, productionDelta, count)
+        return simTo10({ level: 10, type: highField.type}, buildingLevel, totalProduction, hmLevel, cost, productionDelta, count)
     }
 
-    const buildMessage = (step) => {
+    const calculateOasisROI = (fields) => {
+        let fromLevel = fields.buildings.hm
+        let toLevel = 10
+        let tier = 0
+        if(fromLevel === 10) {
+            toLevel = 15
+            tier = 1
+        }
+        if(fromLevel === 15) {
+            toLevel = 20
+            tier = 2
+        }
+
+        let cost = 0
+
+        for(let i = fromLevel; i < toLevel; i++) {
+            cost += buildingsJson["Hero's Mansion"][i].total_res
+        }
+
+        let prodGrossType1 = 0
+        let prodGrossType2 = 0
+        if(calculator.oases[tier].type1) {
+            fields[calculator.oases[tier].type1].forEach((row) => {
+                prodGrossType1 += productionJson[row.level]
+            })
+        }
+        if(calculator.oases[tier].type2) {
+            fields[calculator.oases[tier].type2].forEach((row) => {
+                prodGrossType2 += productionJson[row.level]
+            })
+        }
+
+        let productionDelta = 0
+        if(calculator.oases[tier].type1 !== calculator.oases[tier].type2) {
+            productionDelta += 0.25 * prodGrossType1 + 0.25 * prodGrossType2
+        } else {
+            productionDelta += 0.5 * prodGrossType1
+        }
+
+        // Gold
+        productionDelta *= (calculator.goldBonus ? 1.25 : 1)
+
+        return {
+            type: 'oasis',
+            level: toLevel ,
+            roi: cost / productionDelta
+        }
+
+    }
+
+    const buildMessage = (step, lastMessage = {}) => {
         let message = ''
         if(step.type === 'building') {
             let buildingType = 'Grain Mill'
@@ -328,6 +448,10 @@
             }
         }
 
+        if(step.type === 'oasis') {
+            message = `Hero's Mansion to ${step.level} and capture oasis`
+        }
+
         if(step.type === 'crop' || step.type === 'lumber' || step.type === 'clay' || step.type === 'iron') {
             let resBuildingType = 'Cropland'
             if(step.type === 'lumber') resBuildingType = 'Woodcutter'
@@ -335,6 +459,10 @@
             if(step.type === 'iron') resBuildingType = 'Iron Mine'
 
             message = `${resBuildingType} to ${step.level}`
+            if(lastMessage.text === message) {
+                lastMessage.count++
+                return false
+            }
         }
 
         const roiDays = step.roi/24
@@ -349,22 +477,12 @@
         return {
             text: message,
             roi: roiString,
-            completed: false
+            completed: false,
+            count: 1
         }
 
     }
 
-    const calculateHMCost = (toLevel, oasisType1, oasisType2) => {
-        let fromLevel = 0
-        if(toLevel === 15) fromLevel = 10
-        if(toLevel === 20) fromLevel = 15
-
-        let cost = 0
-        for(let i = fromLevel; i < toLevel; i++) {
-            cost += buildingsJson["Hero's Mansion"][i].total_res
-        }
-        return cost
-    }
 </script>
 
 <template>
@@ -425,8 +543,11 @@
                      @click="calculator.build[calculator.tab * 10 + i - 1].completed = !calculator.build[calculator.tab * 10 + i - 1].completed"
                 >
                     <!-- TODO fix bug with trying to display nonexistent -->
-                    <div>{{ calculator.build[calculator.tab * 10 + i - 1].text }}</div>
-                    <div class="text-xs">{{ calculator.build[calculator.tab * 10 + i - 1].roi }}</div>
+                    <div>
+                        <template v-if="calculator.build[calculator.tab * 10 + i - 1].count > 1">{{ calculator.build[calculator.tab * 10 + i - 1].count }} x </template>
+                        {{ calculator.build[calculator.tab * 10 + i - 1].text }}
+                    </div>
+                    <div class="text-xs w-24 text-right">{{ calculator.build[calculator.tab * 10 + i - 1].roi }}</div>
                 </div>
             </div>
             <div class="flex justify-center gap-8 mt-2 mb-3">
