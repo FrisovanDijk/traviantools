@@ -5,6 +5,7 @@
     import MerchantTrips from "@/components/calculators/MerchantTrips.vue";
     import TotalResources from "@/components/calculators/TotalResources.vue";
     import ROICalculator from "@/components/calculators/ROICalculator.vue";
+    import UltimateROI from "@/components/calculators/UltimateROI.vue";
     import TroopsTrainingCalculator from "@/components/calculators/TroopsTrainingCalculator.vue";
     import TroopCostCalculator from "@/components/calculators/TroopCostCalculator.vue";
     import Help from "@/components/calculators/Help.vue";
@@ -41,6 +42,11 @@
                            />
 
             <ROICalculator v-else-if="item.name === 'ROICalculator'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <UltimateROI v-else-if="item.name === 'UltimateROI'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />
