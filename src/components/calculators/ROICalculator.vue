@@ -82,8 +82,6 @@
                 if(row.amount > 0) {
                     prodGross += row.amount * productionJson[row.level]
                     if(Number(row.level) > highestFieldRow) highestFieldRow = Number(row.level)
-                    console.log(row.level)
-                    console.log(highestFieldRow)
                 }
             })
 
@@ -103,7 +101,6 @@
 
             // Simulate highest field to lv10
             if(calculator.simulateFieldTo10 && highestFieldRow < 10) {
-                console.log(true)
                 let simFieldCost = 0
                 let simFieldProdDelta = 0
 

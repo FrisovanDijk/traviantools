@@ -146,7 +146,8 @@
                 egyptian: false,
                 goldBonus: true,
                 simTo: 10,
-                build: []
+                build: [],
+                tab: 0
             }
         },
         {

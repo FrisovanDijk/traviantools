@@ -36,7 +36,7 @@
                 &#709;
             </div>
         </div>
-        <div class="absolute bg-white cursor-pointer overflow-y-scroll h-32 w-36 border rounded z-50"
+        <div class="absolute bg-white cursor-pointer overflow-y-scroll h-40 w-36 border rounded z-50"
              v-if="open"
         >
             <div class="flex hover:bg-yellow-100 py-1"
