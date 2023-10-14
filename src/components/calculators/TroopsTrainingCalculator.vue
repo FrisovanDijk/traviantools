@@ -33,7 +33,13 @@
         if(!siege && calculator.workshop.amount > 0) return false
 
         let consumption = 0
-        let cost = 0
+        let cost = {
+            wood: 0,
+            clay: 0,
+            iron: 0,
+            crop: 0,
+            total: 0
+        }
 
         let inf_troops = 0
         if(calculator.barracks.amount > 0) {
@@ -44,7 +50,11 @@
             const inf_time_mods = (inf_time_sec * mod_barracks * mod_trainer * mod_bonus) / inf_helmet
 
             inf_troops = Math.round(interval / inf_time_mods * calculator.barracks.amount)
-            cost += inf.total_res * inf_troops
+            cost.wood += inf.wood * inf_troops
+            cost.clay += inf.clay * inf_troops
+            cost.iron += inf.iron * inf_troops
+            cost.crop += inf.crop * inf_troops
+            cost.total += inf.total_res * inf_troops
             consumption += inf_troops * inf.upkeep
 
             if(calculator.barracks.great_level > 0) {
@@ -52,7 +62,11 @@
                 const inf_time_great = (inf_time_sec * mod_great_barracks * mod_trainer * mod_bonus) / inf_helmet
                 const great_troops = Math.round(interval / inf_time_great * calculator.barracks.amount)
                 inf_troops += great_troops
-                cost += inf.total_res * great_troops * 3
+                cost.wood += inf.wood * great_troops * 3
+                cost.clay += inf.clay * great_troops * 3
+                cost.iron += inf.iron * great_troops * 3
+                cost.crop += inf.crop * great_troops * 3
+                cost.total += inf.total_res * great_troops * 3
                 consumption += great_troops * inf.upkeep
             }
         }
@@ -66,7 +80,11 @@
             const hdt = (calculator.tribe === 'romans' ? 1 + calculator.stables.hdt_level / 100 : 1)
             const cav_time_mods = (cav_time_sec * mod_stables * mod_trainer * mod_bonus) / cav_helmet / hdt
             cav_troops = Math.round(interval / cav_time_mods * calculator.stables.amount)
-            cost += cav.total_res * cav_troops
+            cost.wood += cav.wood * cav_troops
+            cost.clay += cav.clay * cav_troops
+            cost.iron += cav.iron * cav_troops
+            cost.crop += cav.crop * cav_troops
+            cost.total += cav.total_res * cav_troops
             consumption += cav_troops * cav.upkeep
 
             if(calculator.stables.great_level > 0) {
@@ -74,7 +92,11 @@
                 const cav_time_great = (cav_time_sec * mod_great_stables * mod_trainer * mod_bonus) / cav_helmet / hdt
                 const gs_troops = Math.round(interval / cav_time_great * calculator.stables.amount)
                 cav_troops += gs_troops
-                cost += cav.total_res * gs_troops * 3
+                cost.wood += cav.wood * gs_troops * 3
+                cost.clay += cav.clay * gs_troops * 3
+                cost.iron += cav.iron * gs_troops * 3
+                cost.crop += cav.crop * gs_troops * 3
+                cost.total += cav.total_res * gs_troops * 3
                 consumption += gs_troops * cav.upkeep
             }
         }
@@ -86,7 +108,11 @@
             const mod_workshop = Math.pow(0.9,calculator.workshop.level - 1)
             const siege_time_mods = (siege_time_sec * mod_workshop * mod_trainer * mod_bonus)
             siege_troops = Math.round(interval / siege_time_mods * calculator.workshop.amount)
-            cost += siege.total_res * siege_troops
+            cost.wood += siege.wood * siege_troops
+            cost.clay += siege.clay * siege_troops
+            cost.iron += siege.iron * siege_troops
+            cost.crop += siege.crop * siege_troops
+            cost.total += siege.total_res * siege_troops
             consumption += siege_troops * siege.upkeep
         }
 
@@ -262,7 +288,13 @@
                 <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().cav.amount }}</span> {{ getTroops().cav.type }}</span>
                 <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().siege.amount }}</span> {{ getTroops().siege.type }}</span><br/>
                 <div class="flex mt-1 justify-between">
-                    <div class="flex"><ResImg type="resources" />{{ getTroops().cost }}</div>
+                    <div class="flex"><ResImg type="lumber" />{{ getTroops().cost.wood }}</div>
+                    <div class="flex"><ResImg type="clay" />{{ getTroops().cost.clay }}</div>
+                    <div class="flex"><ResImg type="iron" />{{ getTroops().cost.iron }}</div>
+                    <div class="flex"><ResImg type="crop" />{{ getTroops().cost.crop }}</div>
+                </div>
+                <div class="flex mt-1 justify-between">
+                    <div class="flex"><ResImg type="resources" />{{ getTroops().cost.total }}</div>
                     <div class="flex"><ResImg type="crop" />{{ getTroops().consumption }}/hr</div>
                 </div>
             </template>

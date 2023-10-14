@@ -60,7 +60,8 @@
             iron: 0,
             crop: 0,
             cp: 0,
-            cpRes: 0
+            cpRes: 0,
+            pop: 0
         }
 
         for(let i = 0; i < calculator.selections.length; i++) {
@@ -70,7 +71,8 @@
                 iron: 0,
                 crop: 0,
                 cp: 0,
-                cpRes: 0
+                cpRes: 0,
+                pop: 0
             }
 
             const item = calculator.selections[i]
@@ -83,6 +85,7 @@
                 subtotal.iron += res.iron
                 subtotal.crop += res.crop
                 subtotal.cp += res.cp_diff
+                subtotal.pop += res.pop
             }
 
             localTotal.lumber += subtotal.lumber * item.amount
@@ -90,6 +93,7 @@
             localTotal.iron   += subtotal.iron * item.amount
             localTotal.crop   += subtotal.crop * item.amount
             localTotal.cp     += subtotal.cp * item.amount
+            localTotal.pop    += subtotal.pop * item.amount
         }
 
         localTotal.cpRes = Math.round(((localTotal.lumber + localTotal.clay + localTotal.iron + localTotal.crop) / localTotal.cp)*100)/100
@@ -193,7 +197,7 @@
                  :total="true"
         ></ResList>
         <div class="bg-yellow-200 p-2 pt-0">
-            <div class="flex">+{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
+            <div class="flex">+{{total.pop}} pop. +{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
         </div>
     </CalculatorWrapper>
 </template>
