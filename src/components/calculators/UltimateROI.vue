@@ -75,7 +75,7 @@
         for(let i = 0; i < 3; i++) {
             if(calculator.oases[i].type1) oasiscount++
         }
-        if(5 + oasiscount * 5 > fields.buildings.hm) {
+        if(oasiscount > 0) {
             memory.push(calculateOasisROI(fields))
         }
 
@@ -85,7 +85,9 @@
         while(running) {
 
             // Select lowest ROI
-            const lowROI = memory.reduce((curr, prev) => (curr.roi <= prev.roi && curr.level < 20) ? curr : prev)
+            const lowROI = memory.reduce((curr, prev) =>
+                (curr.roi >= prev.roi) ? prev : curr
+            )
 
             // Set UI text for next step
             const getBuildMessage = buildMessage(lowROI, build[build.length-1])
@@ -132,7 +134,6 @@
             }
 
             // If type is res building, update building level and recalculate relevant res ROI + res buildings
-            // TODO
             if(lowROI.type === 'building') {
                 if(!lowROI.sim10) {
                     fields.buildings[lowROI.fieldType]++
@@ -228,7 +229,7 @@
         return {
             type: lowField.type,
             level: lowField.level + 1 ,
-            roi: fieldCost.cost / fieldCost.productionDelta,
+            roi: fieldCost.cost / (fieldCost.productionDelta * (calculator.goldBonus ? 1.25 : 1)),
             id: lowField.id
         }
     }
@@ -250,9 +251,6 @@
                 if(calculator.oases[i].type2 === fieldType) netDelta += 0.25 * productionDelta
             }
         }
-
-        // Gold
-        netDelta *= (calculator.goldBonus ? 1.25 : 1)
 
         return {
             cost: cost,
@@ -286,10 +284,8 @@
         let cost = buildingsJson[buildingType][currLevel].total_res
         let productionDelta = 0.05 * prodGross
 
-        // Gold
-        productionDelta *= (calculator.goldBonus ? 1.25 : 1)
-
-        if(highField.level < 5) { cost = 9999999; productionDelta = 1}
+        // So you don't have to 'sim' first crop to 5 on 15c
+        if(highField.level < 5) { cost = 9999999; productionDelta = 1; sim10 = false}
 
         // Get building cost for all levels up to that level when simulating a lv10 field
         if(sim10) {
@@ -300,7 +296,7 @@
                     type: 'building',
                     fieldType: highField.type,
                     level: fields.buildings[highField.type] + 1,
-                    roi: cost / productionDelta,
+                    roi: cost / (productionDelta * (calculator.goldBonus ? 1.25 : 1)),
                     sim10: false
                 }
             } else {
@@ -308,7 +304,7 @@
                     type: 'building',
                     fieldType: highField.type,
                     level: sim10Outcome.buildingLevel,
-                    roi: sim10Outcome.cost / sim10Outcome.productionDelta,
+                    roi: sim10Outcome.cost / (sim10Outcome.productionDelta * (calculator.goldBonus ? 1.25 : 1)),
                     id: highField.id,
                     sim10: true
                 }
@@ -318,7 +314,7 @@
                 type: 'building',
                 fieldType: highField.type,
                 level: fields.buildings[highField.type] + 1,
-                roi: cost / productionDelta,
+                roi: cost / (productionDelta * (calculator.goldBonus ? 1.25 : 1)),
                 sim10: false
             }
         }
@@ -327,6 +323,9 @@
     const simTo10 = (highField, buildingLevel, totalProduction, hmLevel = 0, cost = 0, productionDelta = 0, count = 0) => {
         let oldCost = cost
         let oldProductionDelta = productionDelta
+
+        let logs = false
+        if(highField.type === 'crop') logs = true
 
         // Determine field cost and production delta at first run
         if(highField.level < 10 && cost === 0 && productionDelta === 0) {
@@ -349,6 +348,8 @@
             tempLevel = buildingLevel - 5
         }
 
+        logs ? console.log(`${buildingType} lv${tempLevel + 1}`) : true
+
         // Avoid bug that temp level can go too high
         if(tempLevel === 5) {
             cost = 999999999; productionDelta = 1
@@ -356,9 +357,6 @@
             cost += buildingsJson[buildingType][tempLevel].total_res
             productionDelta += totalProduction * 0.05
         }
-
-        // Gold
-        productionDelta *= (calculator.goldBonus ? 1.25 : 1)
 
         // If old ROI is better than new ROI, return
         if(oldCost / oldProductionDelta < cost / productionDelta && productionDelta > 0 && oldProductionDelta > 0) {
@@ -483,6 +481,19 @@
 
     }
 
+    const getBuildTab = () => {
+        let tabSize = 8
+        let tab = []
+
+        for(let i = 0; i < tabSize; i++) {
+            if(calculator.build[calculator.tab * tabSize + i]) {
+                tab.push(calculator.build[calculator.tab * tabSize + i])
+            }
+        }
+
+        return tab
+    }
+
 </script>
 
 <template>
@@ -535,19 +546,18 @@
             <div class="flex flex-col">
                 <div class="p-2" v-if="calculator.build.length === 0">Select a build to simulate</div>
                 <div v-else
-                     v-for="i in 10"
+                     v-for="(row, i) in getBuildTab()"
                      :class="[
                          'border-b py-1 px-2 flex justify-between hover:bg-green-300 cursor-pointer',
-                         (calculator.build[calculator.tab * 10 + i - 1].completed ? 'bg-green-200' : 'bg-yellow-200')
+                         (row.completed ? 'bg-green-200' : 'bg-yellow-200')
                      ]"
-                     @click="calculator.build[calculator.tab * 10 + i - 1].completed = !calculator.build[calculator.tab * 10 + i - 1].completed"
+                     @click="row.completed = !row.completed"
                 >
-                    <!-- TODO fix bug with trying to display nonexistent -->
                     <div>
-                        <template v-if="calculator.build[calculator.tab * 10 + i - 1].count > 1">{{ calculator.build[calculator.tab * 10 + i - 1].count }} x </template>
-                        {{ calculator.build[calculator.tab * 10 + i - 1].text }}
+                        <template v-if="row.count > 1">{{ row.count }} x </template>
+                        {{ row.text }}
                     </div>
-                    <div class="text-xs w-24 text-right">{{ calculator.build[calculator.tab * 10 + i - 1].roi }}</div>
+                    <div class="text-xs w-24 text-right">{{ row.roi }}</div>
                 </div>
             </div>
             <div class="flex justify-center gap-8 mt-2 mb-3">
@@ -555,9 +565,8 @@
                      v-if="calculator.tab > 0"
                 >
                     prev</div>
-                <!-- TODO check if made invisible on last tab when that works -->
                 <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab++"
-                     v-if="calculator.build.length / calculator.tab > 10"
+                     v-if="calculator.build.length > (calculator.tab + 1) * 8"
                 >
                     next</div>
             </div>
