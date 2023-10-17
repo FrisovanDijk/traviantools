@@ -142,7 +142,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Total troops trained" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col" v-on:change="handleSubmit">
             <label class="px-4">
                 Training time

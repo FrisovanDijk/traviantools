@@ -609,7 +609,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Optimal village build" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
 
         <div class="flex space-x-3 px-2">
             <div class="text-sm">Village type</div>

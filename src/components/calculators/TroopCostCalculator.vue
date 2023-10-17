@@ -86,7 +86,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Troop costs calculator" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col">
             <label class="px-4 mt-2">
                 Tribe

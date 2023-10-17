@@ -85,7 +85,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Number of merchant trips" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex-grow flex flex-col" @change="calcMerchants">
             <div class="flex-grow flex flex-col">
                 <div class="flex justify-between px-6">

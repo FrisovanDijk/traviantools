@@ -103,7 +103,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Building cost" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <table class="text-sm mx-2">
             <tr class="uppercase pb-1">
                 <th class="font-normal">#</th>

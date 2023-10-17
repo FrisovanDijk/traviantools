@@ -67,7 +67,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Total resources" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex-grow flex flex-col" @change="calcTotal">
             <div class="flex-grow flex flex-col">
                 <div class="flex justify-between px-6">

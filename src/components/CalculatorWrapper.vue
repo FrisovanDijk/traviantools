@@ -1,4 +1,6 @@
 <script setup>
+    import { ref } from 'vue'
+
     defineProps({
         title: {
             type: String,
@@ -9,6 +11,9 @@
             default: true
         }
     })
+
+    const editable = ref(false)
+    const newTitle = ref('')
 </script>
 
 <template>
@@ -20,7 +25,26 @@
         >
             <div style="margin-top: -1px;">X</div>
         </div>
-        <h1 class="font-semibold bg-emerald-600 text-gray-100 p-2 mb-2">{{ title }}</h1>
+        <div class="flex w-full bg-emerald-600 p-2 mb-2 items-center gap-2 text-gray-100">
+            <template v-if="editable">
+                <div class="text-sm">title</div>
+                <input type="text" v-model="newTitle" class="font-semibold bg-emerald-600 border-b border-slate-800 w-40">
+                <span class="" @click="(newTitle === '' ? true : $emit('new:title', newTitle)); editable = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+                </span>
+                <span class="" @click="newTitle = ''; editable = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+                </span>
+            </template>
+            <template v-else>
+                <h1 class="font-semibold text-gray-100" @click="editable = true">{{ title }}</h1>
+            </template>
+        </div>
 
         <slot></slot>
     </div>
