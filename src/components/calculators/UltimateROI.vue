@@ -74,9 +74,9 @@
         }
         if(oasiscount > 0) {
             memory.push(calculateOasisROI(fields))
+            // Set up WW ROI
+            if(calculator.egyptian) memory.push(calculateWWROI(fields))
         }
-        // Set up WW ROI
-        if(calculator.egyptian) memory.push(calculateWWROI(fields))
 
         // Start simulation
         let running = true
@@ -157,7 +157,7 @@
 
                 // Select next building step ROI
                 memory = memory.filter((step) => { return step.fieldType !== lowROI.fieldType })
-                if(lowROI.level < 5 || (lowROI.type === 'crop' && fields.buildings[lowROI.type] < 10)) {
+                if(lowROI.level < 5 || (lowROI.fieldType === 'crop' && fields.buildings[lowROI.fieldType] < 10)) {
                     const newBuildingStep = calculateBuildingROI(fields, lowROI.fieldType)
                     memory.push(newBuildingStep)
                 }

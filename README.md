@@ -16,7 +16,7 @@ Built with Vue 3 and Vite.
 - [ ] Better explain icons/app (menu foldout)
 - [ ] Add Spartan troops and unique building (hospital)
 - [ ] Add Waterworks to ROI calculator
-- [ ] Simming build creator --> now ultimateROI
+- [x] Simming build creator --> now ultimateROI
 - [ ] Copy Kirilloid res dev calculator
 - [ ] Hero travel time and res gain from animal kills vs putting all points in resources
 - [ ] When is great party worth it in cp/day (village cp vs. account cp)
