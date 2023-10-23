@@ -20,3 +20,43 @@ Built with Vue 3 and Vite.
 - [x] Naming calculators (making title editable)
 - [ ] Fix makeshift wall and stone wall stats
 - [ ] 
+
+v3.0
+- [ ] Redesign menu and icons
+- [ ] Add tasks to ultimateROI
+- [ ] Crop scouter + cap sim
+- [ ] Res dev calculator showing production at field levels
+- [ ] Village builder with presets and ?export/import/saving templates?:
+  - 500 CP feeder
+  - 1000 CP feeder
+  - NPC village
+  - 15c lv18
+  - 15c lv19
+  - 9c lv18
+  - hammer
+  - anvil
+- [ ] CP efficiency overview
+- [ ] Troop attribute calculator
+- [ ] When to upgrade troop in smithy
+
+
+##### Redesign menu and icons
+
+- Village
+    - Building costs
+    - Time to next village
+    - (new) Village builder with presets
+    - (new) CP efficiency overview
+- Economy
+    - Merchant trips
+    - Total res
+    - ROI
+    - Village builder
+    - Feeder traderoutes
+    - (new & done) Res dev calculator showing production at field levels
+- Troops
+    - Troop training time
+    - Troop costs
+    - (new) When to troop upgrades
+    - (new) Crop scouter + cap sim
+    - (new) Comparative troop attribute calculator
