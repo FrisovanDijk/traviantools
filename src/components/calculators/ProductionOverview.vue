@@ -136,7 +136,7 @@
 
         <h2 class="mt-2 py-1 mx-2 font-bold">Hourly production</h2>
         <div class="bg-yellow-200">
-            <ResList :resources="resultProduction" class=""></ResList>
+            <ResList :resources="resultProduction" :total="true" class=""></ResList>
         </div>
     </CalculatorWrapper>
 </template>

@@ -9,6 +9,7 @@
     import UltimateROI from "@/components/calculators/UltimateROI.vue";
     import TroopsTrainingCalculator from "@/components/calculators/TroopsTrainingCalculator.vue";
     import TroopCostCalculator from "@/components/calculators/TroopCostCalculator.vue";
+    import SmithyEfficiency from "@/components/calculators/SmithyEfficiency.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
 </script>
@@ -63,6 +64,11 @@
                            />
 
             <TroopCostCalculator v-else-if="item.name === 'TroopCost'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <SmithyEfficiency v-else-if="item.name === 'SmithyEfficiency'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />

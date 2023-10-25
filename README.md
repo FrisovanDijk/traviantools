@@ -25,7 +25,7 @@ v3.0
 - [ ] Redesign menu and icons
 - [ ] Add tasks to ultimateROI
 - [ ] Crop scouter + cap sim
-- [ ] Res dev calculator showing production at field levels
+- [X] Res dev calculator showing production at field levels
 - [ ] Village builder with presets and ?export/import/saving templates?:
   - 500 CP feeder
   - 1000 CP feeder
@@ -38,6 +38,7 @@ v3.0
 - [ ] CP efficiency overview
 - [ ] Troop attribute calculator
 - [ ] When to upgrade troop in smithy
+- [ ] New tribe select component
 
 
 ##### Redesign menu and icons
@@ -57,6 +58,6 @@ v3.0
 - Troops
     - Troop training time
     - Troop costs
-    - (new) When to troop upgrades
+    - (new & done) When to troop upgrades
     - (new) Crop scouter + cap sim
     - (new) Comparative troop attribute calculator
