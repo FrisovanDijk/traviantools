@@ -20,6 +20,8 @@
         deep: true
     })
 
+    const showMenu = ref(true)
+
     // Tabs
     const switchTab = (i) => {
         userData.currentTab = i
@@ -71,7 +73,7 @@
 
     <div class="w-full flex items-start">
         <!-- Sidebar -->
-        <div class="w-48 p-2 hidden sm:block">
+        <div class="w-48 p-2 hidden lg:block">
             <ul>
                 <li v-for="(tab, index) in userData.tabs"
                     class="py-1 my-2 hover:bg-green-100 px-2 rounded cursor-pointer"
@@ -95,12 +97,27 @@
             </div>
         </div>
 
-        <CalculatorsMenu class="mt-4 ml-2 sm:mr-4"
-                         @add:calculator="addCalculator"
-                         @clear:tab="clearTab"
-        />
+        <div class="flex flex-col gap-2 mt-4 ml-1 sm:ml-2 mr-2 sm:mr-4 relative">
+            <div class="block sm:hidden rounded p-1 text-center text-white w-full h-8 self-center text-sm cursor-pointer bg-emerald-600 hover:bg-emerald-400"
+                 @click="showMenu = !showMenu"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" v-if="!showMenu">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto" v-else>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                </svg>
+            </div>
+            <CalculatorsMenu @add:calculator="addCalculator"
+                             @clear:tab="clearTab"
+                             :class="[
+                             '',
+                             showMenu ? 'flex' : 'hidden sm:flex'
+                         ]"
+            />
+        </div>
 
-        <div class="flex-1 p-2 mt-2">
+        <div class="flex-1 p-1 sm:p-2 mt-2">
             <Calculators />
         </div>
     </div>

@@ -26,7 +26,7 @@
     })
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators[props.index] = {}
+        userData.tabs[userData.currentTab].calculators.splice(props.index)
     }
 
     const total = ref({

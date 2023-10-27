@@ -20,10 +20,11 @@ Built with Vue 3 and Vite.
 - [x] Naming calculators (making title editable)
 - [ ] Fix makeshift wall and stone wall stats
 - [ ] Add HDT to troop training calcs
+- [ ] Troop attribute calculator per tribe
+- [ ] Add tasks to ultimateROI
 
 v3.0
-- [ ] Redesign menu and icons
-- [ ] Add tasks to ultimateROI
+- [X] Redesign menu and icons
 - [ ] Crop scouter + cap sim
 - [X] Res dev calculator showing production at field levels
 - [ ] Village builder with presets and ?export/import/saving templates?:
@@ -36,9 +37,10 @@ v3.0
   - hammer
   - anvil
 - [ ] CP efficiency overview
-- [ ] Troop attribute calculator
 - [X] When to upgrade troop in smithy
-- [ ] New tribe select component
+- [X] New tribe select component
+- [ ] Improve help component
+- [ ] Improve default state
 
 
 ##### Redesign menu and icons
@@ -46,6 +48,7 @@ v3.0
 - Village
     - Building costs
     - Time to next village
+    - (new & done) Res dev calculator showing production at field levels
     - (new) Village builder with presets
     - (new) CP efficiency overview
 - Economy
@@ -54,10 +57,8 @@ v3.0
     - ROI
     - Village builder
     - Feeder traderoutes
-    - (new & done) Res dev calculator showing production at field levels
 - Troops
     - Troop training time
     - Troop costs
     - (new & done) When to troop upgrades
     - (new) Crop scouter + cap sim
-    - (new) Comparative troop attribute calculator per tribe
