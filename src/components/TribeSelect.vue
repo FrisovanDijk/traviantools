@@ -10,11 +10,9 @@
 </script>
 
 <template>
-    <div class="px-4 flex space-x-2 items-center text-sm">
-        <div class="w-8">Tribe</div>
-
+    <div class="px-4 flex gap-4 justify-center text-sm">
         <div v-for="(option, index) in tribes" :key="option"
-             class="block rounded border text-center py-0.5 px-1 cursor-pointer hover:bg-green-100 border-gray-500 overflow-hidden"
+             class="block rounded border text-center py-0.5 px-2 cursor-pointer hover:bg-green-100 border-gray-500 overflow-hidden"
              :class="(option === selected ? 'bg-green-200' : 'bg-gray-100')"
              @click="$emit('selection', option)"
         >

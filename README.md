@@ -40,7 +40,8 @@ v3.0
 - [X] When to upgrade troop in smithy
 - [X] New tribe select component
 - [ ] Improve help component
-- [ ] Improve default state
+- [X] Improve default state
+- [ ] Improve tribe selection
 
 
 ##### Redesign menu and icons

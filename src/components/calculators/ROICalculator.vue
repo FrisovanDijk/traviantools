@@ -23,7 +23,7 @@
     })
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index)
+        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
     }
 
     const updateROIType = (type) => { calculator.roiType = type; calculateROI() }

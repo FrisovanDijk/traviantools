@@ -18,7 +18,7 @@
     })
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index)
+        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
     }
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator

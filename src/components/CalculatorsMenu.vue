@@ -252,7 +252,7 @@
                 tribe: 'gaul',
                 units: [
                     {
-                        name: 'Phalanx',
+                        id: 0,
                         amount: 100
                     }
                 ],

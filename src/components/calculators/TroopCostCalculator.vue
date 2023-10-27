@@ -11,7 +11,7 @@
     const troops = troopsJson
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index)
+        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
     }
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
@@ -42,7 +42,7 @@
         }
 
         calculator.units.forEach((row) => {
-            const unit = troops[calculator.tribe].filter((e) => {return e.name === row.name})[0]
+            const unit = troops[calculator.tribe][row.id]
             if(!unit) return false
             const unit_time = unit.training_time.split(':')
             unit.seconds = Number(unit_time[0]) * 3600 + Number(unit_time[1]) * 60 + Number(unit_time[2])
@@ -80,7 +80,7 @@
     const addRow = () => {
         const newRow = {
             amount: 1,
-            name: ''
+            id: 0
         }
         calculator.units.push(newRow)
     }
@@ -134,8 +134,8 @@
                      :key="index"
                 >
                     <input type="number" v-model="row.amount" min="0" class="py-0.5 px-1 border border-gray-300 w-24">
-                    <select v-model="row.name" class="border border-gray-500 px-1 py-0.5 ml-2 w-full">
-                        <option v-for="(unit, index) in getUnits()" v-bind:key="level">{{ unit.name }}</option>
+                    <select v-model="row.id" class="border border-gray-500 px-1 py-0.5 ml-2 w-full">
+                        <option v-for="(unit, index) in getUnits()" :value="index">{{ unit.name }}</option>
                     </select>
                 </div>
             </div>

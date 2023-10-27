@@ -11,7 +11,7 @@
     const troops = troopsJson
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index)
+        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
     }
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
@@ -140,13 +140,23 @@
         if(string === 'day') return 24
         if(string === 'week') return 168
     }
+
+    const switchTribe = (tribe) => {
+        calculator.tribe = tribe
+
+        console.log(getInf()[0])
+
+        calculator.barracks.unit = getInf()[0].name
+        calculator.stables.unit = getCav()[0].name
+        calculator.workshop.unit = getSiege()[0].name
+    }
 </script>
 
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col" v-on:change="handleSubmit">
 
-            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {switchTribe(tribe)}" class="mt-2" />
 
             <label class="px-4 mt-4">
                 Training time
