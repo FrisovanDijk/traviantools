@@ -19,7 +19,7 @@ Built with Vue 3 and Vite.
 - [ ] When is great party worth it in cp/day (village cp vs. account cp), CP efficiency vs. goal
 - [x] Naming calculators (making title editable)
 - [ ] Fix makeshift wall and stone wall stats
-- [ ] 
+- [ ] Add HDT to troop training calcs
 
 v3.0
 - [ ] Redesign menu and icons
@@ -37,7 +37,7 @@ v3.0
   - anvil
 - [ ] CP efficiency overview
 - [ ] Troop attribute calculator
-- [ ] When to upgrade troop in smithy
+- [X] When to upgrade troop in smithy
 - [ ] New tribe select component
 
 
@@ -60,4 +60,4 @@ v3.0
     - Troop costs
     - (new & done) When to troop upgrades
     - (new) Crop scouter + cap sim
-    - (new) Comparative troop attribute calculator
+    - (new) Comparative troop attribute calculator per tribe

@@ -253,6 +253,21 @@
             }
         },
         {
+            name: 'TroopsCompare',
+            icon: 'TCo',
+            calculator: {
+                title: 'Compare troops',
+                tribe: 'gaul',
+                upgrade_level: 20,
+                recruitment: 10,
+                boots: 0,
+                hospital_level: 20,
+                hdt: 20,
+                brewery: 10,
+                items: 3
+            }
+        },
+        {
             name: 'SmithyEfficiency',
             icon: 'SEf',
             calculator: {
