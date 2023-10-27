@@ -1,5 +1,6 @@
 <script setup>
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
+    import TribeSelect from "@/components/TribeSelect.vue"
     import troopsJson from '@/data/troops.json'
     import { userData } from '@/stores/userData.js'
     import ResImg from '@/components/ResImg.vue'
@@ -144,7 +145,10 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col" v-on:change="handleSubmit">
-            <label class="px-4">
+
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
+
+            <label class="px-4 mt-4">
                 Training time
                 <input type="number" min="0" max="300" v-model="calculator.training_amount" class="px-2 py-0.5 border w-20">
                 <select v-model="calculator.time_type" class="border border-gray-500 px-1 ml-1">
@@ -152,24 +156,20 @@
                 </select>
             </label>
 
-            <label class="px-4 mt-2">
-                Tribe
-                <select v-model="calculator.tribe" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="tribe in ['gaul', 'teutons', 'romans', 'egyptians', 'huns']" v-bind:key="tribe">{{ tribe }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Recruitment bonus
-                <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Artifact
-                <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
-                </select>
-            </label>
+            <div class="flex mt-4">
+                <label class="px-4">
+                    Recruitment
+                    <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
+                    </select>
+                </label>
+                <label class="px-4">
+                    Artifact
+                    <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
+                    </select>
+                </label>
+            </div>
 
 
             <div class="flex px-4 mt-4 bg-orange-100 py-3">

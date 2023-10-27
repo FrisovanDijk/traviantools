@@ -4,6 +4,7 @@
     import buildingsJson from '@/data/buildings.json'
     import { userData } from '@/stores/userData.js'
     import ResImg from '@/components/ResImg.vue'
+    import TribeSelect from '@/components/TribeSelect.vue'
     import { ref, onBeforeMount } from 'vue'
 
     const props = defineProps({
@@ -40,12 +41,7 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col" @change="compareTroops">
-            <label class="px-4 mt-2">
-                Tribe
-                <select v-model="calculator.tribe" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="tribe in ['gaul', 'teutons', 'romans', 'egyptians', 'huns']" v-bind:key="tribe">{{ tribe }}</option>
-                </select>
-            </label>
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
 
             <h2 class="mt-2 py-1 mx-2 font-bold">Break even for lv{{calculator.level}}</h2>
             <div class="bg-yellow-200 p-2 flex flex-wrap">

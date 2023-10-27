@@ -1,5 +1,6 @@
 <script setup>
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
+    import TribeSelect from "@/components/TribeSelect.vue"
     import troopsJson from '@/data/troops.json'
     import buildingsJson from '@/data/buildings.json'
     import { userData } from '@/stores/userData.js'
@@ -108,24 +109,22 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col" @change="getUpgradeEfficiency">
-            <label class="px-4 mt-2">
-                Tribe
-                <select v-model="calculator.tribe" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="tribe in ['gaul', 'teutons', 'romans', 'egyptians', 'huns']" v-bind:key="tribe">{{ tribe }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                <label>
-                    Smithy cost
-                    <input type="checkbox" v-model="calculator.smithy" class="ml-1">
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
+
+            <div class="flex mt-6 px-6 gap-4">
+                <label class="flex-0">
+                    <label>
+                        Smithy cost
+                        <input type="checkbox" v-model="calculator.smithy" class="ml-1">
+                    </label>
                 </label>
-            </label>
-            <label class="px-4 mt-2">
-                Upgrade level
-                <select v-model="calculator.level" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="(bonus, index) in 20" v-bind:key="bonus">{{ bonus }}</option>
-                </select>
-            </label>
+                <label class="flex-0">
+                    Upgrade level
+                    <select v-model="calculator.level" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="(bonus, index) in 20" v-bind:key="bonus">{{ bonus }}</option>
+                    </select>
+                </label>
+            </div>
 
             <div class="flex flex-wrap px-4 mt-4 mb-1">
                 <label v-for="(unit, index) in getUnits()" v-bind:key="level" class="w-1/2 py-1.5">

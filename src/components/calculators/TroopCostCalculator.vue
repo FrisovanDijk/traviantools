@@ -1,5 +1,6 @@
 <script setup>
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
+    import TribeSelect from "@/components/TribeSelect.vue"
     import troopsJson from '@/data/troops.json'
     import { userData } from '@/stores/userData.js'
     import ResImg from '@/components/ResImg.vue'
@@ -88,37 +89,39 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
         <div class="flex flex-col">
-            <label class="px-4 mt-2">
-                Tribe
-                <select v-model="calculator.tribe" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="tribe in ['gaul', 'teutons', 'romans', 'egyptians', 'huns']" v-bind:key="tribe">{{ tribe }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Recruitment bonus
-                <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Artifact
-                <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Infantry helm
-                <select v-model="calculator.helm_inf" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
-                Cavalry helm
-                <select v-model="calculator.helm_cav" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
-                </select>
-            </label>
-            <label class="px-4 mt-2">
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
+
+            <div class="flex mt-4 gap-4 px-6">
+                <label class="flex-0">
+                    Recruitment
+                    <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
+                    </select>
+                </label>
+                <label class="flex-0">
+                    Artifact
+                    <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="flex mt-4 gap-4 px-6">
+                <label class="flex-0">
+                    Inf. helm
+                    <select v-model="calculator.helm_inf" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
+                    </select>
+                </label>
+                <label class="flex-0">
+                    Cav. helm
+                    <select v-model="calculator.helm_cav" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
+                    </select>
+                </label>
+            </div>
+
+            <label class="px-6 mt-4">
                 Hospital level
                 <select v-model="calculator.hospital_level" class="border border-gray-500 px-1 ml-1">
                     <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
