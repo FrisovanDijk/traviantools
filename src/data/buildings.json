@@ -977,7 +977,7 @@
       "iron": 175,
       "crop": 130,
       "total_res": 875,
-      "pop": 2,
+      "pop": 1,
       "time": 0,
       "cp": 4,
       "cp_diff": 1
@@ -989,7 +989,7 @@
       "iron": 225,
       "crop": 170,
       "total_res": 1125,
-      "pop": 3,
+      "pop": 1,
       "time": 0,
       "cp": 4,
       "cp_diff": 0
@@ -1001,7 +1001,7 @@
       "iron": 290,
       "crop": 215,
       "total_res": 1445,
-      "pop": 4,
+      "pop": 1,
       "time": 0,
       "cp": 5,
       "cp_diff": 1
@@ -1013,7 +1013,7 @@
       "iron": 370,
       "crop": 275,
       "total_res": 1845,
-      "pop": 5,
+      "pop": 1,
       "time": 0,
       "cp": 6,
       "cp_diff": 1
@@ -1025,7 +1025,7 @@
       "iron": 470,
       "crop": 355,
       "total_res": 2360,
-      "pop": 6,
+      "pop": 1,
       "time": 0,
       "cp": 7,
       "cp_diff": 1
@@ -1037,7 +1037,7 @@
       "iron": 605,
       "crop": 450,
       "total_res": 3020,
-      "pop": 7,
+      "pop": 1,
       "time": 0,
       "cp": 9,
       "cp_diff": 2
@@ -1049,7 +1049,7 @@
       "iron": 775,
       "crop": 580,
       "total_res": 3875,
-      "pop": 8,
+      "pop": 1,
       "time": 0,
       "cp": 11,
       "cp_diff": 2
@@ -1061,7 +1061,7 @@
       "iron": 990,
       "crop": 740,
       "total_res": 4950,
-      "pop": 9,
+      "pop": 1,
       "time": 0,
       "cp": 13,
       "cp_diff": 2
@@ -1073,7 +1073,7 @@
       "iron": 1270,
       "crop": 950,
       "total_res": 6345,
-      "pop": 10,
+      "pop": 1,
       "time": 0,
       "cp": 15,
       "cp_diff": 2
@@ -1085,7 +1085,7 @@
       "iron": 1625,
       "crop": 1220,
       "total_res": 8120,
-      "pop": 12,
+      "pop": 2,
       "time": 0,
       "cp": 18,
       "cp_diff": 3
@@ -1097,7 +1097,7 @@
       "iron": 2080,
       "crop": 1560,
       "total_res": 10385,
-      "pop": 14,
+      "pop": 2,
       "time": 0,
       "cp": 22,
       "cp_diff": 4
@@ -1109,7 +1109,7 @@
       "iron": 2660,
       "crop": 2000,
       "total_res": 13295,
-      "pop": 16,
+      "pop": 2,
       "time": 0,
       "cp": 27,
       "cp_diff": 5
@@ -1121,7 +1121,7 @@
       "iron": 3400,
       "crop": 2550,
       "total_res": 17005,
-      "pop": 18,
+      "pop": 2,
       "time": 0,
       "cp": 32,
       "cp_diff": 5
@@ -1133,7 +1133,7 @@
       "iron": 4355,
       "crop": 3270,
       "total_res": 21780,
-      "pop": 20,
+      "pop": 2,
       "time": 0,
       "cp": 38,
       "cp_diff": 6
@@ -1402,7 +1402,7 @@
       "iron": 395,
       "crop": 330,
       "total_res": 2110,
-      "pop": 2,
+      "pop": 1,
       "time": 0,
       "cp": 4,
       "cp_diff": 1
@@ -1414,7 +1414,7 @@
       "iron": 505,
       "crop": 420,
       "total_res": 2700,
-      "pop": 3,
+      "pop": 1,
       "time": 0,
       "cp": 4,
       "cp_diff": 0
@@ -1426,7 +1426,7 @@
       "iron": 650,
       "crop": 540,
       "total_res": 3460,
-      "pop": 4,
+      "pop": 1,
       "time": 0,
       "cp": 5,
       "cp_diff": 1
@@ -1438,7 +1438,7 @@
       "iron": 830,
       "crop": 690,
       "total_res": 4425,
-      "pop": 5,
+      "pop": 1,
       "time": 0,
       "cp": 6,
       "cp_diff": 1
@@ -1450,7 +1450,7 @@
       "iron": 1065,
       "crop": 885,
       "total_res": 5670,
-      "pop": 6,
+      "pop": 1,
       "time": 0,
       "cp": 7,
       "cp_diff": 1
@@ -1462,7 +1462,7 @@
       "iron": 1360,
       "crop": 1135,
       "total_res": 7255,
-      "pop": 7,
+      "pop": 1,
       "time": 0,
       "cp": 9,
       "cp_diff": 2
@@ -1474,7 +1474,7 @@
       "iron": 1740,
       "crop": 1450,
       "total_res": 9285,
-      "pop": 8,
+      "pop": 1,
       "time": 0,
       "cp": 11,
       "cp_diff": 2
@@ -1486,7 +1486,7 @@
       "iron": 2230,
       "crop": 1855,
       "total_res": 11885,
-      "pop": 9,
+      "pop": 1,
       "time": 0,
       "cp": 13,
       "cp_diff": 2
@@ -1498,7 +1498,7 @@
       "iron": 2850,
       "crop": 2375,
       "total_res": 15205,
-      "pop": 10,
+      "pop": 1,
       "time": 0,
       "cp": 15,
       "cp_diff": 2
@@ -1510,7 +1510,7 @@
       "iron": 3650,
       "crop": 3040,
       "total_res": 19465,
-      "pop": 12,
+      "pop": 2,
       "time": 0,
       "cp": 18,
       "cp_diff": 3
@@ -1522,7 +1522,7 @@
       "iron": 4675,
       "crop": 3895,
       "total_res": 24925,
-      "pop": 14,
+      "pop": 2,
       "time": 0,
       "cp": 22,
       "cp_diff": 4
@@ -1534,7 +1534,7 @@
       "iron": 5980,
       "crop": 4985,
       "total_res": 31900,
-      "pop": 16,
+      "pop": 2,
       "time": 0,
       "cp": 27,
       "cp_diff": 5
@@ -1546,7 +1546,7 @@
       "iron": 7665,
       "crop": 6380,
       "total_res": 40845,
-      "pop": 18,
+      "pop": 2,
       "time": 0,
       "cp": 32,
       "cp_diff": 5
@@ -1558,7 +1558,7 @@
       "iron": 9800,
       "crop": 8165,
       "total_res": 52270,
-      "pop": 20,
+      "pop": 2,
       "time": 0,
       "cp": 38,
       "cp_diff": 6

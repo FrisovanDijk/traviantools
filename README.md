@@ -18,8 +18,6 @@ Built with Vue 3 and Vite.
 - [ ] Hero travel time and res gain from animal kills vs putting all points in resources
 - [ ] When is great party worth it in cp/day (village cp vs. account cp), CP efficiency vs. goal
 - [x] Naming calculators (making title editable)
-- [ ] Fix makeshift wall and stone wall stats
-- [ ] Add HDT to troop training calcs
 - [ ] Troop attribute calculator per tribe
 - [ ] Add tasks to ultimateROI
 - [ ] Reorganise calculators on the screen
@@ -27,11 +25,11 @@ Built with Vue 3 and Vite.
 
 v3.0
 - [X] Redesign menu and icons
-- [ ] Differentiate menu categories with colours
+- [X] Differentiate menu categories with colours
 - [ ] Hover tooltip on icon
 - [ ] Crop scouter + cap sim
 - [X] Res dev calculator showing production at field levels
-- [ ] Village builder with presets and ?export/import/saving templates?:
+- [X] Village builder with presets and ?export/import/saving templates?:
   - 500 CP feeder
   - 1000 CP feeder
   - NPC village
@@ -47,6 +45,8 @@ v3.0
 - [ ] Improve help component
 - [X] Improve default state
 - [X] Improve tribe selection
+- [X] Fix makeshift wall and stone wall stats
+- [ ] Add HDT to troop training calcs
 
 
 
@@ -56,8 +56,8 @@ v3.0
     - Building costs
     - Time to next village
     - (new & done) Res dev calculator showing production at field levels
-    - (new) Village builder with presets
-    - (new) CP efficiency overview
+    - (new & done) Village builder with presets
+    - (new) res/CP list for all buildings
 - Economy
     - Merchant trips
     - Total res

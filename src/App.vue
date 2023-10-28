@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-2 mt-4 ml-1 sm:ml-2 mr-2 sm:mr-4 relative">
+        <div class="flex flex-col gap-2 mt-4 ml-1 mr-2 sm:mr-1 relative">
             <div class="block sm:hidden rounded p-1 text-center text-white w-full h-8 self-center text-sm cursor-pointer bg-emerald-600 hover:bg-emerald-400"
                  @click="showMenu = !showMenu"
             >

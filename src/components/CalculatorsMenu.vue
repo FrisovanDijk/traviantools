@@ -322,26 +322,29 @@
     <div class="flex flex-row flex-wrap items-start gap-2" style="width: 88px;">
         <div class="text-xs sm:text-sm uppercase border-b border-slate-800 pb-1 w-full">Village</div>
 
-        <div class="bg-emerald-600 text-white p-0.5 sm:p-1 rounded cursor-pointer hover:bg-emerald-400"
+        <div class="bg-emerald-600 text-white p-0.5 sm:p-1 rounded cursor-pointer hover:bg-emerald-400 group relative"
              v-for="item in menu.filter((e) => {return e.type === 'village'})"
              @click="$emit('add:calculator', {name: item.name, calculator: item.calculator})">
-            <span v-html="item.icon" />
+            <span v-html="item.icon" class="" />
+            <span class="absolute z-50 hidden sm:group-hover:flex top-1 -right-3 translate-x-full px-2 py-1 bg-slate-800 rounded-lg text-center text-white text-sm w-36">{{ item.calculator.title }}</span>
         </div>
 
         <div class="text-xs sm:text-sm uppercase border-b border-slate-800 pb-1 w-full">Eco</div>
 
-        <div class="bg-amber-600 text-white p-0.5 sm:p-1 rounded cursor-pointer hover:bg-amber-400"
+        <div class="bg-amber-600 text-white p-0.5 sm:p-1 rounded cursor-pointer hover:bg-amber-400 group relative"
              v-for="item in menu.filter((e) => {return e.type === 'economy'})"
              @click="$emit('add:calculator', {name: item.name, calculator: item.calculator})">
             <span v-html="item.icon" />
+            <span class="absolute z-50 hidden sm:group-hover:flex top-1 -right-3 translate-x-full px-2 py-1 bg-slate-800 rounded-lg text-center text-white text-sm w-36">{{ item.calculator.title }}</span>
         </div>
 
         <div class="text-xs sm:text-sm uppercase border-b border-slate-800 p-0.5 sm:p-1 w-full">Troops</div>
 
-        <div class="bg-slate-600 text-white p-1 rounded cursor-pointer hover:bg-slate-400"
+        <div class="bg-slate-600 text-white p-1 rounded cursor-pointer hover:bg-slate-400 group relative"
              v-for="item in menu.filter((e) => {return e.type === 'troops'})"
              @click="$emit('add:calculator', {name: item.name, calculator: item.calculator})">
             <span v-html="item.icon" />
+            <span class="absolute z-50 hidden sm:group-hover:flex top-1 -right-3 translate-x-full px-2 py-1 bg-slate-800 rounded-lg text-center text-white text-sm w-36">{{ item.calculator.title }}</span>
         </div>
 
         <div class="w-full border-b border-slate-800"></div>
