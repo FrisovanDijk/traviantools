@@ -84,14 +84,23 @@
 
             const item = calculator.selections[i]
 
-            for(let j = 0; j <= item.toLevel - 1; j++) {
-                const res = buildings[item.name][j]
-                subtotal.lumber += res.wood
-                subtotal.clay += res.clay
-                subtotal.iron += res.iron
-                subtotal.crop += res.crop
-                subtotal.cp += res.cp_diff
-                subtotal.pop += res.pop
+            if(item.name === 'Res buildings 5, bakery 4') {
+                subtotal.lumber += 51385 / 5
+                subtotal.clay += 56720 / 5
+                subtotal.iron += 43880 / 5
+                subtotal.crop += 52540 / 5
+                subtotal.cp += 10 / 5
+                subtotal.pop += 62 / 5
+            } else {
+                for(let j = 0; j <= item.toLevel - 1; j++) {
+                    const res = buildings[item.name][j]
+                    subtotal.lumber += res.wood
+                    subtotal.clay += res.clay
+                    subtotal.iron += res.iron
+                    subtotal.crop += res.crop
+                    subtotal.cp += res.cp_diff
+                    subtotal.pop += res.pop
+                }
             }
 
             localTotal.lumber += subtotal.lumber * item.amount
@@ -131,8 +140,8 @@
         ]
 
         if(preset === 'Capital lv19') {
-            newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 12, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
@@ -140,45 +149,133 @@
         }
 
         if(preset === 'Storage') {
-            newSelections.push({ amount: 11, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 5, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 11, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
         }
 
         if(preset === 'Hammer') {
-            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
-            newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 3, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 4, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Great Barracks", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Great Stable", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Palace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Tournament Square", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Treasury", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === 'Anvil') {
-            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
-            newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 2, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Tournament Square", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
+            newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === '500 CP feeder') {
+            newSelections[1].toLevel = 2
+            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 14, editable: true })
+            newSelections.push({ amount: 1, name: "Granary", toLevel: 14, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 1, editable: true })
+            newSelections.push({ amount: 1, name: "Smithy", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Academy", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Embassy", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Town Hall", toLevel: 1, editable: true })
+            newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
+            newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 3, editable: true })
+        }
+
+        if(preset === '750 CP feeder') {
             newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
-            newSelections.push({ amount: 1, name: "Embassy", toLevel: 15, editable: true })
-            newSelections.push({ amount: 1, name: "Academy", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Smithy", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Embassy", toLevel: 19, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Brickyard", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Sawmill", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Iron Foundry", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Bakery", toLevel: 4, editable: true })
-            newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
-            newSelections.push({ amount: 1, name: "Smithy", toLevel: 3, editable: true })
-            newSelections.push({ amount: 1, name: "Workshop", toLevel: 2, editable: true })
-            newSelections.push({ amount: 1, name: "Palisade", toLevel: 1, editable: true })
+            newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
         }
 
         if(preset === '1000 CP feeder') {
+            newSelections[1].toLevel = 20
+            newSelections.push({ amount: 2, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Embassy", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Town Hall", toLevel: 13, editable: true })
+            newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
+        }
+
+        if(preset === 'Infantry/WW Anvil') {
+            newSelections.push({ amount: 2, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Smithy", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Academy", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
+            newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
+        }
+
+        if(preset === '9c cap lv18') {
+            newSelections.push({ amount: 7, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 4, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 16, editable: true })
+            newSelections.push({ amount: 1, name: "Stonemason's Lodge", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Bakery", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Sawmill", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Brickyard", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Iron Foundry", toLevel: 5, editable: true })
+        }
+
+        if(preset === '15c cap lv18') {
+            newSelections.push({ amount: 7, name: "Warehouse", toLevel: 20, editable: true })
+            newSelections.push({ amount: 7, name: "Granary", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 16, editable: true })
+            newSelections.push({ amount: 1, name: "Stonemason's Lodge", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Bakery", toLevel: 5, editable: true })
+        }
+
+        if(preset === 'No preset') {
             newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
         }
@@ -191,11 +288,11 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
         <div class="flex px-2">
-            <select class="border border-gray-600 px-2 py-1 mx-auto w-36 text-center"
+            <select class="border border-gray-600 px-2 py-1 mx-auto w-48 text-center"
                     v-model="calculator.preset"
                     @change="setPreset(calculator.preset)"
             >
-                <option v-for="n in ['No preset', 'Capital lv19', 'Storage', '500 CP feeder']">
+                <option v-for="n in ['No preset', 'Hammer', 'Anvil', 'Storage', '500 CP feeder', '750 CP feeder', '1000 CP feeder', 'Infantry/WW Anvil', 'Capital lv19', '15c cap lv18', '9c cap lv18']">
                     {{ n }}
                 </option>
             </select>
@@ -238,9 +335,11 @@
                     >
                         <option v-for="n in buildings[selection.name].length"
                                 :key="n"
+                                v-if="selection.name !== 'Res buildings 5, bakery 4'"
                         >
                             {{ n }}
                         </option>
+                        <option v-else>5</option>
                     </select>
                 </td>
                 <td>
@@ -281,6 +380,7 @@
         ></ResList>
         <div class="bg-yellow-200 p-2 pt-0">
             <div class="flex">+{{total.pop}} pop. +{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
+            <div class="flex mt-1 text-xs">{{total.cp + 108}} CP, including fields lv10</div>
         </div>
     </CalculatorWrapper>
 </template>

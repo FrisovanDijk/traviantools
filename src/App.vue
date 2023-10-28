@@ -9,7 +9,7 @@
     onBeforeMount(() => {
         if(localStorage.getItem('v3.0')) {
             userData.tabs = JSON.parse(localStorage.getItem('v3.0'))
-            // localStorage.removeItem('data')
+            // localStorage.removeItem('v3.0')
         }
     })
 

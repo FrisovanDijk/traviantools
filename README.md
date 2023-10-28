@@ -26,7 +26,7 @@ Built with Vue 3 and Vite.
 v3.0
 - [X] Redesign menu and icons
 - [X] Differentiate menu categories with colours
-- [ ] Hover tooltip on icon
+- [X] Hover tooltip on icon
 - [ ] Crop scouter + cap sim
 - [X] Res dev calculator showing production at field levels
 - [X] Village builder with presets and ?export/import/saving templates?:
