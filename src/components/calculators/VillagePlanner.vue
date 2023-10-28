@@ -189,9 +189,9 @@
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
         <div class="flex px-2">
-            <select class="border border-gray-600 px-1"
+            <select class="border border-gray-600 px-2 py-1 mx-auto w-36 text-center"
                     v-model="calculator.preset"
                     @change="setPreset(calculator.preset)"
             >

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/public/travian/",
+    "build": "vite build --base=/public/travian/v3beta/",
     "preview": "vite preview"
   },
   "dependencies": {

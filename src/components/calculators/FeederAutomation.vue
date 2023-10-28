@@ -92,7 +92,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="economy">
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2" v-on:change="handleSubmit">
             <h2 class="text-sm uppercase">Production</h2>
             <div class="flex">

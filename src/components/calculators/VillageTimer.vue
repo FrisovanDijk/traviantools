@@ -94,7 +94,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
         <div @change="calculateTime"
              class="flex flex-col mb-2 justify-between px-2"
         >

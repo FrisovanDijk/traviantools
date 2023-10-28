@@ -9,6 +9,10 @@
         close: {
             type: Boolean,
             default: true
+        },
+        type: {
+            type: String,
+            default: 'village'
         }
     })
 
@@ -25,7 +29,13 @@
         >
             <div style="margin-top: -1px;">X</div>
         </div>
-        <div class="flex w-full bg-emerald-600 p-2 mb-2 items-center gap-2 text-gray-100">
+        <div class="flex w-full p-2 mb-2 items-center gap-2 text-gray-100"
+             :class="[
+                 type === 'village' ? 'bg-emerald-600' : '',
+                 type === 'economy' ? 'bg-amber-600' : '',
+                 type === 'troops' ? 'bg-slate-600' : '',
+             ]"
+        >
             <template v-if="editable">
                 <div class="text-sm">title</div>
                 <input type="text" v-model="newTitle" class="font-semibold bg-emerald-600 border-b border-slate-800 w-40">

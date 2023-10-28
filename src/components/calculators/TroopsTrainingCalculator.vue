@@ -153,7 +153,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="troops">
         <div class="flex flex-col" v-on:change="handleSubmit">
 
             <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {switchTribe(tribe)}" class="mt-2" />

@@ -7,15 +7,15 @@
 
     // Load from local storage
     onBeforeMount(() => {
-        if(localStorage.getItem('data')) {
-            userData.tabs = JSON.parse(localStorage.getItem('data'))
+        if(localStorage.getItem('v3.0')) {
+            userData.tabs = JSON.parse(localStorage.getItem('v3.0'))
             // localStorage.removeItem('data')
         }
     })
 
     // Watch for changes to save to local storage
     watch(userData, () => {
-        localStorage.setItem("data", JSON.stringify(userData.tabs))
+        localStorage.setItem("v3.0", JSON.stringify(userData.tabs))
     }, {
         deep: true
     })

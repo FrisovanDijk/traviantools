@@ -79,7 +79,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
 
         <div class="flex space-x-2 pr-2">
             <div class="w-20 text-sm text-right">Village type</div>

@@ -22,9 +22,13 @@ Built with Vue 3 and Vite.
 - [ ] Add HDT to troop training calcs
 - [ ] Troop attribute calculator per tribe
 - [ ] Add tasks to ultimateROI
+- [ ] Reorganise calculators on the screen
+- [ ] Use a more efficient design to display calculators
 
 v3.0
 - [X] Redesign menu and icons
+- [ ] Differentiate menu categories with colours
+- [ ] Hover tooltip on icon
 - [ ] Crop scouter + cap sim
 - [X] Res dev calculator showing production at field levels
 - [ ] Village builder with presets and ?export/import/saving templates?:
@@ -43,6 +47,7 @@ v3.0
 - [ ] Improve help component
 - [X] Improve default state
 - [X] Improve tribe selection
+
 
 
 ##### Redesign menu and icons
