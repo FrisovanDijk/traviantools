@@ -11,6 +11,7 @@
     import TroopCostCalculator from "@/components/calculators/TroopCostCalculator.vue";
     import SmithyEfficiency from "@/components/calculators/SmithyEfficiency.vue";
     import TroopsCompare from "@/components/calculators/TroopsCompare.vue";
+    import VillagePlanner from "@/components/calculators/VillagePlanner.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
 </script>
@@ -75,6 +76,11 @@
                            />
 
             <TroopsCompare v-else-if="item.name === 'TroopsCompare'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <VillagePlanner v-else-if="item.name === 'VillagePlanner'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />

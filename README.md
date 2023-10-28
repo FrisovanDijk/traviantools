@@ -36,12 +36,13 @@ v3.0
   - 9c lv18
   - hammer
   - anvil
+  - greyzone settle
 - [ ] CP efficiency overview
 - [X] When to upgrade troop in smithy
 - [X] New tribe select component
 - [ ] Improve help component
 - [X] Improve default state
-- [ ] Improve tribe selection
+- [X] Improve tribe selection
 
 
 ##### Redesign menu and icons
