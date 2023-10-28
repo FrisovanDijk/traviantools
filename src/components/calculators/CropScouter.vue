@@ -1,11 +1,11 @@
 <script setup>
     import ResImg from "@/components/ResImg.vue";
     import ResList from '@/components/ResList.vue'
+    import RadioSelect from '@/components/RadioSelect.vue'
     import OasisSelector from '@/components/OasisSelector.vue'
     import VillageTypeSelector from '@/components/VillageTypeSelector.vue'
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
 
-    import buildingsJson from '@/data/buildings.json'
     import productionJson from '@/data/production.json'
 
     import { ref, onBeforeMount } from 'vue'
@@ -18,125 +18,162 @@
     const resultProduction = ref('')
 
     onBeforeMount(() => {
-        calculateProduction()
+        calculateConsumption()
     })
 
     const close = () => {
         userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
     }
 
-    const updateOasis = (data) => { calculator.oases[data.i-1] = data.type; calculateProduction()}
-    const updateVillageType = (data) => { calculator.villagetype = data.type; calculateProduction()}
+    const updateOasis = (data) => { calculator.oases[data.i-1] = data.type; calculateConsumption()}
 
-    // TODO building type
+    const calculateConsumption = () => {
+        let production = 0
+        let bonus = 0
 
-    const calculateProduction = () => {
-        const production = {
-            lumber: 0,
-            clay: 0,
-            iron: 0,
-            crop: 0
-        }
-        const restypes = ['crop', 'clay', 'lumber', 'iron']
-        const bonus = {
-            lumber: 0,
-            clay: 0,
-            iron: 0,
-            crop: 0
-        }
+        // Calculate base production
+        production += calculator.cropFields * productionJson[calculator.fieldLevel]
 
-        // For each res type
-        restypes.forEach((type) => {
-            // Calculate base production
-            production[type] += calculator.villagetype[type] * productionJson[calculator.level[type]]
+        // Calculate building bonus
+        bonus += 0.5
 
-            // Calculate building bonus
-            bonus[type] += 0.05 * calculator.building[type]
-
-            // Calculate oasis bonus
-            for(let i = 0; i < 3; i++) {
-                if(calculator.oases[i].type1 === type) {
-                    bonus[type] += 0.25
-                    bonus[type] += 0.0125 * calculator.building.egyptian
-                }
-                if(calculator.oases[i].type2 === type) {
-                    bonus[type] += 0.25
-                    bonus[type] += 0.0125 * calculator.building.egyptian
-                }
+        // Calculate oasis bonus
+        for(let i = 0; i < 3; i++) {
+            if(calculator.oases[i].type1 === 'crop') {
+                bonus += 0.25
+                bonus += 0.0125 * calculator.egyptian
             }
+            if(calculator.oases[i].type2 === 'crop') {
+                bonus += 0.25
+                bonus += 0.0125 * calculator.egyptian
+            }
+        }
 
-            // Calculate net production
-            production[type] += production[type] * bonus[type]
+        // Calculate net production
+        production += production * bonus
 
-            // Add gold bonus
-            if(calculator.goldBonus) production[type] *= 1.25
-        })
+        // Add gold bonus
+        if(calculator.goldBonus) production *= 1.25
+        production = Math.ceil(production)
 
+        // Production without pop
+        production -= calculator.population
 
-        // Return result
-        resultProduction.value = production
+        // Delta scout
+        const scoutDelta = calculator.scout2 - calculator.scout1
+        let consumptionGross = Math.round((3600*scoutDelta/calculator.deltaTime))
+        if(calculator.scoutOasis) consumptionGross *= 10
+
+        resultProduction.value = consumptionGross - production
     }
 </script>
 
 <template>
-    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
+    <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="troops">
 
-        <div class="flex space-x-2 pr-2">
-            <div class="w-20 text-sm text-right">Village type</div>
-            <VillageTypeSelector @selection="updateVillageType" :selected="calculator.villagetype" />
+        <div class="flex gap-2 px-4 mt-2 justify-between">
+            <div v-for="option in [6, 7, 9, 15]" :key="option">
+                <span :for="option"
+                      class="w-8 block rounded border text-center py-0.5 px-1 cursor-pointer hover:bg-green-100 border-gray-500"
+                      :class="(option === calculator.cropFields ? 'bg-green-200' : 'bg-gray-100')"
+                      @click="(e) => {calculator.cropFields = option; calculateConsumption()}"
+                >
+                    {{ option }}
+                </span>
+            </div>
+
+            <div class="flex gap-2">
+                <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg> level</span>
+                <input v-model="calculator.fieldLevel"
+                       type="number"
+                       min="0"
+                       :max="20"
+                       class="border border-gray-300 text-sm bg-yellow-200 w-12 pl-2"
+                       @change="calculateConsumption"
+                >
+            </div>
         </div>
 
-        <div class="flex pr-2 mt-3 text-sm items-center space-x-2">
-            <div class="w-20 text-right">Oases</div>
+        <div class="flex px-4 mt-6 text-sm items-center gap-2">
+
+            <div class="text-right mr-1">Oases</div>
+
             <OasisSelector v-for="i in calculator.oases.length"
                            :index="i"
                            :selected="calculator.oases[i-1]"
                            @selection="updateOasis"
             />
+
         </div>
 
-        <div class="flex justify-between px-6 mt-2">
-            <span class="w-11">&nbsp;</span>
-            <ResImg type="lumber"></ResImg>
-            <ResImg type="clay"></ResImg>
-            <ResImg type="iron"></ResImg>
-            <ResImg type="crop"></ResImg>
-        </div>
-        <div class="flex justify-between px-2 pb-1"
-             v-for="(row, index) in ['level', 'building']"
-             :key="index"
-             @change="calculateProduction"
-        >
-            <div type="text" class="w-16 text-sm mr-2 text-right">{{row}}</div>
-            <input v-model="calculator[row].lumber" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem; background-color: rgb(255,222,173)" class="border border-gray-300 text-sm">
-            <input v-model="calculator[row].clay" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-red-200">
-            <input v-model="calculator[row].iron" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-gray-200">
-            <input v-model="calculator[row].crop" type="number" min="0" :max="(row === 'level' ? 20 : 10)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-yellow-200">
+        <div class="flex px-4 mt-6 gap-2 justify-between">
+
+            <div class="flex gap-1 items-center">
+                <div class="mr-2">Pop</div>
+                <input v-model="calculator.population" type="number"
+                       class="w-20 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
+                       @change="calculateConsumption"
+                >
+            </div>
+
+            <div class="flex items-center gap-1">
+                <div class="mr-2">Waterworks</div>
+                <input v-model="calculator.egyptian" type="number"
+                       min="0"
+                       :max="20"
+                       class="w-14 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-2 py-0.5"
+                       @change="calculateConsumption"
+                >
+            </div>
+
         </div>
 
-        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <div class="w-16 mr-2">Waterworks</div>
-            <input v-model="calculator.building.egyptian" type="number"
-                   min="0"
-                   :max="20"
-                   style="width: 3.3rem; padding: 0 0.1rem"
-                   class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
-                   @change="calculateProduction"
-            >
-        </div>
+        <div class="flex px-4 mt-6 gap-2 justify-between">
 
-        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
             <label>Gold +25%
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.goldBonus"
-                       @change="calculateProduction"
+                       @change="calculateConsumption"
+                />
+            </label>
+
+            <label>Scouted oasis
+                <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
+                       v-model="calculator.scoutOasis"
+                       @change="calculateConsumption"
                 />
             </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Hourly production</h2>
-        <div class="bg-yellow-200">
-            <ResList :resources="resultProduction" :total="true" class=""></ResList>
+        <div class="border-b border-slate-800 mt-4 mx-2"></div>
+
+        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="w-16 mr-2">Scout 1</div>
+            <input v-model="calculator.scout1" type="number"
+                   class="flex-1 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
+                   @change="calculateConsumption"
+            >
+        </div>
+
+        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="w-16 mr-2">Scout 2</div>
+            <input v-model="calculator.scout2" type="number"
+                   class="flex-1 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
+                   @change="calculateConsumption"
+            >
+        </div>
+
+        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="flex-1 mr-2">Time difference (seconds)</div>
+            <input v-model="calculator.deltaTime" type="number"
+                   class="border border-gray-600 mr-1 text-sm pl-1 py-0.5"
+                   @change="calculateConsumption"
+            >
+        </div>
+
+        <h2 class="mt-2 py-1 mx-2 font-bold">Estimated village consumption</h2>
+        <div class="bg-yellow-200 px-2 py-1">
+            {{ resultProduction }}
         </div>
     </CalculatorWrapper>
 </template>

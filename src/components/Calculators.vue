@@ -12,6 +12,7 @@
     import SmithyEfficiency from "@/components/calculators/SmithyEfficiency.vue";
     import TroopsCompare from "@/components/calculators/TroopsCompare.vue";
     import VillagePlanner from "@/components/calculators/VillagePlanner.vue";
+    import CropScouter from "@/components/calculators/CropScouter.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
 </script>
@@ -81,6 +82,11 @@
                            />
 
             <VillagePlanner v-else-if="item.name === 'VillagePlanner'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <CropScouter v-else-if="item.name === 'CropScouter'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />
