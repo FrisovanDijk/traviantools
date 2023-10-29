@@ -260,7 +260,6 @@
             if(memory.length === 0) running = false
         }
 
-        console.log(build)
         calculator.build = build
 
     }

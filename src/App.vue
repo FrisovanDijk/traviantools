@@ -116,7 +116,7 @@
             />
         </div>
 
-        <div class="flex-1 p-1 sm:p-2 mt-2 container">
+        <div class="flex-1 p-1 sm:p-4 mt-2 container">
             <Calculators />
         </div>
     </div>

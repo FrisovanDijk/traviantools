@@ -23,6 +23,7 @@ Built with Vue 3 and Vite.
 - [ ] CP efficiency overview
 - [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
 - [ ] Bug: sometimes NPCCalculator opens and is coupled to an already existing one
+- [ ] Unify UI of older calculators to match new styling
 
 v3.0
 - [X] Redesign menu and icons
@@ -46,11 +47,8 @@ v3.0
 - [X] Fix makeshift wall and stone wall stats
 - [X] Add HDT to troop cost calc
 - [X] Add Waterworks to ROI calculator
-- [ ] Use a more efficient design to display calculators
-- [ ] Improve help component
-- [ ] Maybe: unify UI?
-
-
+- [X] Use a more efficient design to display calculators
+- [X] Update help component text
 
 ##### Redesign menu and icons
 
