@@ -67,7 +67,7 @@
 
 <template>
     <div class="relative">
-        <div class="cursor-pointer bg-gray-200 h-6 w-12 border border-gray-600 flex items-center justify-between px-1" @click="open = !open">
+        <div class="cursor-pointer bg-gray-200 h-7 w-14 border border-gray-600 flex items-center justify-between px-1" @click="open = !open">
             <template v-if="selected.type1 === ''">
                 -
             </template>
@@ -78,7 +78,7 @@
                 &#709;
             </div>
         </div>
-        <div class="absolute bg-white cursor-pointer overflow-y-scroll h-32 w-12 border rounded z-50"
+        <div class="absolute bg-white cursor-pointer overflow-y-scroll h-32 w-14 border rounded z-50"
              v-if="open"
         >
             <div class="flex hover:bg-yellow-100 py-1"
@@ -90,7 +90,7 @@
                     -
                 </template>
                 <template v-else>
-                    <ResImg :type="`${oasis.type1}${oasis.type2}`" />
+                    <ResImg :type="`${oasis.type1}${oasis.type2}`" class="mx-auto"/>
                 </template>
             </div>
         </div>

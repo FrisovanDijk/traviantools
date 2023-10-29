@@ -56,8 +56,14 @@
 
             let bonus = calculator.bonusBuilding * 0.05
             calculator.oases.forEach((oasis) => {
-                if(oasis.type1 === calculator.fieldType) bonus += 0.25
-                if(oasis.type2 === calculator.fieldType) bonus += 0.25
+                if(oasis.type1 === calculator.fieldType) {
+                    bonus += 0.25
+                    bonus += 0.0125 * calculator.egyptian
+                }
+                if(oasis.type2 === calculator.fieldType) {
+                    bonus += 0.25
+                    bonus += 0.0125 * calculator.egyptian
+                }
             })
 
             const netProductionDelta = roi.productionDelta + roi.productionDelta * bonus
@@ -187,17 +193,17 @@
 
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="economy">
-        <div class="flex px-2 border-b pb-2 mb-4 border-gray-500">
+        <div class="flex px-4 border-b pb-4 mb-4 border-gray-500 mt-2">
             <RadioSelect legend="ROI type" :options="['field', 'building', 'HM']" :selected="calculator.roiType" @selection="updateROIType" />
         </div>
 
         <!-- RESOURCE FIELD ROI -->
         <template class v-if="calculator.roiType === 'field'">
-            <div class="flex px-2">
+            <div class="flex px-4">
                 <RadioSelect legend="Field type" :options="['crop', 'lumber', 'clay', 'iron']" :selected="calculator.fieldType" @selection="updateFieldType" />
             </div>
 
-            <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="flex px-4 mt-4 text-sm items-center gap-2">
                 <div class="w-16">Oases</div>
                 <OasisSelector v-for="i in calculator.oases.length"
                                :index="i"
@@ -206,24 +212,41 @@
                 />
             </div>
 
-            <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-                <div class="w-16">Bonus bld.</div>
-                <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
-                        v-model="calculator.bonusBuilding"
-                        @change="calculateROI"
-                >
-                    <option v-for="(i, n) in (calculator.fieldType === 'crop' ? 11 : 6)"
-                            :key="n"
-                            class="px-0.5"
+            <div class="flex px-4 mt-4 items-center gap-2 justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="">Bonus bld.</div>
+                    <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
+                            v-model="calculator.bonusBuilding"
+                            @change="calculateROI"
                     >
-                        {{ n }}
-                    </option>
-                </select>
+                        <option v-for="(i, n) in (calculator.fieldType === 'crop' ? 11 : 6)"
+                                :key="n"
+                                class="px-0.5"
+                        >
+                            {{ n }}
+                        </option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="">Waterworks</div>
+                    <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5 mr-5"
+                            v-model="calculator.egyptian"
+                            @change="calculateROI"
+                    >
+                        <option v-for="(i, n) in 21"
+                                :key="n"
+                                class="px-0.5"
+                        >
+                            {{ n }}
+                        </option>
+                    </select>
+                </div>
             </div>
 
-            <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+
+            <div class="flex px-4 mt-4 text-sm items-center gap-2">
                 <div class="w-16">To level</div>
-                <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
+                <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                         v-model="calculator.fieldToLevel"
                         @change="calculateROI"
                 >
@@ -239,11 +262,11 @@
 
         <!-- RESOURCE BUILDING ROI -->
         <template class v-if="calculator.roiType === 'building'">
-            <div class="flex px-2">
+            <div class="flex px-4">
                 <RadioSelect legend="Res type" :options="['crop', 'lumber', 'clay', 'iron']" :selected="calculator.buildingType" @selection="updateBuildingType" />
             </div>
 
-            <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="flex px-4 mt-4 text-sm items-center gap-2">
                 <div class="w-16">To level</div>
                 <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                         v-model="calculator.buildingToLevel"
@@ -258,8 +281,8 @@
                 </select>
             </div>
 
-            <div class="flex-col space-y-1">
-                <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="flex-col space-y-2">
+                <div class="flex px-4 mt-4 text-sm items-center space-x-3">
                     <label>Sim field to 10
                         <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                                v-model="calculator.simulateFieldTo10"
@@ -267,15 +290,15 @@
                         />
                     </label>
                 </div>
-                <div class="text-emerald-600 bg-emerald-100 px-2 text-sm py-1" v-if="calculator.simulateFieldTo10">
+                <div class="text-amber-900 bg-amber-100 px-2 text-sm py-1" v-if="calculator.simulateFieldTo10">
                     Takes the highest field (if below 10) and simulates building it to 10. Also calculates all res building levels up to the level you put in.
                 </div>
             </div>
 
-            <div class="flex px-2 mt-3 text-sm space-x-3">
+            <div class="flex px-4 mt-4 text-sm gap-2">
                 <div class="w-16">Fields</div>
-                <div class="flex flex-col space-y-1">
-                    <div class="flex space-x-1 items-center"
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-1 items-center"
                          v-for="(field, index) in calculator.fields[calculator.buildingType]"
                     >
                         <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
@@ -319,25 +342,25 @@
 
         <!-- HERO MANSION ROI -->
         <template class v-if="calculator.roiType === 'HM'">
-            <div class="flex px-2">
+            <div class="flex px-4">
                 <RadioSelect legend="HM level" :options="[10, 15, 20]" :selected="calculator.hmToLevel" @selection="updateHmLevel" />
             </div>
 
-            <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+            <div class="flex px-4 mt-4 text-sm items-center gap-2">
                 <div class="w-16">Oasis</div>
                 <OasisSelector :selected="calculator.hmOasis"
                                @selection="updateHmOasis"
                 />
             </div>
 
-            <div class="px-2 w-16 mt-3 text-sm font-semibold">Fields</div>
-            <div class="flex flex-col space-y-3 mt-1.5">
-                <div class="flex px-2 text-sm space-x-3"
+            <div class="px-4 w-full mt-3 pt-1 text-sm font-semibold bg-amber-100">Fields</div>
+            <div class="flex flex-col gap-2 py-2 bg-amber-100">
+                <div class="flex px-4 text-sm gap-2"
                      v-for="fieldType in [calculator.hmOasis.type1, (calculator.hmOasis.type2 !== calculator.hmOasis.type1 ? calculator.hmOasis.type2 : '')]"
                 >
                     <div class="w-16 capitalize">{{ fieldType }}</div>
-                    <div class="flex flex-col space-y-1">
-                        <div class="flex space-x-1 items-center"
+                    <div class="flex flex-col gap-1">
+                        <div class="flex gap-1 items-center"
                              v-for="(field, index) in calculator.fields[fieldType]"
                         >
                             <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
@@ -380,7 +403,7 @@
             </div>
         </template>
 
-        <div class="flex px-2 mt-3 text-sm items-center space-x-3">
+        <div class="flex px-4 mt-4 text-sm items-center gap-2">
             <label>Gold +25%
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.goldBonus"
@@ -389,8 +412,8 @@
             </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">ROI</h2>
-        <div class="bg-yellow-200 p-2">
+        <h2 class="mt-4 py-1 mx-4 font-bold">ROI</h2>
+        <div class="bg-yellow-200 px-4 py-2">
             {{ roiTime }}
         </div>
     </CalculatorWrapper>

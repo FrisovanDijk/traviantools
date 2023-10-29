@@ -12,16 +12,17 @@ Built with Vue 3 and Vite.
 - [x] Add hour selector to feeder automation
 - [x] Troop numbers based on buildings, bonuses and training time
 - [x] Training time for given number of troops based on modifiers (hospital, bonuses, helmet)
-- [ ] Add Spartan troops and unique building (hospital)
-- [ ] Add Waterworks to ROI calculator
 - [x] Simming build creator --> now ultimateROI
+- [x] Naming calculators (making title editable)
+- [ ] Add Spartan troops and unique building (hospital)
 - [ ] Hero travel time and res gain from animal kills vs putting all points in resources
 - [ ] When is great party worth it in cp/day (village cp vs. account cp), CP efficiency vs. goal
-- [x] Naming calculators (making title editable)
 - [ ] Troop attribute calculator per tribe
 - [ ] Add tasks to ultimateROI
 - [ ] Reorganise calculators on the screen
 - [ ] CP efficiency overview
+- [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
+- [ ] Bug: sometimes NPCCalculator opens and is coupled to an already existing one
 
 v3.0
 - [X] Redesign menu and icons
@@ -42,11 +43,12 @@ v3.0
 - [X] When to upgrade troop in smithy
 - [X] New tribe select component
 - [X] Improve default state
-- [X] Improve tribe selection
 - [X] Fix makeshift wall and stone wall stats
 - [X] Add HDT to troop cost calc
+- [ ] Add Waterworks to ROI calculator
 - [ ] Use a more efficient design to display calculators
 - [ ] Improve help component
+- [ ] Maybe: unify UI?
 
 
 
@@ -57,7 +59,6 @@ v3.0
     - Time to next village
     - (new & done) Res dev calculator showing production at field levels
     - (new & done) Village builder with presets
-    - (new) res/CP list for all buildings
 - Economy
     - Merchant trips
     - Total res
@@ -68,4 +69,4 @@ v3.0
     - Troop training time
     - Troop costs
     - (new & done) When to troop upgrades
-    - (new) Crop scouter + cap sim
+    - (new & done) Crop scouter + cap sim

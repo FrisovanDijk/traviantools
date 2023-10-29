@@ -196,6 +196,7 @@
                 roiType: 'field',
                 fieldType: 'crop',
                 bonusBuilding: 0,
+                egyptian: 0,
                 fieldToLevel: 1,
                 oases: [
                     {

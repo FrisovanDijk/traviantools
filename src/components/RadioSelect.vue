@@ -12,7 +12,7 @@
 </script>
 
 <template>
-    <div class="flex space-x-3 items-center text-sm">
+    <div class="flex gap-2 items-center text-sm">
         <legend class="w-16">{{ legend }}</legend>
 
         <div v-for="option in options" :key="option">
