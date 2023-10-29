@@ -20,6 +20,7 @@
             <p>Use the icons on the left to open various calculators to assist in your Travian gameplay.</p>
             <p>You can open multiple tabs with calculators in desktop mode to distinguish between accounts or servers.</p>
             <p>All data is stored locally on your browser, so it will be gone when you remove your cached data.</p>
+            <p>Update 3.0 introduces breaking changes, so all calculators were reset.</p>
             <p>Questions or bugs? Add faerland on Discord</p>
         </div>
     </CalculatorWrapper>
