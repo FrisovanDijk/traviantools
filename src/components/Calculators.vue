@@ -15,11 +15,60 @@
     import CropScouter from "@/components/calculators/CropScouter.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
+    import { onMounted, onUpdated, watch } from 'vue'
+
+    onMounted(() => {
+        getMasonry()
+
+        const masonry = document.querySelector('.masonry')
+        const calculators = masonry.querySelectorAll('.calculator')
+        new ResizeObserver(getMasonry).observe(masonry)
+        calculators.forEach((e) => { new ResizeObserver(getMasonry).observe(e) })
+    })
+
+    onUpdated(() => {
+        getMasonry()
+    })
+
+    watch(userData.tabs[userData.currentTab].calculators, () => {
+        const masonry = document.querySelector('.masonry')
+        const calculators = masonry.querySelectorAll('.calculator')
+        new ResizeObserver(getMasonry).observe(calculators[calculators.length - 1])
+    })
+
+    const getMasonry = () => {
+        const colWidth = 320
+        const masonry = document.querySelector('.masonry')
+        const columns = Math.max(1, Math.floor(masonry.offsetWidth / colWidth))
+        const calculators = masonry.querySelectorAll('.calculator')
+
+        const nextheight = []
+        for(let i = 0; i < columns; i++) {
+            nextheight.push(0)
+        }
+
+        calculators.forEach((calculator, i) => {
+            const setColumn = nextheight.indexOf(Math.min(...nextheight))
+            calculator.style.position = 'absolute'
+            calculator.style.left = colWidth * setColumn + 'px'
+            calculator.style.top = nextheight[setColumn] + 'px'
+            nextheight[setColumn] = nextheight[setColumn] + calculator.offsetHeight + 10
+        })
+        masonry.style.height = Math.max(...nextheight)
+    }
+
+    const setObservers = () => {
+        const masonry = document.querySelector('.masonry')
+        const calculators = masonry.querySelectorAll('.calculator')
+        new ResizeObserver(getMasonry).observe(masonry)
+        calculators.forEach((e) => { new ResizeObserver(getMasonry).observe(e) })
+    }
 </script>
 
 <template>
-    <div class="flex gap-4 flex-wrap items-start">
-        <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators">
+    <div class="masonry">
+
+        <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers">
 
             <NPCCalculator v-if="item.name === 'NPCCalculator'"
                            :index="index"

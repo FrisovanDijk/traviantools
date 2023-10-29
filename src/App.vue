@@ -47,14 +47,13 @@
     }
 
     const clearTab = () => {
-        userData.tabs.splice(userData.currentTab, 1)
+        userData.tabs[userData.currentTab].calculators.length = 0
         if(userData.tabs.length === 0) {
-            userData.tabs = [{
+            userData.tabs.calculators = [{
                 name: 'Tab 1',
                 calculators: []
             }]
         }
-        userData.currentTab = 0
     }
 
     // Calculators
@@ -117,7 +116,7 @@
             />
         </div>
 
-        <div class="flex-1 p-1 sm:p-2 mt-2">
+        <div class="flex-1 p-1 sm:p-2 mt-2 container">
             <Calculators />
         </div>
     </div>

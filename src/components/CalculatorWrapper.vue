@@ -21,7 +21,8 @@
 </script>
 
 <template>
-    <div class="relative border rounded-lg overflow-hidden shadow-md flex flex-col bg-white text-sm" style="width: 310px">
+    <div class="relative border rounded-lg overflow-hidden shadow-md flex flex-col bg-white text-sm calculator" style="width: 310px">
+
         <div class="bg-rose-800 hover:bg-rose-600 text-white absolute rounded px-2 font-semibold flex items-center justify-center cursor-pointer"
              style="right: 4px; top: 4px; width: 22px; height: 22px;"
              @click="$emit('close:calculator')"

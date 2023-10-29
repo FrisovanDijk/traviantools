@@ -45,7 +45,7 @@ v3.0
 - [X] Improve default state
 - [X] Fix makeshift wall and stone wall stats
 - [X] Add HDT to troop cost calc
-- [ ] Add Waterworks to ROI calculator
+- [X] Add Waterworks to ROI calculator
 - [ ] Use a more efficient design to display calculators
 - [ ] Improve help component
 - [ ] Maybe: unify UI?
