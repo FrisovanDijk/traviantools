@@ -283,7 +283,8 @@
                 artifact: 0,
                 helm_inf: 0,
                 helm_cav: 0,
-                hospital_level: 20
+                hospital_level: 20,
+                hdt: 20
             }
         },
         {

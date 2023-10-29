@@ -21,13 +21,13 @@ Built with Vue 3 and Vite.
 - [ ] Troop attribute calculator per tribe
 - [ ] Add tasks to ultimateROI
 - [ ] Reorganise calculators on the screen
-- [ ] Use a more efficient design to display calculators
+- [ ] CP efficiency overview
 
 v3.0
 - [X] Redesign menu and icons
 - [X] Differentiate menu categories with colours
 - [X] Hover tooltip on icon
-- [ ] Crop scouter + cap sim
+- [X] Crop scouter + cap sim
 - [X] Res dev calculator showing production at field levels
 - [X] Village builder with presets and ?export/import/saving templates?:
   - 500 CP feeder
@@ -39,14 +39,14 @@ v3.0
   - hammer
   - anvil
   - greyzone settle
-- [ ] CP efficiency overview
 - [X] When to upgrade troop in smithy
 - [X] New tribe select component
-- [ ] Improve help component
 - [X] Improve default state
 - [X] Improve tribe selection
 - [X] Fix makeshift wall and stone wall stats
-- [ ] Add HDT to troop training calcs
+- [X] Add HDT to troop cost calc
+- [ ] Use a more efficient design to display calculators
+- [ ] Improve help component
 
 
 

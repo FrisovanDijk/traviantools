@@ -23,8 +23,10 @@
         const helm_inf = 1 + calculator.helm_inf / 100
         const helm_cav = 1 + calculator.helm_cav / 100
 
+        const hdt = (calculator.tribe === 'romans' ? 1 + calculator.hdt / 100 : 1)
+
         const time_inf_mod = Math.pow(0.9,20 - 1) * mod_trainer * mod_bonus / helm_inf
-        const time_cav_mod = Math.pow(0.9,20 - 1) * mod_trainer * mod_bonus / helm_cav
+        const time_cav_mod = Math.pow(0.9,20 - 1) * mod_trainer * mod_bonus / helm_cav / hdt
         const time_siege_mod = Math.pow(0.9,20 - 1) * mod_trainer * mod_bonus
 
         if(!calculator.units.length) return false
@@ -91,7 +93,7 @@
         <div class="flex flex-col">
             <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
 
-            <div class="flex mt-4 gap-4 px-6">
+            <div class="flex mt-6 gap-4 px-6 justify-between">
                 <label class="flex-0">
                     Recruitment
                     <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
@@ -106,7 +108,7 @@
                 </label>
             </div>
 
-            <div class="flex mt-4 gap-4 px-6">
+            <div class="flex mt-4 gap-4 px-6 justify-between">
                 <label class="flex-0">
                     Inf. helm
                     <select v-model="calculator.helm_inf" class="border border-gray-500 px-1 ml-1">
@@ -121,14 +123,23 @@
                 </label>
             </div>
 
-            <label class="px-6 mt-4">
-                Hospital level
-                <select v-model="calculator.hospital_level" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
-                </select>
-            </label>
+            <div class="flex mt-4 gap-4 px-6 justify-between">
+                <label class="">
+                    Hospital level
+                    <select v-model="calculator.hospital_level" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
+                    </select>
+                </label>
 
-            <div class="flex flex-col gap-1 px-2 mt-4 mb-1">
+                <label class="" v-if="calculator.tribe === 'romans'">
+                    HDT
+                    <select v-model="calculator.hdt" class="border border-gray-500 px-1 ml-1">
+                        <option v-for="(level, index) in 21" v-bind:key="index">{{ index }}</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="flex flex-col gap-1 px-2 mt-6 mb-1">
                 <div class="flex"
                      v-for="(row, index) in calculator.units"
                      :key="index"
@@ -149,10 +160,10 @@
             <h2 class="mt-2 py-1 mx-2 font-bold">Total cost</h2>
             <div class="bg-yellow-200 p-2">
                 <template v-if="getCost()">
-                    <template v-if="getCost().time_inf">Barracks time: {{ getCost().time_inf }} hours</template>
-                    <template v-if="getCost().time_cav"><br/>Stables time: {{ getCost().time_cav }} hours</template>
-                    <template v-if="getCost().time_siege"><br/>Workshop time: {{ getCost().time_siege }} hours</template>
-                    <template v-if="getCost().time_hospital"><br/>Hospital time: {{ getCost().time_hospital }} hours</template>
+                    <template v-if="getCost().time_inf">Barracks time: {{ getCost().time_inf }} hours<br/></template>
+                    <template v-if="getCost().time_cav">Stables time: {{ getCost().time_cav }} hours<br/></template>
+                    <template v-if="getCost().time_siege">Workshop time: {{ getCost().time_siege }} hours<br/></template>
+                    <template v-if="getCost().time_hospital">Hospital time: {{ getCost().time_hospital }} hours</template>
 
                     <br/>
                     <div class="flex flex-wrap gap-1 mt-2">

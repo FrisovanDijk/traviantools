@@ -171,9 +171,9 @@
             >
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Estimated village consumption</h2>
-        <div class="bg-yellow-200 px-2 py-1">
-            {{ resultProduction }}
+        <h2 class="mt-2 py-1 mx-2 font-bold">Consumption</h2>
+        <div class="bg-yellow-200 px-2 py-1 flex">
+            {{ resultProduction }} <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg> per hour</span>
         </div>
     </CalculatorWrapper>
 </template>
