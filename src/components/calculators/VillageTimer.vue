@@ -15,7 +15,7 @@
     })
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
+        userData.tabs[userData.currentTab].calculators[props.index] = {}
     }
 
     const time = ref({

@@ -31,6 +31,11 @@
     })
 
     watch(userData.tabs[userData.currentTab].calculators, () => {
+        // Cleaning empty objects
+        userData.tabs[userData.currentTab].calculators = userData.tabs[userData.currentTab].calculators.filter(element => {
+            return Object.keys(element).length !== 0;
+        })
+
         const masonry = document.querySelector('.masonry')
         const calculators = masonry.querySelectorAll('.calculator')
         new ResizeObserver(getMasonry).observe(calculators[calculators.length - 1])

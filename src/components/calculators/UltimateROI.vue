@@ -19,7 +19,7 @@
     // Variables
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
+        userData.tabs[userData.currentTab].calculators[props.index] = {}
     }
 
     const updateOasis = (data) => { calculator.oases[data.i-1] = data.type}

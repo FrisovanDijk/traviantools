@@ -77,18 +77,10 @@
             calculator: {
                 title: 'Village planner',
                 selections: [
-                    {
-                        amount: 1,
-                        name: "Main Building",
-                        toLevel: 20,
-                        editable: false
-                    },
-                    {
-                        amount: 1,
-                        name: "Rally Point",
-                        toLevel: 10,
-                        editable: false
-                    }
+                    { amount: 1, name: "Main Building", toLevel: 20, editable: false },
+                    { amount: 1, name: "Rally Point", toLevel: 10, editable: false },
+                    { amount: 1, name: "Warehouse", toLevel: 20, editable: true },
+                    { amount: 1, name: "Granary", toLevel: 20, editable: true }
                 ],
                 preset: "No preset"
             }

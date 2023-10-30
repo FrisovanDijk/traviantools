@@ -13,7 +13,6 @@
     const nextSelection = ref('Granary')
     const buildingsForm = () => {
         if(!hasWall() && buildingCount() === 21) {
-            console.log(buildings)
             return {
                 "Earth Wall": buildings["Earth Wall"],
                 "Stone Wall": buildings["Stone Wall"],
@@ -59,7 +58,7 @@
     })
 
     const close = () => {
-        userData.tabs[userData.currentTab].calculators.splice(props.index, 1)
+        userData.tabs[userData.currentTab].calculators[props.index] = {}
     }
 
     const total = ref({
@@ -243,15 +242,18 @@
         }
 
         if(preset === '750 CP feeder') {
-            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
-            newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
+            newSelections[1].toLevel = 3
+            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 17, editable: true })
+            newSelections.push({ amount: 1, name: "Granary", toLevel: 16, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
             newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Smithy", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 1, editable: true })
+            newSelections.push({ amount: 1, name: "Smithy", toLevel: 4, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
-            newSelections.push({ amount: 1, name: "Embassy", toLevel: 19, editable: true })
+            newSelections.push({ amount: 1, name: "Embassy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
@@ -266,6 +268,7 @@
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 1, editable: true })
             newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Embassy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })

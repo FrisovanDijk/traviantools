@@ -1276,7 +1276,7 @@
     {"level":17,"wood":9345,"clay":12980,"iron":25960,"crop":8310,"total_res":56595,"pop":4,"time":"11:02:50","cp":44,"cp_diff":7},
     {"level":18,"wood":11965,"clay":16615,"iron":33230,"crop":10635,"total_res":72445,"pop":4,"time":"12:54:00","cp":53,"cp_diff":9},
     {"level":19,"wood":15315,"clay":21270,"iron":42535,"crop":13610,"total_res":92730,"pop":4,"time":"15:02:50","cp":64,"cp_diff":11},
-    {"level":20,"wood":19600,"clay":27225,"iron":54445,"crop":17420,"total_res":118690,"pop":4,"time":"17:32:10","cp":153,"cp_diff":89}
+    {"level":20,"wood":19600,"clay":27225,"iron":54445,"crop":17420,"total_res":118690,"pop":4,"time":"17:32:10","cp":73,"cp_diff":13}
   ],
   "Stable": [
     {"level":1,"wood":260,"clay":140,"iron":220,"crop":100,"total_res":720,"pop":5,"time":"00:36:40","cp":2,"cp_diff":2,"training_time":"100%"},
