@@ -12,12 +12,40 @@
     const buildings = buildingsJson
     const nextSelection = ref('Granary')
     const buildingsForm = () => {
+        if(!hasWall() && buildingCount() === 21) {
+            console.log(buildings)
+            return {
+                "Earth Wall": buildings["Earth Wall"],
+                "Stone Wall": buildings["Stone Wall"],
+                "Makeshift Wall": buildings["Makeshift Wall"],
+                "Palisade": buildings["Palisade"],
+                "City Wall": buildings["City Wall"],
+            }
+        }
+
         const {"Main Building": _, ...newList} = buildings
         delete newList["Rally Point"]
         delete newList["Cropland"]
         delete newList["Clay Pit"]
         delete newList["Iron Mine"]
         delete newList["Woodcutter"]
+
+        if(hasWall()) {
+            delete newList["City Wall"]
+            delete newList["Earth Wall"]
+            delete newList["Makeshift Wall"]
+            delete newList["Palisade"]
+            delete newList["Stone Wall"]
+        }
+
+        if(calculator.selections.find(e => e.name === "Res buildings 5, bakery 4")) {
+            delete newList["Brickyard"]
+            delete newList["Sawmill"]
+            delete newList["Iron Foundry"]
+            delete newList["Grain Mill"]
+            delete newList["Bakery"]
+        }
+
         calculator.selections.forEach((e) => {
             delete newList[e.name]
         })
@@ -128,8 +156,17 @@
     }
 
     const maxAmount = (amount) => {
-        const freeSlots = 21 - buildingCount()
+        const maxSlots = hasWall() ? 22 : 21
+        const freeSlots = maxSlots - buildingCount()
         return Number(amount) + freeSlots
+    }
+
+    const hasWall = () => {
+        let wall = false
+        calculator.selections.forEach((e) => {
+            if(["City Wall", "Earth Wall", "Makeshift Wall", "Palisade", "Stone Wall"].includes(e.name)) wall = true
+        })
+        return wall
     }
 
     const setPreset = (preset) => {
@@ -160,6 +197,7 @@
             newSelections.push({ amount: 3, name: "Warehouse", toLevel: 20, editable: true })
             newSelections.push({ amount: 4, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Barracks", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Great Barracks", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
@@ -170,13 +208,13 @@
             newSelections.push({ amount: 1, name: "Tournament Square", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Treasury", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === 'Anvil') {
             newSelections.push({ amount: 2, name: "Warehouse", toLevel: 20, editable: true })
             newSelections.push({ amount: 3, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Trade Office", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Barracks", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Stable", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Workshop", toLevel: 10, editable: true })
@@ -185,7 +223,6 @@
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === '500 CP feeder') {
@@ -203,7 +240,6 @@
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 1, editable: true })
             newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
-            newSelections.push({ amount: 1, name: "Palisade", toLevel: 3, editable: true })
         }
 
         if(preset === '750 CP feeder') {
@@ -263,6 +299,7 @@
             newSelections.push({ amount: 1, name: "Sawmill", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Brickyard", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Iron Foundry", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === '15c cap lv18') {
@@ -273,6 +310,7 @@
             newSelections.push({ amount: 1, name: "Stonemason's Lodge", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Bakery", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
         if(preset === 'No preset') {
@@ -303,7 +341,7 @@
         >
             <tr>
                 <th>#</th>
-                <th class="w-full">{{ buildingCount() }}/21 buildings</th>
+                <th class="w-full">{{ buildingCount() }}/22 buildings</th>
                 <th>Lvl</th>
                 <th class="w-6">&nbsp;</th>
             </tr>
@@ -355,7 +393,7 @@
             </tr>
         </table>
 
-        <div class="flex gap-2 justify-end mt-4 mx-2 space-x-2" v-if="buildingCount() < 21">
+        <div class="flex gap-2 justify-end mt-4 mx-2 space-x-2" v-if="buildingCount() < 22">
             <select class="border-gray-600 border mr-1 text-sm px-2" v-model="nextSelection">
                 <option v-for="(building,key) in buildingsForm()"
                         :key="key"
