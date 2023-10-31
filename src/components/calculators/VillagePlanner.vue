@@ -225,20 +225,23 @@
         }
 
         if(preset === '500 CP feeder') {
-            newSelections[1].toLevel = 2
-            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 14, editable: true })
-            newSelections.push({ amount: 1, name: "Granary", toLevel: 14, editable: true })
+            newSelections[1].toLevel = 3
+            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 13, editable: true })
+            newSelections.push({ amount: 1, name: "Granary", toLevel: 13, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
-            newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Stable", toLevel: 2, editable: true })
             newSelections.push({ amount: 1, name: "Workshop", toLevel: 1, editable: true })
             newSelections.push({ amount: 1, name: "Smithy", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Academy", toLevel: 15, editable: true })
-            newSelections.push({ amount: 1, name: "Embassy", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Embassy", toLevel: 14, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 1, editable: true })
+            newSelections.push({ amount: 1, name: "Cranny", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Palisade", toLevel: 3, editable: true })
         }
 
         if(preset === '750 CP feeder') {
@@ -249,13 +252,13 @@
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
             newSelections.push({ amount: 1, name: "Stable", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Workshop", toLevel: 1, editable: true })
             newSelections.push({ amount: 1, name: "Smithy", toLevel: 4, editable: true })
-            newSelections.push({ amount: 1, name: "Hospital", toLevel: 5, editable: true })
+            newSelections.push({ amount: 1, name: "Hospital", toLevel: 6, editable: true })
             newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Embassy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Cranny", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
