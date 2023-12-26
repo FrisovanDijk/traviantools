@@ -2,7 +2,7 @@
     defineProps({
         selected: {
             type: String,
-            default: 'gauls'
+            default: 'gaul'
         }
     })
 

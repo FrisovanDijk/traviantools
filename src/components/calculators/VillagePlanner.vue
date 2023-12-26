@@ -319,6 +319,16 @@
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
         }
 
+        if(preset === 'Cata village') {
+            newSelections[0].toLevel = 5
+            newSelections[1].toLevel = 10
+            newSelections.push({ amount: 1, name: "Warehouse", toLevel: 8, editable: true })
+            newSelections.push({ amount: 1, name: "Granary", toLevel: 8, editable: true })
+            newSelections.push({ amount: 1, name: "Barracks", toLevel: 3, editable: true })
+            newSelections.push({ amount: 1, name: "Academy", toLevel: 15, editable: true })
+            newSelections.push({ amount: 1, name: "Workshop", toLevel: 10, editable: true })
+        }
+
         if(preset === 'No preset') {
             newSelections.push({ amount: 1, name: "Warehouse", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Granary", toLevel: 20, editable: true })
@@ -336,7 +346,7 @@
                     v-model="calculator.preset"
                     @change="setPreset(calculator.preset)"
             >
-                <option v-for="n in ['No preset', 'Hammer', 'Anvil', 'Storage', '500 CP feeder', '750 CP feeder', '1000 CP feeder', 'Infantry/WW Anvil', 'Capital lv19', '15c cap lv18', '9c cap lv18']">
+                <option v-for="n in ['No preset', 'Hammer', 'Anvil', 'Storage', '500 CP feeder', '750 CP feeder', '1000 CP feeder', 'Infantry/WW Anvil', 'Capital lv19', '15c cap lv18', '9c cap lv18', 'Cata village']">
                     {{ n }}
                 </option>
             </select>
