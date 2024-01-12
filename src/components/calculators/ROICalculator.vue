@@ -250,7 +250,7 @@
                         v-model="calculator.fieldToLevel"
                         @change="calculateROI"
                 >
-                    <option v-for="n in 20"
+                    <option v-for="n in (calculator.fieldType === 'crop' ? 21 : 20)"
                             :key="n"
                             class="px-0.5"
                     >

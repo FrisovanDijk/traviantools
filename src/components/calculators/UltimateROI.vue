@@ -105,7 +105,7 @@
                 memory = memory.filter((step) => { return step.type !== lowROI.type })
 
                 let lowField = fields[lowROI.type].reduce((curr, prev) => (curr.level >= prev.level) ? prev : curr)
-                if(lowField.level < calculator.simTo) {
+                if(lowField.level < calculator.simTo || (lowField.type === 'crop' && calculator.simTo === 20 && lowField.level === 20)) {
                     const newStep = calculateFieldROI(fields, lowROI.type)
                     memory.push(newStep)
                 }

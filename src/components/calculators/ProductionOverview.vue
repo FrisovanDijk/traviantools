@@ -111,7 +111,7 @@
             <input v-model="calculator[row].lumber" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem; background-color: rgb(255,222,173)" class="border border-gray-300 text-sm">
             <input v-model="calculator[row].clay" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-red-200">
             <input v-model="calculator[row].iron" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-gray-200">
-            <input v-model="calculator[row].crop" type="number" min="0" :max="(row === 'level' ? 20 : 10)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-yellow-200">
+            <input v-model="calculator[row].crop" type="number" min="0" :max="(row === 'level' ? 21 : 10)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-yellow-200">
         </div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">

@@ -397,7 +397,8 @@
     {"level":17,"wood":256190,"clay":329385,"iron":256190,"crop":73195,"total_res":914960,"pop":2,"time":"","cp":22,"cp_diff":4},
     {"level":18,"wood":427835,"clay":550075,"iron":427835,"crop":122240,"total_res":1527985,"pop":2,"time":"","cp":27,"cp_diff":5},
     {"level":19,"wood":714485,"clay":918625,"iron":714485,"crop":204140,"total_res":2551735,"pop":2,"time":"","cp":32,"cp_diff":5},
-    {"level":20,"wood":1193195,"clay":1534105,"iron":1193195,"crop":340915,"total_res":4261410,"pop":2,"time":"","cp":38,"cp_diff":6}
+    {"level":20,"wood":1193195,"clay":1534105,"iron":1193195,"crop":340915,"total_res":4261410,"pop":2,"time":"","cp":38,"cp_diff":6},
+    {"level":21,"wood":1992635,"clay":2561960,"iron":1992635,"crop":569325,"total_res":7116555,"pop":2,"time":"","cp":46,"cp_diff":8}
   ],
   "Earth Wall": [
     {"level":1,"wood":120,"clay":200,"iron":0,"crop":80,"total_res":400,"pop":0,"time":"00:33:20","cp":1,"cp_diff":1,"def_bonus":"2%"},
