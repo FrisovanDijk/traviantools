@@ -189,9 +189,13 @@
                 // Recalculate field ROI based on oasis field types
                 let nextType1 = calculator.oases[fields.buildings.hm / 5 - 2].type1
                 let nextType2 = calculator.oases[fields.buildings.hm / 5 - 2].type2
+
                 if(nextType1) {
+                    // Remove type step from memory
                     memory = memory.filter((step) => { return step.type !== nextType1 })
+                    // Determine the lowest level field
                     let lowField = fields[nextType1].reduce((curr, prev) => (curr.level >= prev.level) ? prev : curr)
+                    // Simulate next field level if currently below max
                     if(lowField.level < calculator.simTo) {
                         const newStep = calculateFieldROI(fields, nextType1)
                         memory.push(newStep)
