@@ -71,9 +71,6 @@
 </script>
 
 <template>
-    <div class="mt-xl">
-        {{ userData.tabs[userData.currentTab].calculators[0] }}
-    </div>
     <div class="masonry">
 
         <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers">
