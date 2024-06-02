@@ -4,7 +4,9 @@ Built with Vue 3 and Vite. [Live version on frisovandijk.com](https://www.frisov
 
 ## Features
 
-Calculators for the effective management of a [Travian](https://www.travian.com) account. Including:
+Calculators for the effective management of a [Travian](https://www.travian.com) account. The design philosophy is to create tools that share knowledge of the game and make it more accessible, while not playing the game for you.
+
+The tools included and their first version are:
    
    - Village
        - (1.0) Building costs
