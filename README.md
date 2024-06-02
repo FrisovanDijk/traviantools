@@ -1,10 +1,10 @@
 # Friso's Travian Tools
 
-Built with Vue 3 and Vite.
+Built with Vue 3 and Vite. [Live version on frisovandijk.com](https://www.frisovandijk.com/public/travian/)
 
 ## Features
 
-Calculators for the effective management of a [Travian](www.travian.com) account. Including:
+Calculators for the effective management of a [Travian](https://www.travian.com) account. Including:
    
    - Village
        - (1.0) Building costs
