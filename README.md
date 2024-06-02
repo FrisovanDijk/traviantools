@@ -11,7 +11,7 @@ Calculators for the effective management of a [Travian](https://www.travian.com)
        - (1.0) Time to next village
        - (3.0) Res dev calculator showing production at field levels
        - (3.0) Village builder with presets
-       - (3.1) CP cost calculator
+       - (3.2) CP cost calculator
    - Economy
        - (1.0) Merchant trips
        - (1.0) Total res
