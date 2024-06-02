@@ -1,10 +1,10 @@
 # Friso's Travian Tools
 
-Built with Vue 3 and Vite.
+Built with Vue 3 and Vite. [Live version on frisovandijk.com](https://www.frisovandijk.com/public/travian/)
 
 ## Features
 
-Calculators for the effective management of a [Travian](www.travian.com) account. Including:
+Calculators for the effective management of a [Travian](https://www.travian.com) account. Including:
    
    - Village
        - (1.0) Building costs
@@ -32,6 +32,7 @@ Calculators for the effective management of a [Travian](www.travian.com) account
 - [ ] Calculator: Easy troop attributes per tribe
 - [ ] Add tasks to ultimateROI
 - [ ] Ability to reorganise calculators on the screen
+- [ ] Account for server speed in: feeder automation, res production overview, ROI, cropscouter, troop training times
 - [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
 - [ ] Bug: opening the same calculator mulitple times and closing one closes the last one. Sometimes two of the same calculators opened after one another are coupled with data also.
 
