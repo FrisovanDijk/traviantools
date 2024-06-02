@@ -13,6 +13,7 @@
     import TroopsCompare from "@/components/calculators/TroopsCompare.vue";
     import VillagePlanner from "@/components/calculators/VillagePlanner.vue";
     import CropScouter from "@/components/calculators/CropScouter.vue";
+    import CPCostCalculator from "@/components/calculators/CPCostCalculator.vue";
     import Help from "@/components/calculators/Help.vue";
     import { userData } from '@/stores/userData.js'
     import { onMounted, onUpdated, watch } from 'vue'
@@ -141,6 +142,11 @@
                            />
 
             <CropScouter v-else-if="item.name === 'CropScouter'"
+                           :index="index"
+                           :key="`${userData.currentTab}.${index}`"
+                           />
+
+            <CPCostCalculator v-else-if="item.name === 'CPCostCalculator'"
                            :index="index"
                            :key="`${userData.currentTab}.${index}`"
                            />

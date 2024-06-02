@@ -356,10 +356,10 @@
                @change="updateTotals()"
         >
             <tr>
-                <th>#</th>
-                <th class="w-full">{{ buildingCount() }}/22 buildings</th>
-                <th>Lvl</th>
-                <th class="w-6">&nbsp;</th>
+                <td class="text-center uppercase">#</td>
+                <td class="text-center uppercase w-full">{{ buildingCount() }}/22 buildings</td>
+                <td class="text-center uppercase">Lvl</td>
+                <td class="text-center uppercase w-6">&nbsp;</td>
             </tr>
             <tr v-for="(selection, index) in calculator.selections"
                 :key="index"
