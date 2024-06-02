@@ -27,6 +27,13 @@
             if((building.name !== "Cranny" && building.level < 19) || building.level < 9) {
                 building.level++
                 calculateBuildingCPCost(building)
+            } else {
+                if(building.name === "Cranny") building.level = 10
+                if(building.name !== "Cranny") building.level = 20
+                building.res = 0
+                building.to = building.level
+                building.cp = 0
+                building.resCp = 0
             }
         } else {
             if(building.level > 0) {
@@ -40,7 +47,16 @@
 
     const calculateCPCost = () => {
         calculator.buildings.forEach((building) => {
-            calculateBuildingCPCost(building)
+            if((building.name !== "Cranny" && building.level < 19) || building.level < 9) {
+                calculateBuildingCPCost(building)
+            } else {
+                if(building.name === "Cranny") building.level = 10
+                if(building.name !== "Cranny") building.level = 20
+                building.res = 0
+                building.to = building.level
+                building.cp = 0
+                building.resCp = 0
+            }
         })
     }
 

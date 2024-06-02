@@ -2,7 +2,40 @@
 
 Built with Vue 3 and Vite.
 
-## Ideas list
+## Features
+
+Calculators for the effective management of a [Travian](www.travian.com) account. Including:
+   
+   - Village
+       - (1.0) Building costs
+       - (1.0) Time to next village
+       - (3.0) Res dev calculator showing production at field levels
+       - (3.0) Village builder with presets
+       - (3.1) CP cost calculator
+   - Economy
+       - (1.0) Merchant trips
+       - (1.0) Total res
+       - (2.3) ROI
+       - (2.8) Optimal village builder
+       - (1.0) Feeder traderoutes
+   - Troops
+       - (2.7) Troop training time
+       - (2.7) Troop costs
+       - (3.0) When to troop upgrades
+       - (3.0) Crop scouter + cap sim
+
+## Open ideas list
+
+- [ ] Add Spartan troops and unique building (hospital)
+- [ ] Calculator: Hero travel time and res gain from animal kills vs putting all points in resources
+- [ ] Calculator: Hero damage from adventure based on adventure number and fighting strength
+- [ ] Calculator: Easy troop attributes per tribe
+- [ ] Add tasks to ultimateROI
+- [ ] Ability to reorganise calculators on the screen
+- [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
+- [ ] Bug: opening the same calculator mulitple times and closing one closes the last one. Sometimes two of the same calculators opened after one another are coupled with data also.
+
+## Completed 
 
 - [x] Bug: Fix deleting tab (always deletes the first now)
 - [x] ROI calculator (how long for res to pay back)
@@ -14,57 +47,32 @@ Built with Vue 3 and Vite.
 - [x] Training time for given number of troops based on modifiers (hospital, bonuses, helmet)
 - [x] Simming build creator --> now ultimateROI
 - [x] Naming calculators (making title editable)
-- [ ] Add Spartan troops and unique building (hospital)
-- [ ] Hero travel time and res gain from animal kills vs putting all points in resources
+- [x] v3.0
+    - [X] Redesign menu and icons
+    - [X] Differentiate menu categories with colours
+    - [X] Hover tooltip on icon
+    - [X] Crop scouter + cap sim
+    - [X] Res dev calculator showing production at field levels
+    - [X] Village builder with presets:
+      - 500 CP feeder
+      - 1000 CP feeder
+      - NPC village
+      - 15c lv18
+      - 15c lv19
+      - 9c lv18
+      - hammer
+      - anvil
+      - greyzone settle
+    - [X] When to upgrade troop in smithy
+    - [X] New tribe select component
+    - [X] Improve default state
+    - [X] Fix makeshift wall and stone wall stats
+    - [X] Add HDT to troop cost calc
+    - [X] Add Waterworks to ROI calculator
+    - [X] Use a more efficient design to display calculators
+    - [X] Update help component text
+- [x] Unify UI of older calculators to match new styling
+- [x] CP efficiency overview
+
+## Not under consideration
 - [ ] When is great party worth it in cp/day (village cp vs. account cp), CP efficiency vs. goal
-- [ ] Troop attribute calculator per tribe
-- [ ] Add tasks to ultimateROI
-- [ ] Reorganise calculators on the screen
-- [ ] CP efficiency overview
-- [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
-- [ ] Bug: sometimes NPCCalculator opens and is coupled to an already existing one
-- [ ] Unify UI of older calculators to match new styling
-
-v3.0
-- [X] Redesign menu and icons
-- [X] Differentiate menu categories with colours
-- [X] Hover tooltip on icon
-- [X] Crop scouter + cap sim
-- [X] Res dev calculator showing production at field levels
-- [X] Village builder with presets and ?export/import/saving templates?:
-  - 500 CP feeder
-  - 1000 CP feeder
-  - NPC village
-  - 15c lv18
-  - 15c lv19
-  - 9c lv18
-  - hammer
-  - anvil
-  - greyzone settle
-- [X] When to upgrade troop in smithy
-- [X] New tribe select component
-- [X] Improve default state
-- [X] Fix makeshift wall and stone wall stats
-- [X] Add HDT to troop cost calc
-- [X] Add Waterworks to ROI calculator
-- [X] Use a more efficient design to display calculators
-- [X] Update help component text
-
-##### Redesign menu and icons
-
-- Village
-    - Building costs
-    - Time to next village
-    - (new & done) Res dev calculator showing production at field levels
-    - (new & done) Village builder with presets
-- Economy
-    - Merchant trips
-    - Total res
-    - ROI
-    - Village builder
-    - Feeder traderoutes
-- Troops
-    - Troop training time
-    - Troop costs
-    - (new & done) When to troop upgrades
-    - (new & done) Crop scouter + cap sim
