@@ -13,6 +13,7 @@
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
 
     const tab = ref(0)
+    const resi = ref(true)
 
     onBeforeMount(() => {
         calculateCPCost()
@@ -158,7 +159,6 @@
             else tab.value = 0
         }
     }
-
 </script>
 
 <template>
@@ -172,7 +172,6 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-m-0.5 w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                         </svg>
-
                     </div>
                 </button>
 
@@ -220,36 +219,55 @@
                     </template>
                 </tr>
 
-                <tr v-for="building in calculator.buildings" class="border-b border-slate-400 odd:bg-slate-100">
-                    <td class="px-1.5 py-1">{{ building.name }}</td>
+                <template v-for="building in calculator.buildings">
 
-                    <template v-if="tab === 0 || tab === 1">
-                        <td class="">
-                            <div class="flex justify-between w-14">
-                                <div class="leading-none flex items-center justify-center font-bold pb-1 px-1.5 bg-slate-300 rounded cursor-pointer hover:bg-red-200" @click="modifyLevel(building, false)">-</div>
-                                <div>{{ building.level }}</div>
-                                <div class="leading-none flex items-center justify-center font-bold pb-0.5 px-1 bg-slate-300 rounded cursor-pointer hover:bg-emerald-200" @click="modifyLevel(building, true)">+</div>
+                    <tr class="border-b border-slate-400 odd:bg-slate-100"
+                            v-if="(building.name === 'Residence' && resi) || (building.name === 'Palace' && !resi) || (building.name !== 'Residence' && building.name !== 'Palace')"
+                    >
+                        <td class="px-1.5 py-1" v-if="building.name === 'Residence' || building.name === 'Palace'">
+                            <div class="flex items-center gap-2 cursor-pointer" @click="resi = !resi">
+                                <div>{{ building.name }}</div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-m-0.5 w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                    </svg>
+                                </div>
                             </div>
                         </td>
-                        <td class="px-1.5 text-right">{{ building.to ? building.to : building.level + 1}}</td>
 
-                        <template v-if="tab === 0">
-                            <td class="px-1.5 text-right">{{ building.resCp ? building.resCp : '...'}}</td>
-                        </template>
-
-                        <template v-if="tab === 1">
-                            <td class="text-right px-1.5">{{ building.res ? building.res : '...'}}</td>
-                            <td class="text-right px-1.5">{{ building.nextCp ? building.nextCp : '...'}}</td>
-                        </template>
-                    </template>
-
-                    <template v-if="tab === 2">
-                        <td class="text-right">
-                            <input type="number" class="py-0.5 px-1 border border-gray-300 w-14" v-model="building.level" min="0" :max="building.name === 'Cranny' ? 9 : 19">
+                        <td class="px-1.5 py-1" v-else>
+                            {{ building.name }}
                         </td>
-                    </template>
 
-                </tr>
+                        <template v-if="tab === 0 || tab === 1">
+                            <td class="">
+                                <div class="flex justify-between w-14">
+                                    <div class="leading-none flex items-center justify-center font-bold pb-1 px-1.5 bg-slate-300 rounded cursor-pointer hover:bg-red-200" @click="modifyLevel(building, false)">-</div>
+                                    <div>{{ building.level }}</div>
+                                    <div class="leading-none flex items-center justify-center font-bold pb-0.5 px-1 bg-slate-300 rounded cursor-pointer hover:bg-emerald-200" @click="modifyLevel(building, true)">+</div>
+                                </div>
+                            </td>
+                            <td class="px-1.5 text-right">{{ building.to ? building.to : building.level + 1}}</td>
+
+                            <template v-if="tab === 0">
+                                <td class="px-1.5 text-right">{{ building.resCp ? building.resCp : '...'}}</td>
+                            </template>
+
+                            <template v-if="tab === 1">
+                                <td class="text-right px-1.5">{{ building.res ? building.res : '...'}}</td>
+                                <td class="text-right px-1.5">{{ building.nextCp ? building.nextCp : '...'}}</td>
+                            </template>
+                        </template>
+
+                        <template v-if="tab === 2">
+                            <td class="text-right">
+                                <input type="number" class="py-0.5 px-1 border border-gray-300 w-14" v-model="building.level" min="0" :max="building.name === 'Cranny' ? 9 : 19">
+                            </td>
+                        </template>
+
+                    </tr>
+
+                </template>
 
             </table>
         </div>
