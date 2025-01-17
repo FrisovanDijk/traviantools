@@ -83,7 +83,7 @@
             </div>
 
             <div class="flex gap-2">
-                <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg> level</span>
+                <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg> {{$t('level')}}</span>
                 <input v-model="calculator.fieldLevel"
                        type="number"
                        min="0"
@@ -96,7 +96,7 @@
 
         <div class="flex px-4 mt-6 text-sm items-center gap-2">
 
-            <div class="text-right mr-1">Oases</div>
+            <div class="text-right mr-1">{{$t('oases')}}</div>
 
             <OasisSelector v-for="i in calculator.oases.length"
                            :index="i"
@@ -109,7 +109,7 @@
         <div class="flex px-4 mt-6 gap-2 justify-between">
 
             <div class="flex gap-1 items-center">
-                <div class="mr-2">Pop</div>
+                <div class="mr-2 capitalize">{{$t('population_short')}}</div>
                 <input v-model="calculator.population" type="number"
                        class="w-20 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                        @change="calculateConsumption"
@@ -117,7 +117,7 @@
             </div>
 
             <div class="flex items-center gap-1">
-                <div class="mr-2">Waterworks</div>
+                <div class="mr-2">{{$t('buildings.Waterworks')}}</div>
                 <input v-model="calculator.egyptian" type="number"
                        min="0"
                        :max="20"
@@ -130,14 +130,14 @@
 
         <div class="flex px-4 mt-6 gap-2 justify-between">
 
-            <label>Gold +25%
+            <label>{{$t('gold_bonus')}}
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.goldBonus"
                        @change="calculateConsumption"
                 />
             </label>
 
-            <label>Scouted oasis
+            <label>{{ $t('cropScout.scout_oasis') }}
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.scoutOasis"
                        @change="calculateConsumption"
@@ -148,7 +148,7 @@
         <div class="border-b border-slate-800 mt-4 mx-2"></div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <div class="w-16 mr-2">Scout 1</div>
+            <div class="w-16 mr-2">{{$t('cropScout.scout1')}}</div>
             <input v-model="calculator.scout1" type="number"
                    class="flex-1 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                    @change="calculateConsumption"
@@ -156,7 +156,7 @@
         </div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <div class="w-16 mr-2">Scout 2</div>
+            <div class="w-16 mr-2">{{$t('cropScout.scout2')}}</div>
             <input v-model="calculator.scout2" type="number"
                    class="flex-1 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                    @change="calculateConsumption"
@@ -164,16 +164,16 @@
         </div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <div class="flex-1 mr-2">Time difference (seconds)</div>
+            <div class="flex-1 mr-2">{{$t('cropScout.delta_time')}}</div>
             <input v-model="calculator.deltaTime" type="number"
                    class="border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                    @change="calculateConsumption"
             >
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Consumption</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('cropScout.consumption')}}</h2>
         <div class="bg-yellow-200 px-2 py-1 flex">
-            {{ resultProduction }} <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg> per hour</span>
+            {{ resultProduction }} <span class="flex gap-.5 items-center"><ResImg type="crop" class="w-6"></ResImg>{{$t('per_hour')}}</span>
         </div>
     </CalculatorWrapper>
 </template>

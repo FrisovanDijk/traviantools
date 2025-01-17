@@ -95,13 +95,13 @@
 
             <div class="flex mt-6 gap-4 px-6 justify-between">
                 <label class="flex-0">
-                    Recruitment
+                    {{$t('troopsTraining.recruitment')}}
                     <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
                         <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
                     </select>
                 </label>
                 <label class="flex-0">
-                    Artifact
+                    {{$t('troopsTraining.artifact')}}
                     <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
                         <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
                     </select>
@@ -110,13 +110,13 @@
 
             <div class="flex mt-4 gap-4 px-6 justify-between">
                 <label class="flex-0">
-                    Inf. helm
+                    {{$t('troopsTraining.helm_inf')}}
                     <select v-model="calculator.helm_inf" class="border border-gray-500 px-1 ml-1">
                         <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
                     </select>
                 </label>
                 <label class="flex-0">
-                    Cav. helm
+                    {{$t('troopsTraining.helm_cav')}}
                     <select v-model="calculator.helm_cav" class="border border-gray-500 px-1 ml-1">
                         <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
                     </select>
@@ -125,14 +125,14 @@
 
             <div class="flex mt-4 gap-4 px-6 justify-between">
                 <label class="">
-                    Hospital level
+                    {{$t('buildings.Hospital')}}
                     <select v-model="calculator.hospital_level" class="border border-gray-500 px-1 ml-1">
                         <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
                     </select>
                 </label>
 
                 <label class="" v-if="calculator.tribe === 'romans'">
-                    HDT
+                    {{$t('troopsTraining.hdt')}}
                     <select v-model="calculator.hdt" class="border border-gray-500 px-1 ml-1">
                         <option v-for="(level, index) in 21" v-bind:key="index">{{ index }}</option>
                     </select>
@@ -146,7 +146,7 @@
                 >
                     <input type="number" v-model="row.amount" min="0" class="py-0.5 px-1 border border-gray-300 w-24">
                     <select v-model="row.id" class="border border-gray-500 px-1 py-0.5 ml-2 w-full">
-                        <option v-for="(unit, index) in getUnits()" :value="index">{{ unit.name }}</option>
+                        <option v-for="(unit, index) in getUnits()" :value="index">{{ $t(`${unit.name}`) }}</option>
                     </select>
                 </div>
             </div>
@@ -160,10 +160,10 @@
             <h2 class="mt-2 py-1 mx-2 font-bold">Total cost</h2>
             <div class="bg-yellow-200 p-2">
                 <template v-if="getCost()">
-                    <template v-if="getCost().time_inf">Barracks time: {{ getCost().time_inf }} hours<br/></template>
-                    <template v-if="getCost().time_cav">Stables time: {{ getCost().time_cav }} hours<br/></template>
-                    <template v-if="getCost().time_siege">Workshop time: {{ getCost().time_siege }} hours<br/></template>
-                    <template v-if="getCost().time_hospital">Hospital time: {{ getCost().time_hospital }} hours</template>
+                    <template v-if="getCost().time_inf">{{$t('buildings.Barracks')}}: {{ getCost().time_inf }} hours<br/></template>
+                    <template v-if="getCost().time_cav">{{$t('buildings.Stable')}}: {{ getCost().time_cav }} hours<br/></template>
+                    <template v-if="getCost().time_siege">{{$t('buildings.Workshop')}}: {{ getCost().time_siege }} hours<br/></template>
+                    <template v-if="getCost().time_hospital">{{$t('buildings.Hospital')}}: {{ getCost().time_hospital }} hours</template>
 
                     <br/>
                     <div class="flex flex-wrap gap-1 mt-2">

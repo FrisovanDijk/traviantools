@@ -55,9 +55,6 @@
             name: 'VillageTimer',
             type: 'village',
             icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8"><path fill="#fff" d="M208.242 24.629l-52.058 95.205 95.207 52.059 17.271-31.586-42.424-23.198A143.26 143.26 0 0 1 256 114c78.638 0 142 63.362 142 142s-63.362 142-142 142-142-63.362-142-142c0-16.46 2.785-32.247 7.896-46.928l-32.32-16.16C82.106 212.535 78 233.798 78 256c0 98.093 79.907 178 178 178s178-79.907 178-178S354.093 78 256 78c-13.103 0-25.875 1.44-38.18 4.148l22.008-40.25-31.586-17.27zm104.27 130.379L247 253.275V368h18V258.725l62.488-93.733-14.976-9.984z"/></svg>',
-            // icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">\n' +
-            //     '  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
-            //     '</svg>\n',
             calculator: {
                 cpLeft: 0,
                 cpDaily: 0,
@@ -286,17 +283,17 @@
                 hdt: 20
             }
         },
-        // {
-        //     name: 'SmithyEfficiency',
-        //     type: 'troops',
-        //     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8"><path fill="#fff" d="M128.688 115.594v147.75h285v-147.75h-285zm-111.844 20.47c17.374 47.14 54.372 80.413 94.906 93.81v-93.81H16.844zm414.375 12.31v88.657c21.457-9.083 42.92-25.257 64.374-47.374-21.52-22.562-42.633-35.173-64.375-41.28zm-226.25 132.47c-12.15 38.536-33.897 71.5-60.595 100.47l257.844-.002c-28.705-29.016-49.952-62.054-61.5-100.468H204.97zM101.843 400v43.78h337.562V400H101.844z"/></svg>',
-        //     calculator: {
-        //         tribe: 'gaul',
-        //         units: [false,false,false,false,false,false,false,false],
-        //         smithy: true,
-        //         level: 20
-        //     }
-        // },
+        {
+            name: 'SmithyEfficiency',
+            type: 'troops',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8"><path fill="#fff" d="M128.688 115.594v147.75h285v-147.75h-285zm-111.844 20.47c17.374 47.14 54.372 80.413 94.906 93.81v-93.81H16.844zm414.375 12.31v88.657c21.457-9.083 42.92-25.257 64.374-47.374-21.52-22.562-42.633-35.173-64.375-41.28zm-226.25 132.47c-12.15 38.536-33.897 71.5-60.595 100.47l257.844-.002c-28.705-29.016-49.952-62.054-61.5-100.468H204.97zM101.843 400v43.78h337.562V400H101.844z"/></svg>',
+            calculator: {
+                tribe: 'gaul',
+                units: [false,false,false,false,false,false,false,false],
+                smithy: true,
+                level: 20
+            }
+        },
         {
             name: 'CropScouter',
             type: 'troops',
@@ -351,7 +348,7 @@
         <template v-for="(item, index) in ['village', 'economy', 'troops']">
             <div class="text-xs sm:text-sm uppercase border-b border-slate-800 pb-1 w-full">{{ $t(`menu.cat_${item}`) }}</div>
 
-            <div class="p-0.5 sm:p-1 rounded cursor-pointer group relative"
+            <button class="p-0.5 sm:p-1 rounded cursor-pointer group relative"
                  :class="[
                      index === 0 ? 'bg-emerald-600 hover:bg-emerald-400 text-white' : '',
                      index === 1 ? 'bg-amber-600 hover:bg-amber-400 text-white' : '',
@@ -363,23 +360,25 @@
                 <span v-html="item.icon" class="" />
                 <span class="absolute z-50 hidden sm:group-hover:flex top-1 -right-3 translate-x-full px-2 py-1 bg-slate-800 rounded-lg text-center text-white text-sm w-36">{{ $t(`menu.${item.name}`) }}</span>
 
-            </div>
+            </button>
 
         </template>
 
         <div class="w-full border-b border-slate-800"></div>
 
-        <div class="bg-rose-600 text-white p-2 rounded cursor-pointer hover:bg-rose-400" @click="deletePopUp = true">
+        <button class="bg-rose-600 text-white p-2 rounded cursor-pointer hover:bg-rose-400" @click="deletePopUp = true" role="button" :title="$t('tabmenu.delete')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
             </svg>
-        </div>
+        </button>
 
-        <div class="bg-sky-600 text-white p-2 rounded cursor-pointer hover:bg-sky-400" @click="$emit('add:calculator', { name: 'Help' } )">
+        <button class="bg-sky-600 text-white p-2 rounded cursor-pointer hover:bg-sky-400"
+             :title="$t('menu.help')"
+             @click="$emit('add:calculator', { name: 'Help' } )">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
             </svg>
-        </div>
+        </button>
     </div>
 
     <div v-show="deletePopUp" class="absolute -left-2 -right-2 bottom-2 bg-white border rounded shadow-md">

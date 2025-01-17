@@ -98,17 +98,18 @@
         <div @change="calculateTime"
              class="flex flex-col mb-2 justify-between px-2"
         >
-            <label class="text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpLeft" min="0">
+            <label class="text-sm uppercase">
+                <input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpLeft" min="0">
                 {{$t('cp_remaining')}}
             </label>
 
-            <label class="mt-1 text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpDaily" min="0">
+            <label class="mt-1 text-sm uppercase">
+                <input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpDaily" min="0">
                 {{$t('cp_daily')}}
             </label>
 
             <label class="mt-1 text-sm uppercase">
                 <select class="w-36 border px-1 mx-1"
-                        type="number"
                         v-model="calculator.helmet"
                 >
                     <option v-for="helmet in helmets"

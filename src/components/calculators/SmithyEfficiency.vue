@@ -12,6 +12,7 @@
     })
     const troops = troopsJson
     const buildings = buildingsJson
+    const updateKey = ref(0)
 
     onBeforeMount(() => {
         getUpgradeEfficiency()
@@ -109,17 +110,17 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="troops">
         <div class="flex flex-col" @change="getUpgradeEfficiency">
-            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe}" class="mt-2" />
+            <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {calculator.tribe = tribe; getUpgradeEfficiency()}" class="mt-2" />
 
-            <div class="flex mt-6 px-6 gap-4">
+            <div class="flex mt-6 px-6 gap-4 flex-wrap">
                 <label class="flex-0">
                     <label>
-                        Smithy cost
-                        <input type="checkbox" v-model="calculator.smithy" class="ml-1">
+                        <input type="checkbox" v-model="calculator.smithy" class="mr-1">
+                        {{$t('troopsTraining.cost_smithy')}}
                     </label>
                 </label>
                 <label class="flex-0">
-                    Upgrade level
+                    {{$t('troopsTraining.level_upgrade')}}
                     <select v-model="calculator.level" class="border border-gray-500 px-1 ml-1">
                         <option v-for="(bonus, index) in 20" v-bind:key="bonus">{{ bonus }}</option>
                     </select>
@@ -127,16 +128,16 @@
             </div>
 
             <div class="flex flex-wrap px-4 mt-4 mb-1">
-                <label v-for="(unit, index) in getUnits()" v-bind:key="level" class="w-1/2 py-1.5">
+                <label v-for="(unit, index) in getUnits()" v-bind:key="calculator.level" class="w-1/2 py-1.5">
                     <input type="checkbox" :id="index" :value="unit.name" v-model="calculator.units[index]">
-                    {{ getUnitShort(unit.name) }}
+                    {{ $t(getUnitShort(unit.name)) }}
                 </label>
             </div>
 
-            <h2 class="mt-2 py-1 mx-2 font-bold">Break even for lv{{calculator.level}}</h2>
-            <div class="bg-yellow-200 p-2 flex flex-wrap">
-                <div class="w-1/2" v-for="unit in upgradeEfficiency" v-if="upgradeEfficiency.length">{{unit.breakeven}} {{ getUnitShort(unit.name) }}</div>
-                <div class="" v-else>Select a unit</div>
+            <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('troopsTraining.break_even_level', { level: calculator.level })}}</h2>
+            <div class="bg-yellow-200 p-2 flex flex-wrap" :key="updateKey">
+                <div class="w-1/2" v-for="unit in upgradeEfficiency" v-if="upgradeEfficiency.length">{{unit.breakeven}} {{ $t(getUnitShort(unit.name)) }}</div>
+                <div class="" v-else>{{$t('troopsTraining.no_selection')}}</div>
             </div>
         </div>
 

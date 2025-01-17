@@ -48,7 +48,7 @@
     const clearTabs = () => {
         userData.currentTab = 0
         userData.tabs = [{
-            name: 'Tab 1',
+            name: t('default_tab'),
             calculators: []
         }]
     }
@@ -57,7 +57,7 @@
         userData.tabs[userData.currentTab].calculators.length = 0
         if(userData.tabs.length === 0) {
             userData.tabs.calculators = [{
-                name: 'Tab 1',
+                name: t('default_tab'),
                 calculators: []
             }]
         }

@@ -144,8 +144,6 @@
     const switchTribe = (tribe) => {
         calculator.tribe = tribe
 
-        console.log(getInf()[0])
-
         calculator.barracks.unit = getInf()[0].name
         calculator.stables.unit = getCav()[0].name
         calculator.workshop.unit = getSiege()[0].name
@@ -159,22 +157,22 @@
             <TribeSelect :selected="calculator.tribe" @selection="(tribe) => {switchTribe(tribe)}" class="mt-2" />
 
             <label class="px-4 mt-4">
-                Training time
+                {{$t('troopsTraining.training_time')}}
                 <input type="number" min="0" max="300" v-model="calculator.training_amount" class="px-2 py-0.5 border w-20">
                 <select v-model="calculator.time_type" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="days in ['hour', 'day', 'week']" v-bind:key="days">{{ days }}</option>
+                    <option v-for="days in [$t('hour'), $t('day'), $t('week')]" v-bind:key="days">{{ days }}</option>
                 </select>
             </label>
 
             <div class="flex mt-4">
                 <label class="px-4">
-                    Recruitment
+                    {{$t('troopsTraining.recruitment')}}
                     <select v-model="calculator.recruitment" class="border border-gray-500 px-1 ml-1">
                         <option v-for="bonus in [0,2,4,6,8,10]" v-bind:key="bonus">{{ bonus }}</option>
                     </select>
                 </label>
                 <label class="px-4">
-                    Artifact
+                    {{$t('troopsTraining.artifact')}}
                     <select v-model="calculator.artifact" class="border border-gray-500 px-1 ml-1">
                         <option v-for="arti in [0,25,50]" v-bind:key="arti">{{ arti }}</option>
                     </select>
@@ -185,34 +183,34 @@
             <div class="flex px-4 mt-4 bg-orange-100 py-3">
                 <div class="flex border-r mr-4 border-gray-600 w-16">
                     <label class="">
-                        <span class="text-xs font-semibold uppercase">Barracks</span><br/>
+                        <span class="text-xs font-semibold uppercase">{{$t('buildings.Barracks')}}</span><br/>
                         <select v-model="calculator.barracks.amount" class="border border-gray-500 px-1 mt-2">
-                            <option v-for="(amount, index) in 30" v-bind:key="tribe">{{ index }}</option>
+                            <option v-for="(amount, index) in 30" v-bind:key="calculator.tribe">{{ index }}</option>
                         </select>
                     </label>
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center">
-                        <div class="w-14">Unit</div>
+                        <div class="w-14">{{$t('troopsTraining.unit')}}</div>
                         <select v-model="calculator.barracks.unit" class="border border-gray-500 px-1">
-                            <option v-for="unit in getInf()" v-bind:key="unit">{{ unit.name }}</option>
+                            <option v-for="unit in getInf()" v-bind:key="unit" :value="unit.name">{{ $t(`${unit.name}`) }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Level</div>
+                        <div class="w-14">{{$t('level')}}</div>
                         <select v-model="calculator.barracks.level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 20" v-bind:key="level">{{ level }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Helmet</div>
+                        <div class="w-14">{{$t('hero.helmet.helmet')}}</div>
                         <select v-model="calculator.barracks.helmet" class="border border-gray-500 px-1">
                             <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Great</div>
+                        <div class="w-14">{{$t('troopsTraining.great')}}</div>
                         <select v-model="calculator.barracks.great_level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
                         </select>
@@ -223,40 +221,40 @@
             <div class="flex px-4 bg-emerald-100 py-3">
                 <div class="flex border-r pr-4 mr-4 border-gray-600 w-16">
                     <label class="">
-                        <span class="text-xs font-semibold uppercase">Stables</span><br/>
+                        <span class="text-xs font-semibold uppercase">{{$t('buildings.Stable')}}</span><br/>
                         <select v-model="calculator.stables.amount" class="border border-gray-500 px-1 mt-2">
-                            <option v-for="(amount, index) in 30" v-bind:key="tribe">{{ index }}</option>
+                            <option v-for="(amount, index) in 30" v-bind:key="calculator.tribe">{{ index }}</option>
                         </select>
                     </label>
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center">
-                        <div class="w-14">Unit</div>
+                        <div class="w-14">{{$t('troopsTraining.unit')}}</div>
                         <select v-model="calculator.stables.unit" class="border border-gray-500 px-1">
-                            <option v-for="unit in getCav()" v-bind:key="unit">{{ unit.name }}</option>
+                            <option v-for="unit in getCav()" v-bind:key="unit" :value="unit.name">{{ $t(`${unit.name}`) }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Level</div>
+                        <div class="w-14">{{$t('level')}}</div>
                         <select v-model="calculator.stables.level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 20" v-bind:key="level">{{ level }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Helmet</div>
+                        <div class="w-14">{{$t('hero.helmet.helmet')}}</div>
                         <select v-model="calculator.stables.helmet" class="border border-gray-500 px-1">
                             <option v-for="helmet in [0,10,15,20]" v-bind:key="helmet">{{ helmet }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Great</div>
+                        <div class="w-14">{{$t('troopsTraining.great')}}</div>
                         <select v-model="calculator.stables.great_level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
                         </select>
                     </div>
                     <div class="flex items-center" v-if="calculator.tribe === 'romans'">
-                        <div class="w-14">HDT</div>
+                        <div class="w-14">{{$t('troopsTraining.hdt')}}</div>
                         <select v-model="calculator.stables.hdt_level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 21" v-bind:key="level">{{ index }}</option>
                         </select>
@@ -267,7 +265,7 @@
             <div class="flex px-4 bg-blue-100 py-3">
                 <div class="flex border-r pr-4 mr-4 border-gray-600 w-16">
                     <label class="">
-                        <span class="text-xs font-semibold uppercase">Siege</span><br/>
+                        <span class="text-xs font-semibold uppercase">{{$t('troopsTraining.siege')}}</span><br/>
                         <select v-model="calculator.workshop.amount" class="border border-gray-500 px-1 mt-2">
                             <option v-for="(amount, index) in 30" v-bind:key="amount">{{ index }}</option>
                         </select>
@@ -276,13 +274,13 @@
 
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center">
-                        <div class="w-14">Unit</div>
+                        <div class="w-14">{{$t('troopsTraining.unit')}}</div>
                         <select v-model="calculator.workshop.unit" class="border border-gray-500 px-1">
-                            <option v-for="unit in getSiege()" v-bind:key="unit">{{ unit.name }}</option>
+                            <option v-for="unit in getSiege()" v-bind:key="unit" :value="unit.name">{{ $t(`${unit.name}`) }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-14">Level</div>
+                        <div class="w-14">{{$t('level')}}</div>
                         <select v-model="calculator.workshop.level" class="border border-gray-500 px-1">
                             <option v-for="(level, index) in 20" v-bind:key="level">{{ level }}</option>
                         </select>
@@ -291,12 +289,12 @@
             </div>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Troops</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('totals')}}</h2>
         <div class="bg-yellow-200 p-2">
             <template v-if="getTroops()">
-                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().inf.amount }}</span> {{ getTroops().inf.type }}</span>
-                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().cav.amount }}</span> {{ getTroops().cav.type }}</span>
-                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().siege.amount }}</span> {{ getTroops().siege.type }}</span><br/>
+                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().inf.amount }}</span> {{ $t(`${getTroops().inf.type}`) }}</span>
+                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().cav.amount }}</span> {{ $t(`${getTroops().cav.type}`) }}</span>
+                <span class="inline-block pr-1"><span class="font-semibold">{{ getTroops().siege.amount }}</span> {{ $t(`${getTroops().siege.type}`) }}</span><br/>
                 <div class="flex mt-1 justify-between">
                     <div class="flex"><ResImg type="lumber" />{{ getTroops().cost.wood }}</div>
                     <div class="flex"><ResImg type="clay" />{{ getTroops().cost.clay }}</div>
@@ -305,11 +303,11 @@
                 </div>
                 <div class="flex mt-1 justify-between">
                     <div class="flex"><ResImg type="resources" />{{ getTroops().cost.total }}</div>
-                    <div class="flex"><ResImg type="crop" />{{ getTroops().consumption }}/hr</div>
+                    <div class="flex"><ResImg type="crop" />{{ getTroops().consumption }}{{$t('per_hour')}}</div>
                 </div>
             </template>
             <div v-else>
-                Select troops
+                {{$t('troopsTraining.no_selection')}}
             </div>
         </div>
 
