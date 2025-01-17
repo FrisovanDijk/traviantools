@@ -1,6 +1,8 @@
 <script setup>
     import { ref } from 'vue'
 
+    const emit = defineEmits(['add:calculator', 'clear:tab'])
+
     const menu = [
         {
             name: 'NPCCalculator',

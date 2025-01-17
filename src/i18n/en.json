@@ -3,6 +3,8 @@
     "site_title_byline": "Added localisation and background tweaks",
     "yes": "Yes",
     "no": "No",
+    "next": "Next",
+    "previous": "Previous",
     "lumber": "Lumber",
     "clay": "Clay",
     "iron": "Iron",
@@ -44,15 +46,18 @@
     "oases": "Oases",
     "level": "Level",
     "gold_bonus": "Gold +25%",
+    "production": "Production",
     "production_hourly": "Hourly production",
     "party_small": "Small",
     "party_great": "Great",
     "party": "Party",
     "th_level": "TH level",
+    "repeat_every": "Repeat every",
     "time": "Time",
     "days": "days",
     "hours": "hours",
     "minutes": "mins",
+    "traderoute": "Traderoute",
     "hero": {
         "helmet": {
             "none": "No helmet",
@@ -150,5 +155,14 @@
         "9c cap lv18":  "9c cap lv18",
         "Cata village":  "Cata village",
         "stats": "Village stats"
+    },
+    "ultimateROI": {
+        "msg_building_res10": "{resBuilding} to 10 and {building} to {level}",
+        "msg_building": "{building} to {level}",
+        "msg_oasis": "@:{'buildings.Heros Mansion'} to {level} and capture oasis",
+        "msg_egyptian": "@:buildings.Waterworks to {level}",
+        "sim_to_level": "Sim to lvl",
+        "simulate": "Simulate",
+        "no_build": "Select a build to simulate"
     }
 }

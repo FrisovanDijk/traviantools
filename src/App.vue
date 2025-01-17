@@ -108,7 +108,8 @@
         </div>
 
         <div class="flex flex-col gap-2 mt-4 ml-1 mr-2 sm:mr-1 relative">
-            <div class="block sm:hidden rounded p-1 text-center text-white w-full h-8 self-center text-sm cursor-pointer bg-emerald-600 hover:bg-emerald-400"
+            <div class="rounded p-1 text-center text-white w-full h-8 self-center text-sm cursor-pointer bg-emerald-600 hover:bg-emerald-400"
+                 :class="showMenu ? 'block sm:hidden' : 'block'"
                  @click="showMenu = !showMenu"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" v-if="!showMenu">
@@ -120,9 +121,7 @@
             </div>
             <CalculatorsMenu @add:calculator="addCalculator"
                              @clear:tab="clearTab"
-                             :class="[
-                             showMenu ? 'flex' : 'hidden sm:flex'
-                         ]"
+                             v-if="showMenu"
             />
         </div>
 

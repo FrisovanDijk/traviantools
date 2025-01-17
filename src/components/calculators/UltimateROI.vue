@@ -1,14 +1,15 @@
 <script setup>
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
-    import ResImg from '@/components/ResImg.vue'
     import VillageTypeSelector from '@/components/VillageTypeSelector.vue'
     import OasisSelector from '@/components/OasisSelector.vue'
     import RadioSelect from "@/components/RadioSelect.vue"
 
     import buildingsJson from '@/data/buildings.json'
     import productionJson from '@/data/production.json'
+    import { useI18n } from "vue-i18n"
 
-    import { ref, onBeforeMount } from 'vue'
+    const t = useI18n().t
+
     import { userData } from '@/stores/userData.js'
 
     const props = defineProps({
@@ -447,7 +448,7 @@
         let cost = 0
 
         for(let i = fromLevel; i < toLevel; i++) {
-            cost += buildingsJson["Hero's Mansion"][i].total_res
+            cost += buildingsJson["Heros Mansion"][i].total_res
         }
 
         let prodGrossType1 = 0
@@ -551,18 +552,18 @@
             if(step.fieldType === 'iron') resBuildingType = 'Iron Mine'
 
             if(step.sim10) {
-                message = `${resBuildingType} to 10 and ${buildingType} to ${currLevel}`
+                message = t('ultimateROI.msg_building_res10', { resBuilding: resBuildingType, building: buildingType, level: currLevel})
             } else {
-                message = `${buildingType} to ${currLevel}`
+                message = t('ultimateROI.msg_building', { building: buildingType, level: currLevel })
             }
         }
 
         if(step.type === 'oasis') {
-            message = `Hero's Mansion to ${step.level} and capture oasis`
+            message = t('ultimateROI.msg_oasis', { level: step.level })
         }
 
         if(step.type === 'egyptian') {
-            message = `Waterworks to ${step.level}`
+            message = t('ultimateROI.msg_egyptian', { level: step.level })
         }
 
         if(step.type === 'crop' || step.type === 'lumber' || step.type === 'clay' || step.type === 'iron') {
@@ -571,7 +572,7 @@
             if(step.type === 'clay') resBuildingType = 'Clay Pit'
             if(step.type === 'iron') resBuildingType = 'Iron Mine'
 
-            message = `${resBuildingType} to ${step.level}`
+            message = t('ultimateROI.msg_building', { building: resBuildingType, level: step.level })
             if(lastMessage.text === message) {
                 lastMessage.count++
                 return false
@@ -615,12 +616,12 @@
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="economy">
 
         <div class="flex space-x-3 px-2">
-            <div class="text-sm">Village type</div>
+            <div class="text-sm">{{$t('village_type')}}</div>
             <VillageTypeSelector @selection="updateVillageType" :selected="calculator.villagetype" />
         </div>
 
         <div class="flex px-2 mt-4 text-sm items-center space-x-3">
-            <div class="w-16">Oases</div>
+            <div class="w-16">{{$t('oases')}}</div>
             <OasisSelector v-for="i in calculator.oases.length"
                            :index="i"
                            :selected="calculator.oases[i-1]"
@@ -629,13 +630,13 @@
         </div>
 
         <div class="flex px-2 mt-3">
-            <RadioSelect legend="Sim to lvl" :options="[10, 20]" :selected="calculator.simTo" @selection="updateSimTo" />
+            <RadioSelect :legend="$t('ultimateROI.sim_to_level')" :options="[10, 20]" :selected="calculator.simTo" @selection="updateSimTo" />
         </div>
 
         <div class="flex px-2 gap-4 mt-3 text-sm pb-4 border-b">
             <div class="flex flex-col gap-4">
                 <div class="flex items-center space-x-3">
-                    <label>Egyptians
+                    <label>{{$t('egyptians')}}
                         <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                                v-model="calculator.egyptian"
                         />
@@ -643,7 +644,7 @@
                 </div>
 
                 <div class="flex items-center space-x-3">
-                    <label>Gold +25%
+                    <label>{{$t('gold_bonus')}}
                         <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                                v-model="calculator.goldBonus"
                         />
@@ -652,14 +653,14 @@
             </div>
 
             <div class="mt-4 flex mb-2 justify-end flex-1">
-                <div class="rounded-lg bg-green-600 mr-8 text-white py-2 px-6 cursor-pointer" @click="simROIBuild">Sim</div>
+                <div class="rounded-lg bg-green-600 mr-8 text-white py-2 px-6 cursor-pointer" @click="simROIBuild">{{$t('ultimateROI.simulate')}}</div>
             </div>
 
         </div>
 
         <div class="flex flex-col gap-2">
             <div class="flex flex-col">
-                <div class="p-2" v-if="calculator.build.length === 0">Select a build to simulate</div>
+                <div class="p-2 bg-yellow-200" v-if="calculator.build.length === 0">{{$t('ultimateROI.no_build')}}</div>
                 <div v-else
                      v-for="(row, i) in getBuildTab()"
                      :class="[
@@ -679,11 +680,12 @@
                 <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab--"
                      v-if="calculator.tab > 0"
                 >
-                    prev</div>
+                    {{$t('previous')}}</div>
+                <div>{{ calculator.tab+1 }}/{{ calculator.build.length/8}}</div>
                 <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab++"
                      v-if="calculator.build.length > (calculator.tab + 1) * 8"
                 >
-                    next</div>
+                    {{$t('next')}}</div>
             </div>
         </div>
     </CalculatorWrapper>

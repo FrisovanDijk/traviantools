@@ -94,7 +94,7 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="economy">
         <div @submit.prevent="handleSubmit" class="flex flex-col mx-2" v-on:change="handleSubmit">
-            <h2 class="text-sm uppercase">Production</h2>
+            <h2 class="text-sm uppercase">{{$t('production')}}</h2>
             <div class="flex">
                 <ResImg type="lumber"></ResImg>
                 <input type="text" v-model="calculator.production.lumber" alt="lumber" class="border border-gray-600 rounded-sm px-2 m-1">
@@ -113,7 +113,7 @@
             </div>
 
             <label class="mt-2">
-                Party:
+                {{$t('party')}}:
                 <select v-model="calculator.party" class="border border-gray-500 px-1">
                     <option>none</option>
                     <option>small</option>
@@ -121,21 +121,21 @@
                 </select>
             </label>
             <label class="mt-2">
-                Town Hall:
+                {{$t('buildings.Town Hall')}}:
                 <select v-model="calculator.townHall" class="border border-gray-500 px-1">
                     <option v-for="level in 20" v-bind:key="level">{{ level }}</option>
                 </select>
             </label>
             <label class="mt-4">
-                Repeat every
+                {{ $t('repeat_every') }}
                 <select v-model="calculator.hours" class="border border-gray-500 px-1">
                     <option v-for="hours in [1,2,3,4,6,8,12,16,24]" v-bind:key="hours">{{ hours }}</option>
                 </select>
-                hour(s)
+                {{$t('hours')}}
             </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Traderoute</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('traderoute')}}</h2>
         <ResList class="bg-yellow-200"
                  :resources="result"
         ></ResList>
