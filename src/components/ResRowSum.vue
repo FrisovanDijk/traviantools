@@ -39,8 +39,8 @@
             </div>
 
             <div class="flex justify-end mt-1 mx-2">
-                <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">reset</button>
-                <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">add row</button>
+                <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">{{$t('components.reset')}}</button>
+                <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">{{$t('components.row_add')}}</button>
             </div>
         </div>
 </template>

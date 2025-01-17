@@ -16,7 +16,7 @@
              :class="(option === selected ? 'bg-green-200' : 'bg-gray-100')"
              @click="$emit('selection', option)"
         >
-            <div :style="`background-image: url('img/tribes.png'); background-position: -${index * 22}px 0; height: 22px; width: 22px;`"></div>
+            <div :style="`background-image: url('img/tribes.png'); background-position: -${index * 22}px 0; height: 22px; width: 22px;`" role="img" :alt="$t(option)" :title="$t(option)"></div>
         </div>
     </div>
 </template>

@@ -1,0 +1,47 @@
+{
+    "title": "Friso's Travial Tools v3.3",
+    "title_byline": "Added localisation and background tweaks",
+    "yes": "Yes",
+    "no": "No",
+    "lumber": "Lumber",
+    "clay": "Clay",
+    "iron": "Iron",
+    "crop": "Crop",
+    "resources": "Resources",
+    "nocrop": "Without crop",
+    "romans": "Romans",
+    "gaul": "Gaul",
+    "teutons": "Teutons",
+    "egyptians": "Egyptians",
+    "huns": "Huns",
+    "spartans": "Spartans",
+    "natar": "Natar",
+    "tabmenu": {
+        "tab_add": "Add tab",
+        "tab_clear": "Clear all tabs",
+        "tab_items_delete": "Do you want to delete all items in this tab?"
+    },
+    "menu": {
+        "NPCCalculator": "Building cost",
+        "ProductionOverview": "Village production",
+        "VillageTimer": "Time to next Village",
+        "VillagePlanner": "Village planner",
+        "CPCostCalculator": "Culture Points Costs",
+        "UltimateROI": "Optimal Village builder",
+        "FeederAutomation": "Feeder traderoutes",
+        "MerchantTrips": "Number of merchant trips",
+        "TotalResources": "Total Resources",
+        "ROICalculator": "Return on Investment",
+        "TroopsTraining": "Troop training",
+        "TroopCost": "Troop costs",
+        "SmithyEfficiency": "Smithy efficiency",
+        "CropScouter": "Crop Scouter",
+        "cat_village": "Village",
+        "cat_economy": "Eco",
+        "cat_troops": "Troops"
+    },
+    "components": {
+        "row_add": "Add row",
+        "reset": "Reset data"
+    }
+}

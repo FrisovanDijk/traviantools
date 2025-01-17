@@ -87,12 +87,12 @@
             <div class="flex mt-4">
                 <form @submit.prevent="addTab(newTabName)">
                     <input type="text" id="name" class="w-full border-slate-400 border-2 rounded py-0.5 px-1" v-model="newTabName">
-                    <button type="submit" class="py-1 px-3 bg-emerald-600 hover:bg-emerald-400 mt-2 rounded font-semibold text-white text-sm">Add tab</button>
+                    <button type="submit" class="py-1 px-3 bg-emerald-600 hover:bg-emerald-400 mt-2 rounded font-semibold text-white text-sm">{{ $t('tabmenu.tab_add') }}</button>
                 </form>
             </div>
 
             <div class="flex mt-4">
-                <button @click="clearTabs" class="py-1 px-3 bg-rose-600 hover:bg-rose-400 mt-2 rounded font-semibold text-white text-sm">Clear all tabs</button>
+                <button @click="clearTabs" class="py-1 px-3 bg-rose-600 hover:bg-rose-400 mt-2 rounded font-semibold text-white text-sm">{{ $t('tabmenu.tab_clear') }}</button>
             </div>
         </div>
 
@@ -110,7 +110,6 @@
             <CalculatorsMenu @add:calculator="addCalculator"
                              @clear:tab="clearTab"
                              :class="[
-                             '',
                              showMenu ? 'flex' : 'hidden sm:flex'
                          ]"
             />
