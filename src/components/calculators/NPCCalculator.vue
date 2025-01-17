@@ -107,10 +107,10 @@
         <table class="text-sm mx-2">
             <thead>
                 <tr class="uppercase pb-1">
-                    <th class="font-normal">#</th>
-                    <th class="font-normal">Building</th>
-                    <th class="font-normal">From</th>
-                    <th class="font-normal">To</th>
+                    <th class="font-normal">{{$t('amount_short')}}</th>
+                    <th class="font-normal">{{$t('building')}}</th>
+                    <th class="font-normal">{{$t('from')}}</th>
+                    <th class="font-normal">{{$t('to')}}</th>
                     <th class="font-normal"></th>
                 </tr>
             </thead>
@@ -195,13 +195,15 @@
         </div>
 
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Total sum</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('totals')}}</h2>
         <ResList class="bg-yellow-200"
                  :resources="total"
                  :total="true"
         ></ResList>
-        <div class="bg-yellow-200 p-2 pt-0">
-            <div class="flex">+{{total.pop}} pop. +{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
+        <div class="bg-yellow-200 p-2 pt-0 flex gap-2 flex-wrap">
+            <div>+{{total.pop}} {{$t('population_short')}}</div>
+            <div>+{{total.cp}} {{$t('cp_short')}}</div>
+            <div class="flex items-center"><ResImg class="-mr-0.5" type="resources"></ResImg>/{{$t('cp_short')}}: {{ total.cpRes }}</div>
         </div>
     </CalculatorWrapper>
 </template>

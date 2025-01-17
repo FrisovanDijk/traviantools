@@ -82,12 +82,12 @@
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
 
         <div class="flex space-x-2 pr-2">
-            <div class="w-20 text-sm text-right">Village type</div>
+            <div class="w-20 text-sm text-right">{{$t('village_type')}}</div>
             <VillageTypeSelector @selection="updateVillageType" :selected="calculator.villagetype" />
         </div>
 
         <div class="flex pr-2 mt-3 text-sm items-center space-x-2">
-            <div class="w-20 text-right">Oases</div>
+            <div class="w-20 text-right">{{$t('oases')}}</div>
             <OasisSelector v-for="i in calculator.oases.length"
                            :index="i"
                            :selected="calculator.oases[i-1]"
@@ -97,17 +97,17 @@
 
         <div class="flex justify-between px-6 mt-2">
             <span class="w-11">&nbsp;</span>
-            <ResImg type="lumber"></ResImg>
-            <ResImg type="clay"></ResImg>
-            <ResImg type="iron"></ResImg>
-            <ResImg type="crop"></ResImg>
+            <ResImg type="lumber" />
+            <ResImg type="clay" />
+            <ResImg type="iron" />
+            <ResImg type="crop" />
         </div>
         <div class="flex justify-between px-2 pb-1"
              v-for="(row, index) in ['level', 'building']"
              :key="index"
              @change="calculateProduction"
         >
-            <div type="text" class="w-16 text-sm mr-2 text-right">{{row}}</div>
+            <div type="text" class="w-16 text-sm mr-2 text-right">{{ $t(`${row}`)}}</div>
             <input v-model="calculator[row].lumber" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem; background-color: rgb(255,222,173)" class="border border-gray-300 text-sm">
             <input v-model="calculator[row].clay" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-red-200">
             <input v-model="calculator[row].iron" type="number" min="0" :max="(row === 'level' ? 20 : 5)" style="width: 2.8rem; padding-left: 0.2rem" class="border border-gray-300 text-sm bg-gray-200">
@@ -115,7 +115,7 @@
         </div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <div class="w-16 mr-2">Waterworks</div>
+            <div class="w-16 mr-2">{{$t('buildings.Waterworks')}}</div>
             <input v-model="calculator.building.egyptian" type="number"
                    min="0"
                    :max="20"
@@ -126,7 +126,7 @@
         </div>
 
         <div class="flex px-2 mt-3 text-sm items-center space-x-3">
-            <label>Gold +25%
+            <label>{{$t('gold_bonus')}}
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.goldBonus"
                        @change="calculateProduction"
@@ -134,7 +134,7 @@
             </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Hourly production</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('production_hourly')}}</h2>
         <div class="bg-yellow-200">
             <ResList :resources="resultProduction" :total="true" class=""></ResList>
         </div>

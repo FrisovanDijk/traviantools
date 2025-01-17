@@ -4,12 +4,19 @@
     import CalculatorsMenu from '@/components/CalculatorsMenu.vue'
     import { ref, watch, onBeforeMount } from 'vue'
     import { userData } from '@/stores/userData.js'
+    import { useI18n } from "vue-i18n"
+
+    const t = useI18n().t
 
     // Load from local storage
     onBeforeMount(() => {
+        // Remove old version data
         if(localStorage.getItem('v3.0')) {
-            userData.tabs = JSON.parse(localStorage.getItem('v3.0'))
             localStorage.removeItem('v3.0')
+        }
+        // Get new version data
+        if(localStorage.getItem('v3.3')) {
+            userData.tabs = JSON.parse(localStorage.getItem('v3.3'))
         }
     })
 
@@ -58,6 +65,8 @@
 
     // Calculators
     const addCalculator = (calculator) => {
+        if(calculator.calculator) calculator.calculator.title = t(`menu.${calculator.name}`)
+
         const key = Math.round(Math.random() * 9999999999)
         userData.tabs[userData.currentTab].calculators.push({
             name: calculator.name,

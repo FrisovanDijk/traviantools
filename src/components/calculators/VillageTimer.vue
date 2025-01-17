@@ -25,16 +25,16 @@
     })
     const dailyCpResult = ref(0)
     const helmets = [
-        { name: 'None', cp: 0},
-        { name: 'Gladiator', cp: 100},
-        { name: 'Tribune', cp: 400},
-        { name: 'Consul', cp: 1600},
+        { name: 'none', cp: 0},
+        { name: 'gladiator', cp: 100},
+        { name: 'tribune', cp: 400},
+        { name: 'consul', cp: 1600},
     ]
 
     const addParty = () => {
         calculator.parties.push({
             amount: 0,
-            type: 'Small',
+            type: 'small',
             cp: 500,
             townHall: 1
         })
@@ -98,19 +98,30 @@
         <div @change="calculateTime"
              class="flex flex-col mb-2 justify-between px-2"
         >
-            <label class="text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpLeft" min="0"> CP until next village</label>
-            <label class="mt-1 text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpDaily" min="0"> Daily cp</label>
-            <label class="mt-1 text-sm uppercase"><select class="w-24 border px-1 mx-1" type="number" v-model="calculator.helmet">
-                <option v-for="helmet in helmets"
-                        :key="helmet.cp"
-                >{{ helmet.name }}</option>
-            </select> Helmet</label>
+            <label class="text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpLeft" min="0">
+                {{$t('cp_remaining')}}
+            </label>
+
+            <label class="mt-1 text-sm uppercase"><input class="w-20 border px-1 mx-1" type="number" v-model="calculator.cpDaily" min="0">
+                {{$t('cp_daily')}}
+            </label>
+
+            <label class="mt-1 text-sm uppercase">
+                <select class="w-36 border px-1 mx-1"
+                        type="number"
+                        v-model="calculator.helmet"
+                >
+                    <option v-for="helmet in helmets"
+                            :value="helmet.name"
+                    >{{ $t(`hero.helmet.${helmet.name}`) }}</option>
+                </select>
+            </label>
 
             <div class="mt-2">
                 <div class="flex text-sm uppercase">
-                    <p class="mr-24">Parties</p>
-                    <p class="mr-12 pr-2">CP</p>
-                    <p class="">TH level</p>
+                    <p class="mr-28">{{$t('party')}}</p>
+                    <p class="mr-12 pr-2">{{$t('cp_short')}}</p>
+                    <p class="">{{$t('th_level')}}</p>
                 </div>
                 <div class="mt-1 flex items-center"
                      v-for="(party, index) in calculator.parties"
@@ -121,8 +132,8 @@
                         <select v-model="party.type"
                                 class="w-20 border px-1 mr-1"
                         >
-                            <option>Small</option>
-                            <option>Great</option>
+                            <option>{{$t('party_small')}}</option>
+                            <option>{{$t('party_great')}}</option>
                         </select>
                     </label>
                     <label class="text-sm uppercase">
@@ -162,13 +173,13 @@
             </div>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Time</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('time')}}</h2>
         <div class="bg-yellow-200 p-2">
-            <div class="flex items-center"><ResImg class="mr-2" type="cp"></ResImg> {{ dailyCpResult }} CP/day</div>
+            <div class="flex items-center"><ResImg class="mr-2" type="cp"></ResImg> {{ dailyCpResult }} {{$t('cp_daily')}}</div>
             <div class="mt-1">
-                {{ time.days }} <span class="text-sm uppercase pr-1">days</span>
-                {{ time.hours }} <span class="text-sm uppercase pr-1">hours</span>
-                {{ time.minutes }} <span class="text-sm uppercase">mins</span>
+                {{ time.days }} <span class="text-sm uppercase pr-1">{{$t('days')}}</span>
+                {{ time.hours }} <span class="text-sm uppercase pr-1">{{$t('hours')}}</span>
+                {{ time.minutes }} <span class="text-sm uppercase">{{$t('minutes')}}</span>
             </div>
         </div>
     </CalculatorWrapper>
