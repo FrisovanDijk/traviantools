@@ -15,6 +15,7 @@
     "clayclay": "50% Clay",
     "ironiron": "50% Iron",
     "resources": "Resources",
+    "res": "res",
     "nocrop": "Without crop",
     "romans": "Romans",
     "gaul": "Gaul",
@@ -27,6 +28,7 @@
     "amount_short": "#",
     "amount": "Amount",
     "building": "Building",
+    "buildings": "Buildings",
     "from": "From",
     "to": "To",
     "totals": "Calculated totals",
@@ -36,6 +38,7 @@
     "cp": "Culture Points",
     "cp_remaining": "CP until next",
     "cp_daily": "CP/day",
+    "res_per_cp": "res/CP",
     "village": "Village",
     "village_type": "Village type",
     "oases": "Oases",
@@ -130,6 +133,22 @@
         "Warehouse": "Warehouse",
         "Waterworks": "Waterworks",
         "Woodcutter": "Woodcutter",
-        "Workshop": "Workshop"
+        "Workshop": "Workshop",
+        "Res buildings 5, bakery 4": "Res buildings 5, bakery 4"
+    },
+    "villagePlanner": {
+        "No preset":  "No preset",
+        "Hammer":  "Hammer",
+        "Anvil":  "Anvil",
+        "Storage":  "Storage",
+        "500 CP feeder":  "500 CP feeder",
+        "750 CP feeder":  "750 CP feeder",
+        "1000 CP feeder":  "1000 CP feeder",
+        "Infantry/WW Anvil":  "Infantry/WW Anvil",
+        "Capital lv19":  "Capital lv19",
+        "15c cap lv18":  "15c cap lv18",
+        "9c cap lv18":  "9c cap lv18",
+        "Cata village":  "Cata village",
+        "stats": "Village stats"
     }
 }

@@ -10,7 +10,7 @@
         index: Number
     })
     const buildings = buildingsJson
-    const nextSelection = ref('Granary')
+    const nextSelection = ref('Palisade')
     const buildingsForm = () => {
         if(!hasWall() && buildingCount() === 21) {
             return {
@@ -239,7 +239,7 @@
             newSelections.push({ amount: 1, name: "Embassy", toLevel: 14, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 1, editable: true })
             newSelections.push({ amount: 1, name: "Cranny", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Heros Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 3, editable: true })
         }
@@ -259,7 +259,7 @@
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Cranny", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Heros Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
         }
@@ -275,7 +275,7 @@
             newSelections.push({ amount: 1, name: "Academy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Embassy", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Residence", toLevel: 10, editable: true })
-            newSelections.push({ amount: 1, name: "Hero's Mansion", toLevel: 10, editable: true })
+            newSelections.push({ amount: 1, name: "Heros Mansion", toLevel: 10, editable: true })
             newSelections.push({ amount: 1, name: "Town Hall", toLevel: 13, editable: true })
             newSelections.push({ amount: 5, name: "Res buildings 5, bakery 4", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 10, editable: true })
@@ -299,7 +299,7 @@
             newSelections.push({ amount: 4, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 16, editable: true })
-            newSelections.push({ amount: 1, name: "Stonemason's Lodge", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Stonemasons Lodge", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Bakery", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Sawmill", toLevel: 5, editable: true })
@@ -313,7 +313,7 @@
             newSelections.push({ amount: 7, name: "Granary", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Marketplace", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Trade Office", toLevel: 16, editable: true })
-            newSelections.push({ amount: 1, name: "Stonemason's Lodge", toLevel: 20, editable: true })
+            newSelections.push({ amount: 1, name: "Stonemasons Lodge", toLevel: 20, editable: true })
             newSelections.push({ amount: 1, name: "Grain Mill", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Bakery", toLevel: 5, editable: true })
             newSelections.push({ amount: 1, name: "Palisade", toLevel: 20, editable: true })
@@ -346,8 +346,8 @@
                     v-model="calculator.preset"
                     @change="setPreset(calculator.preset)"
             >
-                <option v-for="n in ['No preset', 'Hammer', 'Anvil', 'Storage', '500 CP feeder', '750 CP feeder', '1000 CP feeder', 'Infantry/WW Anvil', 'Capital lv19', '15c cap lv18', '9c cap lv18', 'Cata village']">
-                    {{ n }}
+                <option v-for="n in ['No preset', 'Hammer', 'Anvil', 'Storage', '500 CP feeder', '750 CP feeder', '1000 CP feeder', 'Infantry/WW Anvil', 'Capital lv19', '15c cap lv18', '9c cap lv18', 'Cata village']" :value="n">
+                    {{ $t(`villagePlanner.${n}`) }}
                 </option>
             </select>
         </div>
@@ -357,7 +357,7 @@
         >
             <tr>
                 <td class="text-center uppercase">#</td>
-                <td class="text-center uppercase w-full">{{ buildingCount() }}/22 buildings</td>
+                <td class="text-center uppercase w-full">{{ buildingCount() }}/22 <span class="lowercase">{{$t('buildings')}}</span></td>
                 <td class="text-center uppercase">Lvl</td>
                 <td class="text-center uppercase w-6">&nbsp;</td>
             </tr>
@@ -380,7 +380,7 @@
                 <td>
                     <div class="border bg-gray-100 px-2"
                     >
-                        {{ selection.name }}
+                        {{ $t(`buildings.${selection.name}`) }}
                     </div>
                 </td>
                 <td>
@@ -414,8 +414,9 @@
                 <option v-for="(building,key) in buildingsForm()"
                         :key="key"
                         :selected="nextSelection === key"
+                        :value="key"
                 >
-                    {{ key }}
+                    {{ $t(`buildings.${key}`) }}
                 </option>
             </select>
             <button class="bg-green-400 rounded leading-none hover:bg-green-300 px-4 py-0.5"
@@ -427,14 +428,16 @@
             </button>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Village stats</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('villagePlanner.stats')}}</h2>
         <ResList class="bg-yellow-200"
                  :resources="total"
                  :total="true"
         ></ResList>
-        <div class="bg-yellow-200 p-2 pt-0">
-            <div class="flex">+{{total.pop}} pop. +{{total.cp}} CP. <ResImg class="-mr-1" type="resources"></ResImg>/CP: {{ total.cpRes }}</div>
-            <div class="flex mt-1 text-xs">{{total.cp + 108}} CP, including fields lv10</div>
+        <div class="bg-yellow-200 p-2 pt-0 flex gap-2 flex-wrap">
+            <div>+{{total.pop}} {{$t('population_short')}}</div>
+            <div>+{{total.cp}} {{$t('cp_short')}}</div>
+            <div class="flex items-center"><ResImg class="-mr-0.5" type="resources"></ResImg>/{{$t('cp_short')}}: {{ total.cpRes }}</div>
+            <div class="flex text-xs">{{total.cp + 108}} CP, including fields lv10</div>
         </div>
     </CalculatorWrapper>
 </template>

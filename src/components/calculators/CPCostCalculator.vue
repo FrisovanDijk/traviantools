@@ -1,5 +1,4 @@
 <script setup>
-    import ResImg from "@/components/ResImg.vue";
     import buildingsJson from '@/data/buildings.json'
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
     import { ref, onBeforeMount } from 'vue'
@@ -189,7 +188,7 @@
                 <tr>
                     <td class="text-center uppercase pb-1">
                         <div class="flex items-center justify-center gap-1 cursor-pointer" @click="sortBuildingName()">
-                            <div>Building</div>
+                            <div>{{$t('building')}}</div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-m-0.5 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
@@ -197,13 +196,13 @@
                             </div>
                         </div>
                     </td>
-                    <td class="text-center uppercase pb-1">Level</td>
+                    <td class="text-center uppercase pb-1">{{$t('level')}}</td>
                     <td class="text-center uppercase pb-1" v-if="tab === 0 || tab === 1">To</td>
 
                     <template v-if="tab === 0">
                         <td class="text-center uppercase pb-1">
                             <div class="flex items-center justify-center gap-1 cursor-pointer" @click="sortCPCost()">
-                                <div>Res/CP</div>
+                                <div>{{$t('res_per_cp')}}</div>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-m-0.5 w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
@@ -214,8 +213,8 @@
                     </template>
 
                     <template v-if="tab === 1">
-                        <td class="text-center uppercase pb-1">Res</td>
-                        <td class="text-center uppercase pb-1">CP</td>
+                        <td class="text-center uppercase pb-1">{{$t('res')}}</td>
+                        <td class="text-center uppercase pb-1">{{$t('cp_short')}}</td>
                     </template>
                 </tr>
 
@@ -226,7 +225,7 @@
                     >
                         <td class="px-1.5 py-1" v-if="building.name === 'Residence' || building.name === 'Palace'">
                             <div class="flex items-center gap-2 cursor-pointer" @click="resi = !resi">
-                                <div>{{ building.name }}</div>
+                                <div>{{ $t(`buildings.${building.name}`) }}</div>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-m-0.5 w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -236,7 +235,7 @@
                         </td>
 
                         <td class="px-1.5 py-1" v-else>
-                            {{ building.name }}
+                            {{ $t(`buildings.${building.name}`) }}
                         </td>
 
                         <template v-if="tab === 0 || tab === 1">
