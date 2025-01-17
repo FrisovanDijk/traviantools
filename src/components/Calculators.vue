@@ -76,85 +76,100 @@
 
         <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers">
 
-            <NPCCalculator v-if="item.name === 'NPCCalculator'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
+            <template v-if="item.name === 'NPCCalculator'">
+                <NPCCalculator :index="index"
+                               :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'FeederAutomation'">
+                <FeederAutomation :index="index"
+                                  :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'VillageTimer'">
+                <VillageTimer  :index="index"
+                               :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'MerchantTrips'">
+                <MerchantTrips
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'TotalResources'">
+                <TotalResources
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'ROICalculator'">
+                <ROICalculator
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'ProductionOverview'">
+                <ProductionOverview
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'UltimateROI'">
+                <UltimateROI
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'TroopsTraining'">
+                <TroopsTrainingCalculator
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'TroopCost'">
+                <TroopCostCalculator
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'SmithyEfficiency'">
+                <SmithyEfficiency
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'TroopsCompare'">
+                <TroopsCompare
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'VillagePlanner'">
+                <VillagePlanner
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'CropScouter'">
+                <CropScouter
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'CPCostCalculator'">
+                <CPCostCalculator
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
+            <template v-else-if="item.name === 'Help'">
+                <Help
+                    :index="index"
+                    :key="item.key"
+                />
+            </template>
 
-            <FeederAutomation v-else-if="item.name === 'FeederAutomation'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <VillageTimer v-else-if="item.name === 'VillageTimer'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <MerchantTrips v-else-if="item.name === 'MerchantTrips'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <TotalResources v-else-if="item.name === 'TotalResources'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <ROICalculator v-else-if="item.name === 'ROICalculator'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <ProductionOverview v-else-if="item.name === 'ProductionOverview'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <UltimateROI v-else-if="item.name === 'UltimateROI'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <TroopsTrainingCalculator v-else-if="item.name === 'TroopsTraining'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <TroopCostCalculator v-else-if="item.name === 'TroopCost'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <SmithyEfficiency v-else-if="item.name === 'SmithyEfficiency'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <TroopsCompare v-else-if="item.name === 'TroopsCompare'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <VillagePlanner v-else-if="item.name === 'VillagePlanner'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <CropScouter v-else-if="item.name === 'CropScouter'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <CPCostCalculator v-else-if="item.name === 'CPCostCalculator'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
-
-            <Help v-else-if="item.name === 'Help'"
-                           :index="index"
-                           :key="`${userData.currentTab}.${index}`"
-                           />
         </template>
         <template v-if="userData.tabs[userData.currentTab].calculators.length === 0" class="m-4 rounded border bg-white p-4" style="width: 310px">
             <Help :key="STATICHELP" />

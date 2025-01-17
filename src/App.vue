@@ -9,13 +9,13 @@
     onBeforeMount(() => {
         if(localStorage.getItem('v3.0')) {
             userData.tabs = JSON.parse(localStorage.getItem('v3.0'))
-            // localStorage.removeItem('v3.0')
+            localStorage.removeItem('v3.0')
         }
     })
 
     // Watch for changes to save to local storage
     watch(userData, () => {
-        localStorage.setItem("v3.0", JSON.stringify(userData.tabs))
+        localStorage.setItem("v3.3", JSON.stringify(userData.tabs))
     }, {
         deep: true
     })
@@ -58,8 +58,10 @@
 
     // Calculators
     const addCalculator = (calculator) => {
+        const key = Math.round(Math.random() * 9999999999)
         userData.tabs[userData.currentTab].calculators.push({
             name: calculator.name,
+            key: key,
             calculator: (calculator.calculator ? JSON.parse(JSON.stringify(calculator.calculator)) : false)
         })
     }

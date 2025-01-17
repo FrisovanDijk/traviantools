@@ -40,7 +40,7 @@
 
             <template v-if="editable">
 
-                <div class="text-sm">title</div>
+                <div class="text-sm">{{$t('title')}}:</div>
 
                 <input type="text" v-model="newTitle" class="font-semibold bg-gray-100 border-b border-slate-800 w-40 text-slate-800 px-1">
 

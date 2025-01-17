@@ -105,79 +105,83 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="village">
         <table class="text-sm mx-2">
-            <tr class="uppercase pb-1">
-                <th class="font-normal">#</th>
-                <th class="font-normal">Building</th>
-                <th class="font-normal">From</th>
-                <th class="font-normal">To</th>
-                <th class="font-normal"></th>
-            </tr>
-            <tr v-for="(selection, index) in calculator.selections"
-                :key="index"
-                @change="updateTotals"
-            >
-                <td>
-                    <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
-                            v-model="selection.amount"
-                    >
-                        <option v-for="n in 15"
-                                :key="n"
+            <thead>
+                <tr class="uppercase pb-1">
+                    <th class="font-normal">#</th>
+                    <th class="font-normal">Building</th>
+                    <th class="font-normal">From</th>
+                    <th class="font-normal">To</th>
+                    <th class="font-normal"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(selection, index) in calculator.selections"
+                    :key="index"
+                    @change="updateTotals"
+                >
+                    <td>
+                        <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
+                                v-model="selection.amount"
                         >
-                            {{ n }}
-                        </option>
-                    </select>
-                </td>
+                            <option v-for="n in 15"
+                                    :key="n"
+                            >
+                                {{ n }}
+                            </option>
+                        </select>
+                    </td>
 
-                <td>
-                    <select class="w-32 border-gray-600 border mr-1 text-sm"
-                            v-model="selection.name"
-                    >
-                        <option v-for="(building,key) in buildings"
-                                :key="key"
-                                :selected="selection.name === key"
+                    <td>
+                        <select class="w-32 border-gray-600 border mr-1 text-sm"
+                                v-model="selection.name"
                         >
-                            {{ key }}
-                        </option>
-                    </select>
-                </td>
+                            <option v-for="(building,key) in buildings"
+                                    :key="key"
+                                    :selected="selection.name === key"
+                            >
+                                {{ $t(`buildings.${key}`) }}
+                            </option>
+                        </select>
+                    </td>
 
-                <td>
-                    <select class="border border-gray-600 w-10 flex-shrink-0 text-sm mr-1"
-                            v-model="selection.fromLevel"
-                    >
-                        <option v-for="(level,key) in buildings[selection.name]"
-                                :key="key"
-                                :selected="selection.name === key"
+                    <td>
+                        <select class="border border-gray-600 w-10 flex-shrink-0 text-sm mr-1"
+                                v-model="selection.fromLevel"
                         >
-                            {{ level.level - 1 }}
-                        </option>
-                    </select>
-                </td>
+                            <option v-for="(level,key) in buildings[selection.name]"
+                                    :key="key"
+                                    :selected="selection.name === key"
+                            >
+                                {{ level.level - 1 }}
+                            </option>
+                        </select>
+                    </td>
 
-                <td>
-                    <select class="border border-gray-600 w-10 flex-shrink-0 text-sm"
-                            v-model="selection.toLevel"
-                    >
-                        <option v-for="(level,key) in buildings[selection.name]"
-                                :key="key"
-                                :selected="selection.name === key"
+                    <td>
+                        <select class="border border-gray-600 w-10 flex-shrink-0 text-sm"
+                                v-model="selection.toLevel"
                         >
-                            {{ level.level }}
-                        </option>
-                    </select>
-                </td>
+                            <option v-for="(level,key) in buildings[selection.name]"
+                                    :key="key"
+                                    :selected="selection.name === key"
+                            >
+                                {{ level.level }}
+                            </option>
+                        </select>
+                    </td>
 
-                <td>
-                    <button class="bg-red-400 rounded leading-none hover:bg-red-300 p-0.5 ml-0.5"
-                            @click="removeSelection(selection)"
-                            v-if="calculator.selections.length > 1"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
+                    <td>
+                        <button class="bg-red-400 rounded leading-none hover:bg-red-300 p-0.5 ml-0.5"
+                                @click="removeSelection(selection)"
+                                v-if="calculator.selections.length > 1"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         <div class="flex justify-end mt-2 mx-2 space-x-2">

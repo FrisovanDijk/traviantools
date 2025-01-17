@@ -561,7 +561,7 @@
     {"level":19,"wood":6805,"clay":8505,"iron":5955,"crop":1700,"total_res":22965,"pop":2,"time":"13:26:20","cp":32,"cp_diff":5},
     {"level":20,"wood":8710,"clay":10890,"iron":7620,"crop":2180,"total_res":29400,"pop":2,"time":"15:40:20","cp":38,"cp_diff":6}
   ],
-  "Hero's Mansion": [
+  "Heros Mansion": [
     {"level":1,"wood":700,"clay":670,"iron":700,"crop":240,"total_res":2310,"pop":2,"time":"00:38:20","cp":1,"cp_diff":1},
     {"level":2,"wood":930,"clay":890,"iron":930,"crop":320,"total_res":3070,"pop":1,"time":"00:44:30","cp":1,"cp_diff":0},
     {"level":3,"wood":1240,"clay":1185,"iron":1240,"crop":425,"total_res":4090,"pop":1,"time":"00:51:30","cp":2,"cp_diff":1},
@@ -1301,7 +1301,7 @@
     {"level":19,"wood":22120,"clay":11910,"iron":18715,"crop":8505,"total_res":61250,"pop":4,"time":"15:51:00","cp":64,"cp_diff":11,"training_time":"15%"},
     {"level":20,"wood":28310,"clay":15245,"iron":23955,"crop":10890,"total_res":78400,"pop":4,"time":"18:28:10","cp":77,"cp_diff":13,"training_time":"14%"}
   ],
-  "Stonemason's Lodge": [
+  "Stonemasons Lodge": [
     {"level":1,"wood":155,"clay":130,"iron":125,"crop":70,"total_res":480,"pop":2,"time":"00:36:40","cp":1,"cp_diff":1,"durability":1.1},
     {"level":2,"wood":200,"clay":165,"iron":160,"crop":90,"total_res":615,"pop":1,"time":"00:52:30","cp":1,"cp_diff":0,"durability":1.2},
     {"level":3,"wood":255,"clay":215,"iron":205,"crop":115,"total_res":790,"pop":1,"time":"01:11:00","cp":2,"cp_diff":1,"durability":1.3},
