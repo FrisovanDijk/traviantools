@@ -1,6 +1,7 @@
 <script setup>
     import ResList from '@/components/ResList.vue'
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
+    import ResImg from "@/components/ResImg.vue";
     import { ref, onBeforeMount } from 'vue'
     import { userData } from '@/stores/userData.js'
 
@@ -95,7 +96,7 @@
             </div>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Totals</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('totals')}}</h2>
         <div class="bg-yellow-200">
             <ResList :resources="total" :total="true"></ResList>
         </div>

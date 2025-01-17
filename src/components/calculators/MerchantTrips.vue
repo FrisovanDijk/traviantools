@@ -3,6 +3,7 @@
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
     import { ref, onBeforeMount } from 'vue'
     import { userData } from '@/stores/userData.js'
+    import ResImg from "@/components/ResImg.vue";
 
     const props = defineProps({
         index: Number
@@ -107,26 +108,26 @@
                 </div>
 
                 <div class="flex justify-end mt-1 mx-2">
-                    <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">reset</button>
-                    <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">add row</button>
+                    <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">{{$t('components.reset')}}</button>
+                    <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">{{$t('components.row_add')}}</button>
                 </div>
             </div>
 
             <label class="mt-2 mx-2 flex items-baseline">
-                Merchants:
+                {{$t('merchants')}}:
                 <select v-model="calculator.merchants" class="border border-gray-500 px-1 ml-1">
                     <option v-for="available in 20" :key="available">{{ available }}</option>
                 </select>
             </label>
             <label class="mt-2 mx-2 flex items-baseline">
-                Capacity:
+                {{$t('capacity')}}:
                 <input type="text" v-model="calculator.capacity" class="border border-gray-600 rounded-sm px-2 ml-1 w-16">
             </label>
         </div>
 
-        <h2 class="mt-2 py-1 mx-2 font-bold">Merchant trips</h2>
+        <h2 class="mt-2 py-1 mx-2 font-bold">{{$t('merchants_trips')}}</h2>
         <div class="bg-yellow-200">
-            <div class="px-3 py-1"><span class="font-bold">{{ trip.trips }}</span> trips of</div>
+            <div class="px-3 py-1">{{ $t('merchants_trips_values', { trips: trip.trips }) }}</div>
             <ResList :resources="trip" class="pt-0"></ResList>
         </div>
     </CalculatorWrapper>

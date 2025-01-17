@@ -1,13 +1,10 @@
 <script setup>
-    import ResImg from "@/components/ResImg.vue";
-    import ResList from '@/components/ResList.vue'
     import OasisSelector from '@/components/OasisSelector.vue'
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
     import RadioSelect from "@/components/RadioSelect.vue"
 
     import buildingsJson from '@/data/buildings.json'
     import productionJson from '@/data/production.json'
-    import villagesJson from '@/data/village_types.json'
 
     import { ref, onBeforeMount } from 'vue'
     import { userData } from '@/stores/userData.js'
@@ -51,7 +48,7 @@
 
     const calculateROI = () => {
         let roiHours = 0
-        if(calculator.roiType === 'field') {
+        if(calculator.roiType === 'Field') {
             const roi = calculateFieldROI(calculator.fieldType, calculator.fieldToLevel)
 
             let bonus = calculator.bonusBuilding * 0.05
@@ -71,7 +68,7 @@
 
             roiHours = roi.cost / totalProductionDelta
         }
-        if(calculator.roiType === 'building') {
+        if(calculator.roiType === 'Building') {
             let buildingType = 'Grain Mill'
             let toLevel = calculator.buildingToLevel
             if(calculator.buildingType === 'crop' && toLevel > 5) {
@@ -132,7 +129,7 @@
             // Get building cost
             let cost = 0
             for(let i = fromLevel; i < toLevel; i++) {
-                cost += buildingsJson["Hero's Mansion"][i].total_res
+                cost += buildingsJson["Heros Mansion"][i].total_res
             }
 
             // Get field production
@@ -194,17 +191,31 @@
 <template>
     <CalculatorWrapper :title="calculator.title" @new:title="(t) => calculator.title = t" @close:calculator="close" type="economy">
         <div class="flex px-4 border-b pb-4 mb-4 border-gray-500 mt-2">
-            <RadioSelect legend="ROI type" :options="['field', 'building', 'HM']" :selected="calculator.roiType" @selection="updateROIType" />
+            <RadioSelect :legend="$t('ROI.roi_type')"
+                         :options="[
+                             $t('ROI.roi_type1'),
+                             $t('ROI.roi_type2'),
+                             $t('ROI.roi_type3')
+                         ]"
+                         :selected="calculator.roiType" @selection="updateROIType"
+            />
         </div>
 
         <!-- RESOURCE FIELD ROI -->
-        <template class v-if="calculator.roiType === 'field'">
+        <template class v-if="calculator.roiType === 'Field'">
             <div class="flex px-4">
-                <RadioSelect legend="Field type" :options="['crop', 'lumber', 'clay', 'iron']" :selected="calculator.fieldType" @selection="updateFieldType" />
+                <RadioSelect :legend="$t('ROI.field_type')"
+                             :options="[
+                                 $t('crop'),
+                                 $t('lumber'),
+                                 $t('clay'),
+                                 $t('iron'),
+                             ]"
+                             :selected="calculator.fieldType" @selection="updateFieldType" />
             </div>
 
             <div class="flex px-4 mt-4 text-sm items-center gap-2">
-                <div class="w-16">Oases</div>
+                <div class="w-16">{{$t('oases')}}</div>
                 <OasisSelector v-for="i in calculator.oases.length"
                                :index="i"
                                :selected="calculator.oases[i-1]"
@@ -214,7 +225,7 @@
 
             <div class="flex px-4 mt-4 items-center gap-2 justify-between">
                 <div class="flex items-center gap-2">
-                    <div class="">Bonus bld.</div>
+                    <div class="">{{$t('ROI.building_bonus')}}</div>
                     <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                             v-model="calculator.bonusBuilding"
                             @change="calculateROI"
@@ -228,7 +239,7 @@
                     </select>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="">Waterworks</div>
+                    <div class="">{{$t('buildings.Waterworks')}}</div>
                     <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5 mr-5"
                             v-model="calculator.egyptian"
                             @change="calculateROI"
@@ -245,7 +256,7 @@
 
 
             <div class="flex px-4 mt-4 text-sm items-center gap-2">
-                <div class="w-16">To level</div>
+                <div class="w-16">{{$t('level_to')}}</div>
                 <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm pl-1 py-0.5"
                         v-model="calculator.fieldToLevel"
                         @change="calculateROI"
@@ -261,13 +272,20 @@
         </template>
 
         <!-- RESOURCE BUILDING ROI -->
-        <template class v-if="calculator.roiType === 'building'">
+        <template class v-if="calculator.roiType === 'Building'">
             <div class="flex px-4">
-                <RadioSelect legend="Res type" :options="['crop', 'lumber', 'clay', 'iron']" :selected="calculator.buildingType" @selection="updateBuildingType" />
+                <RadioSelect :legend="$t('ROI.res_type')"
+                             :options="[
+                                 $t('crop'),
+                                 $t('lumber'),
+                                 $t('clay'),
+                                 $t('iron'),
+                             ]"
+                             :selected="calculator.buildingType" @selection="updateBuildingType" />
             </div>
 
             <div class="flex px-4 mt-4 text-sm items-center gap-2">
-                <div class="w-16">To level</div>
+                <div class="w-16">{{$t('level_to')}}</div>
                 <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                         v-model="calculator.buildingToLevel"
                         @change="calculateROI"
@@ -283,7 +301,7 @@
 
             <div class="flex-col space-y-2">
                 <div class="flex px-4 mt-4 text-sm items-center space-x-3">
-                    <label>Sim field to 10
+                    <label>{{$t('ROI.sim_to_10')}}
                         <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                                v-model="calculator.simulateFieldTo10"
                                @change="calculateROI"
@@ -291,12 +309,12 @@
                     </label>
                 </div>
                 <div class="text-amber-900 bg-amber-100 px-2 text-sm py-1" v-if="calculator.simulateFieldTo10">
-                    Takes the highest field (if below 10) and simulates building it to 10. Also calculates all res building levels up to the level you put in.
+                    {{$t('ROI.sim_to_10_explain')}}
                 </div>
             </div>
 
             <div class="flex px-4 mt-4 text-sm gap-2">
-                <div class="w-16">Fields</div>
+                <div class="w-16">{{$t('ROI.fields')}}</div>
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-1 items-center"
                          v-for="(field, index) in calculator.fields[calculator.buildingType]"
@@ -312,7 +330,7 @@
                                 {{ n }}
                             </option>
                         </select>
-                        <div>x level</div>
+                        <div>x {{$t('level')}}</div>
                         <select class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                                 v-model="field.level"
                                 @change="calculateROI"
@@ -343,22 +361,22 @@
         <!-- HERO MANSION ROI -->
         <template class v-if="calculator.roiType === 'HM'">
             <div class="flex px-4">
-                <RadioSelect legend="HM level" :options="[10, 15, 20]" :selected="calculator.hmToLevel" @selection="updateHmLevel" />
+                <RadioSelect :legend="$t('ROI.hm_level')" :options="[10, 15, 20]" :selected="calculator.hmToLevel" @selection="updateHmLevel" />
             </div>
 
             <div class="flex px-4 mt-4 text-sm items-center gap-2">
-                <div class="w-16">Oasis</div>
+                <div class="w-16">{{$t('oasis')}}</div>
                 <OasisSelector :selected="calculator.hmOasis"
                                @selection="updateHmOasis"
                 />
             </div>
 
-            <div class="px-4 w-full mt-3 pt-1 text-sm font-semibold bg-amber-100">Fields</div>
+            <div class="px-4 w-full mt-3 pt-1 text-sm font-semibold bg-amber-100">{{$t('ROI.fields')}}</div>
             <div class="flex flex-col gap-2 py-2 bg-amber-100">
                 <div class="flex px-4 text-sm gap-2"
                      v-for="fieldType in [calculator.hmOasis.type1, (calculator.hmOasis.type2 !== calculator.hmOasis.type1 ? calculator.hmOasis.type2 : '')]"
                 >
-                    <div class="w-16 capitalize">{{ fieldType }}</div>
+                    <div class="w-16 capitalize">{{ $t(`${fieldType}`) }}</div>
                     <div class="flex flex-col gap-1">
                         <div class="flex gap-1 items-center"
                              v-for="(field, index) in calculator.fields[fieldType]"
@@ -404,7 +422,7 @@
         </template>
 
         <div class="flex px-4 mt-4 text-sm items-center gap-2">
-            <label>Gold +25%
+            <label>{{$t('gold_bonus')}}
                 <input type="checkbox" class="w-10 flex-shrink-0 border border-gray-600 mr-1 text-sm"
                        v-model="calculator.goldBonus"
                        @change="calculateROI"
@@ -412,7 +430,7 @@
             </label>
         </div>
 
-        <h2 class="mt-4 py-1 mx-4 font-bold">ROI</h2>
+        <h2 class="mt-4 py-1 mx-4 font-bold">{{$t('ROI.ROI')}}</h2>
         <div class="bg-yellow-200 px-4 py-2">
             {{ roiTime }}
         </div>

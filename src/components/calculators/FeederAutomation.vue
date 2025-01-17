@@ -115,9 +115,9 @@
             <label class="mt-2">
                 {{$t('party')}}:
                 <select v-model="calculator.party" class="border border-gray-500 px-1">
-                    <option>none</option>
-                    <option>small</option>
-                    <option>great</option>
+                    <option value="none">{{$t('none')}}</option>
+                    <option value="great">{{$t('party_great')}}</option>
+                    <option value="small">{{$t('party_small')}}</option>
                 </select>
             </label>
             <label class="mt-2">

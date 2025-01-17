@@ -5,10 +5,10 @@
     "no": "No",
     "next": "Next",
     "previous": "Previous",
-    "lumber": "Lumber",
-    "clay": "Clay",
-    "iron": "Iron",
-    "crop": "Crop",
+    "lumber": "lumber",
+    "clay": "clay",
+    "iron": "iron",
+    "crop": "crop",
     "lumbercrop": "Lumber/Crop",
     "claycrop": "Clay/Crop",
     "ironcrop": "Iron/Crop",
@@ -44,10 +44,13 @@
     "village": "Village",
     "village_type": "Village type",
     "oases": "Oases",
+    "oasis": "Oasis",
     "level": "Level",
+    "level_to": "To level",
     "gold_bonus": "Gold +25%",
     "production": "Production",
     "production_hourly": "Hourly production",
+    "none": "None",
     "party_small": "Small",
     "party_great": "Great",
     "party": "Party",
@@ -57,7 +60,11 @@
     "days": "days",
     "hours": "hours",
     "minutes": "mins",
+    "merchants": "Merchants",
+    "merchants_trips": "Merchant trips",
+    "merchants_trips_values": "{trips} trips of",
     "traderoute": "Traderoute",
+    "capacity": "Capacity",
     "hero": {
         "helmet": {
             "none": "No helmet",
@@ -164,5 +171,20 @@
         "sim_to_level": "Sim to lvl",
         "simulate": "Simulate",
         "no_build": "Select a build to simulate"
-    }
+    },
+    "ROI": {
+        "roi_type": "ROI type",
+        "roi_type1": "Field",
+        "roi_type2": "Building",
+        "roi_type3": "HM",
+        "field_type": "Field type",
+        "res_type": "Res type",
+        "building_bonus": "Bonus bld",
+        "ROI": "Payback time",
+        "sim_to_10": "Sim field to 10",
+        "sim_to_10_explain": "Takes the highest field (if below 10) and simulates building it to 10. Also calculates all res building levels up to the level you put in.",
+        "fields": "Fields",
+        "hm_level": "HM level"
+    },
+    "": ""
 }
