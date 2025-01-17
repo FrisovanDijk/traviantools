@@ -138,6 +138,7 @@
                             <option v-for="(building,key) in buildings"
                                     :key="key"
                                     :selected="selection.name === key"
+                                    :value="key"
                             >
                                 {{ $t(`buildings.${key}`) }}
                             </option>

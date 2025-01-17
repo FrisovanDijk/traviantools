@@ -357,8 +357,8 @@
         >
             <tr>
                 <td class="text-center uppercase">#</td>
-                <td class="text-center uppercase w-full">{{ buildingCount() }}/22 <span class="lowercase">{{$t('buildings')}}</span></td>
-                <td class="text-center uppercase">Lvl</td>
+                <td class="text-center uppercase w-full">{{ buildingCount() }}/22 <span class="lowercase">{{$t('buildings.buildings')}}</span></td>
+                <td class="text-center uppercase">{{$t('level_short')}}</td>
                 <td class="text-center uppercase w-6">&nbsp;</td>
             </tr>
             <tr v-for="(selection, index) in calculator.selections"

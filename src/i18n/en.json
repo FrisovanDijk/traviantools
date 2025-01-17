@@ -1,5 +1,5 @@
 {
-    "site_title": "Friso's Travial Tools v3.3",
+    "site_title": "Friso's Travian Tools v3.3",
     "site_title_byline": "Added localisation and background tweaks",
     "help": {
         "version": "Update 3.3",
@@ -13,10 +13,10 @@
     "no": "No",
     "next": "Next",
     "previous": "Previous",
-    "lumber": "lumber",
-    "clay": "clay",
-    "iron": "iron",
-    "crop": "crop",
+    "lumber": "Lumber",
+    "clay": "Clay",
+    "iron": "Iron",
+    "crop": "Crop",
     "lumbercrop": "Lumber/Crop",
     "claycrop": "Clay/Crop",
     "ironcrop": "Iron/Crop",
@@ -56,6 +56,7 @@
     "oasis": "Oasis",
     "level": "Level",
     "level_to": "To level",
+    "level_short": "lvl",
     "gold_bonus": "Gold +25%",
     "production": "Production",
     "production_hourly": "Hourly production",
@@ -118,6 +119,7 @@
         "reset": "Reset data"
     },
     "buildings": {
+        "buildings": "buildings",
         "Academy": "Academy",
         "Bakery": "Bakery",
         "Barracks": "Barracks",

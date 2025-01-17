@@ -3,7 +3,7 @@
         legend: String,
         options: {
             type: Array,
-            default: () => ['']
+            default: () => [{type: '', string: ''}]
         },
         selected: ''
     })
@@ -16,12 +16,12 @@
         <legend class="w-16">{{ legend }}</legend>
 
         <div v-for="option in options" :key="option">
-            <span :for="option"
-                   class="block rounded border text-center py-0.5 px-1 cursor-pointer hover:bg-green-100 border-gray-500"
-                   :class="(option === selected ? 'bg-green-200' : 'bg-gray-100')"
-                   @click="$emit('selection', option)"
+            <span class="block rounded border text-center py-0.5 px-1 cursor-pointer hover:bg-green-100 border-gray-500"
+                  :class="(option.type === selected ? 'bg-green-200' : 'bg-gray-100')"
+                  @click="$emit('selection', option.type)"
+                  v-if="option?.type"
             >
-                {{ option }}
+                {{ option.string || option.type }}
             </span>
         </div>
     </div>

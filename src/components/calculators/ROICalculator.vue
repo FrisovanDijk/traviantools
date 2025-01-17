@@ -8,6 +8,9 @@
 
     import { ref, onBeforeMount } from 'vue'
     import { userData } from '@/stores/userData.js'
+    import { useI18n } from "vue-i18n"
+
+    const t = useI18n().t
 
     const props = defineProps({
         index: Number
@@ -169,7 +172,7 @@
         const minutesfraction = (hoursfraction - hours) * 60
         const minutes = Math.round(minutesfraction)
 
-        roiTime.value = `${days} days, ${hours} hours, ${minutes} minutes`
+        roiTime.value = `${days} ${t('days')}, ${hours} ${t('hours')}, ${minutes} ${t('minutes')}`
     }
 
     const calculateFieldROI = (fieldType, toLevel) => {
@@ -193,9 +196,9 @@
         <div class="flex px-4 border-b pb-4 mb-4 border-gray-500 mt-2">
             <RadioSelect :legend="$t('ROI.roi_type')"
                          :options="[
-                             $t('ROI.roi_type1'),
-                             $t('ROI.roi_type2'),
-                             $t('ROI.roi_type3')
+                             { type: 'Field', string: $t('ROI.roi_type1')},
+                             { type: 'Building', string: $t('ROI.roi_type2')},
+                             { type: 'HM', string: $t('ROI.roi_type3')}
                          ]"
                          :selected="calculator.roiType" @selection="updateROIType"
             />
@@ -206,10 +209,10 @@
             <div class="flex px-4">
                 <RadioSelect :legend="$t('ROI.field_type')"
                              :options="[
-                                 $t('crop'),
-                                 $t('lumber'),
-                                 $t('clay'),
-                                 $t('iron'),
+                                 { type: 'crop', string: $t('crop') },
+                                 { type: 'lumber', string: $t('lumber') },
+                                 { type: 'clay', string: $t('clay') },
+                                 { type: 'iron', string: $t('iron') },
                              ]"
                              :selected="calculator.fieldType" @selection="updateFieldType" />
             </div>
@@ -276,10 +279,10 @@
             <div class="flex px-4">
                 <RadioSelect :legend="$t('ROI.res_type')"
                              :options="[
-                                 $t('crop'),
-                                 $t('lumber'),
-                                 $t('clay'),
-                                 $t('iron'),
+                                 { type: 'crop', string: $t('crop') },
+                                 { type: 'lumber', string: $t('lumber') },
+                                 { type: 'clay', string: $t('clay') },
+                                 { type: 'iron', string: $t('iron') },
                              ]"
                              :selected="calculator.buildingType" @selection="updateBuildingType" />
             </div>
@@ -361,7 +364,7 @@
         <!-- HERO MANSION ROI -->
         <template class v-if="calculator.roiType === 'HM'">
             <div class="flex px-4">
-                <RadioSelect :legend="$t('ROI.hm_level')" :options="[10, 15, 20]" :selected="calculator.hmToLevel" @selection="updateHmLevel" />
+                <RadioSelect :legend="$t('ROI.hm_level')" :options="[{type: 10}, {type: 15}, {type:20}]" :selected="calculator.hmToLevel" @selection="updateHmLevel" />
             </div>
 
             <div class="flex px-4 mt-4 text-sm items-center gap-2">

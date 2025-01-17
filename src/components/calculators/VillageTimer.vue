@@ -133,8 +133,8 @@
                         <select v-model="party.type"
                                 class="w-20 border px-1 mr-1"
                         >
-                            <option>{{$t('party_small')}}</option>
-                            <option>{{$t('party_great')}}</option>
+                            <option value="Small">{{$t('party_small')}}</option>
+                            <option value="Great">{{$t('party_great')}}</option>
                         </select>
                     </label>
                     <label class="text-sm uppercase">

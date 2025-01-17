@@ -1,9 +1,6 @@
 <script setup>
     import ResImg from "@/components/ResImg.vue";
-    import ResList from '@/components/ResList.vue'
-    import RadioSelect from '@/components/RadioSelect.vue'
     import OasisSelector from '@/components/OasisSelector.vue'
-    import VillageTypeSelector from '@/components/VillageTypeSelector.vue'
     import CalculatorWrapper from "@/components/CalculatorWrapper.vue"
 
     import productionJson from '@/data/production.json'

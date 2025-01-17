@@ -552,9 +552,9 @@
             if(step.fieldType === 'iron') resBuildingType = 'Iron Mine'
 
             if(step.sim10) {
-                message = t('ultimateROI.msg_building_res10', { resBuilding: resBuildingType, building: buildingType, level: currLevel})
+                message = t('ultimateROI.msg_building_res10', { resBuilding: t(`buildings.${resBuildingType}`), building: t(`buildings.${buildingType}`), level: currLevel})
             } else {
-                message = t('ultimateROI.msg_building', { building: buildingType, level: currLevel })
+                message = t('ultimateROI.msg_building', { building: t(`buildings.${buildingType}`), level: currLevel })
             }
         }
 
@@ -572,7 +572,7 @@
             if(step.type === 'clay') resBuildingType = 'Clay Pit'
             if(step.type === 'iron') resBuildingType = 'Iron Mine'
 
-            message = t('ultimateROI.msg_building', { building: resBuildingType, level: step.level })
+            message = t('ultimateROI.msg_building', { building: t(`buildings.${resBuildingType}`), level: step.level })
             if(lastMessage.text === message) {
                 lastMessage.count++
                 return false
@@ -630,7 +630,7 @@
         </div>
 
         <div class="flex px-2 mt-3">
-            <RadioSelect :legend="$t('ultimateROI.sim_to_level')" :options="[10, 20]" :selected="calculator.simTo" @selection="updateSimTo" />
+            <RadioSelect :legend="$t('ultimateROI.sim_to_level')" :options="[{type:10}, {type:20}]" :selected="calculator.simTo" @selection="updateSimTo" />
         </div>
 
         <div class="flex px-2 gap-4 mt-3 text-sm pb-4 border-b">
@@ -681,7 +681,7 @@
                      v-if="calculator.tab > 0"
                 >
                     {{$t('previous')}}</div>
-                <div>{{ calculator.tab+1 }}/{{ calculator.build.length/8}}</div>
+                <div>{{ calculator.tab+1 }}/{{ Math.ceil(calculator.build.length/8) || 1 }}</div>
                 <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab++"
                      v-if="calculator.build.length > (calculator.tab + 1) * 8"
                 >
