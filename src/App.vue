@@ -12,7 +12,7 @@
     onBeforeMount(() => {
         // Remove old version data
         if(localStorage.getItem('v3.0')) {
-            localStorage.removeItem('v3.0')
+            // localStorage.removeItem('v3.0')
         }
         // Get new version data
         if(localStorage.getItem('v3.3')) {

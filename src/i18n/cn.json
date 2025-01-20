@@ -115,6 +115,7 @@
         "reset": "Reset data"
     },
     "buildings": {
+        "buildings": "Buildings",
         "Academy": "Academy",
         "Bakery": "Bakery",
         "Barracks": "Barracks",
