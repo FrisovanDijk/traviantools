@@ -7,7 +7,7 @@ import { languages } from './i18n/index'
 const messages = Object.assign(languages)
 
 const i18n = createI18n({
-    locale: 'fr',
+    locale: 'en',
     fallbackLocale: 'en',
     legacy: false,
     messages

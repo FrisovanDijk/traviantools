@@ -86,8 +86,8 @@
     "tabmenu": {
         "tab_add": "Nieuw tab",
         "tab_clear": "Alle tabs verwijderen",
-        "tab_items_delete": "Wil je alle items uit dit tab verwijderen?",
-        "delete": "Verwijder open items"
+        "tab_items_delete": "Wil je deze tab verwijderen?",
+        "delete": "Verwijder dit tabblad"
     },
     "menu": {
         "NPCCalculator": "Prijs van gebouwen",

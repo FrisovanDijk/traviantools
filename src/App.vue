@@ -6,7 +6,8 @@
     import { userData } from '@/stores/userData.js'
     import { useI18n } from "vue-i18n"
 
-    const t = useI18n().t
+    const i18n = useI18n()
+    const t = i18n.t
 
     // Load from local storage
     onBeforeMount(() => {
@@ -17,6 +18,11 @@
         // Get new version data
         if(localStorage.getItem('v3.3')) {
             userData.tabs = JSON.parse(localStorage.getItem('v3.3'))
+        }
+
+        // Get locale
+        if(localStorage.getItem('locale')) {
+            i18n.locale.value = localStorage.getItem('locale')
         }
     })
 
@@ -54,12 +60,13 @@
     }
 
     const clearTab = () => {
-        userData.tabs[userData.currentTab].calculators.length = 0
+        userData.tabs.splice(userData.currentTab, 1)
+        userData.currentTab = 0
+
+        console.log(userData.tabs.length)
+
         if(userData.tabs.length === 0) {
-            userData.tabs.calculators = [{
-                name: t('default_tab'),
-                calculators: []
-            }]
+            clearTabs()
         }
     }
 
