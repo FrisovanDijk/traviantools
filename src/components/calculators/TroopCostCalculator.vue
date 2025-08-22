@@ -15,6 +15,7 @@
     }
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     const getCost = () => {
         const mod_trainer = 1 - (calculator.artifact / 100)
@@ -67,6 +68,8 @@
         cost.total_res = cost.wood + cost.clay + cost.iron + cost.crop
         cost.no_crop = cost.wood + cost.clay + cost.iron
 
+        setTimeout(() => { emit('repaint') }, 100)
+
         return cost
     }
 
@@ -85,6 +88,7 @@
             id: 0
         }
         calculator.units.push(newRow)
+        setTimeout(() => { emit('repaint') }, 100)
     }
 </script>
 
@@ -153,8 +157,8 @@
 
 
             <div class="flex justify-end mt-1 mx-2">
-                <button class="bg-red-600 hover:bg-red-400 px-2 pb-1 rounded text-md text-white mr-1" @click="resetRows">reset</button>
-                <button class="bg-green-600 hover:bg-green-400 px-2 pb-1 rounded text-md text-white" @click="addRow">add row</button>
+                <button class="bg-red-600 hover:bg-red-400 px-2 pb-0.5 rounded text-md text-white mr-1" @click="resetRows">{{ $t('components.reset')}}</button>
+                <button class="bg-green-600 hover:bg-green-400 px-2 pb-0.5 rounded text-md text-white" @click="addRow">{{ $t('components.row_add')}}</button>
             </div>
 
             <h2 class="mt-2 py-1 mx-2 font-bold">Total cost</h2>

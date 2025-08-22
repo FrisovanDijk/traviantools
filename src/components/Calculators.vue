@@ -74,7 +74,7 @@
 <template>
     <div class="masonry">
 
-        <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers">
+        <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers()">
 
             <template v-if="item.name === 'NPCCalculator'">
                 <NPCCalculator :index="index"
@@ -89,18 +89,21 @@
             <template v-else-if="item.name === 'VillageTimer'">
                 <VillageTimer  :index="index"
                                :key="item.key"
+                               @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'MerchantTrips'">
                 <MerchantTrips
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'TotalResources'">
                 <TotalResources
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'ROICalculator'">
@@ -119,24 +122,28 @@
                 <UltimateROI
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'TroopsTraining'">
                 <TroopsTrainingCalculator
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'TroopCost'">
                 <TroopCostCalculator
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'SmithyEfficiency'">
                 <SmithyEfficiency
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'TroopsCompare'">
@@ -149,6 +156,7 @@
                 <VillagePlanner
                     :index="index"
                     :key="item.key"
+                    @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'CropScouter'">

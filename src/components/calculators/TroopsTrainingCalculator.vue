@@ -15,6 +15,7 @@
     }
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     const getInf = () => { return troops[calculator.tribe].filter((e) => {return e.type === 'inf'}) }
     const getCav = () => { return troops[calculator.tribe].filter((e) => {return e.type === 'cav'}) }
@@ -117,6 +118,8 @@
             consumption += siege_troops * siege.upkeep
         }
 
+        setTimeout(() => { emit('repaint') }, 100)
+
         return {
             consumption: consumption,
             cost: cost,
@@ -192,7 +195,7 @@
 
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center">
-                        <div class="w-14">{{$t('troopsTraining.unit')}}</div>
+                        <div class="pr-2">{{$t('troopsTraining.unit')}}</div>
                         <select v-model="calculator.barracks.unit" class="border border-gray-500 px-1">
                             <option v-for="unit in getInf()" v-bind:key="unit" :value="unit.name">{{ $t(`${unit.name}`) }}</option>
                         </select>
@@ -230,7 +233,7 @@
 
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center">
-                        <div class="w-14">{{$t('troopsTraining.unit')}}</div>
+                        <div class="pr-2">{{$t('troopsTraining.unit')}}</div>
                         <select v-model="calculator.stables.unit" class="border border-gray-500 px-1">
                             <option v-for="unit in getCav()" v-bind:key="unit" :value="unit.name">{{ $t(`${unit.name}`) }}</option>
                         </select>

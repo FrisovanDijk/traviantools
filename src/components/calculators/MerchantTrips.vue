@@ -10,6 +10,7 @@
     })
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     onBeforeMount(() => {
         calcMerchants()
@@ -66,6 +67,7 @@
             crop: 0
         }
         calculator.rows.push(newRow)
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const resetTotal = () => {

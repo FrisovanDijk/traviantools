@@ -1,4 +1,5 @@
 {
+    "site_title_byline": "Lokalisering is toegevoegd en andere verbeteringen",
     "help": {
         "help": "Gebruik de iconen links om de rekenmachines te openen om je Travian gameplay te helpen. Houd je muis over een icoon om de naam te zien.\nJe kunt meerdere tabs openen met elk eigen rekenmachines op een groot scherm. Zo kun je makkelijk onderscheid maken tussen accounts of servers.\nAlle gegevens worden lokaal, in je browser, opgeslagen. Wanneer je je browsergegevens verwijdert of als er een nieuwe versie is met ingrijpende veranderingen zullen all gegevens verloren gaan.\n\nVragen, feedback of bugs?\nVoeg faerland toe op Discord.",
         "issues": "Bekende problemen:"
@@ -8,6 +9,8 @@
     "no": "Nee",
     "next": "Volgende",
     "previous": "Vorige",
+    "data": "Gegevens",
+    "edit": "Bewerk",
     "lumber": "Hout",
     "clay": "Klei",
     "iron": "IJzer",
@@ -179,7 +182,7 @@
     "ultimateROI": {
         "msg_building_res10": "{resBuilding} naar 10 en {building} naar {level}",
         "msg_building": "{building} naar {level}",
-        "msg_oasis": "@:{'buildings.Heros Mansion'} naar {level} en verover oasise",
+        "msg_oasis": "@:{'buildings.Heros Mansion'} naar {level} en verover oasis",
         "msg_egyptian": "@:buildings.Waterworks naar {level}",
         "sim_to_level": "Sim naar lvl",
         "simulate": "Simuleer",

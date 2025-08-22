@@ -24,6 +24,7 @@
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
     const upgradeEfficiency = ref([])
+    const emit = defineEmits(['repaint'])
 
     const getUpgradeEfficiency = () => {
         const upgradeStats = []
@@ -95,6 +96,8 @@
         })
 
         upgradeEfficiency.value = result
+
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const getUnits = () => {

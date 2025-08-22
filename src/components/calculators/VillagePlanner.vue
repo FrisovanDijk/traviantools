@@ -11,6 +11,8 @@
     })
     const buildings = buildingsJson
     const nextSelection = ref('Palisade')
+    const emit = defineEmits(['repaint'])
+
     const buildingsForm = () => {
         if(!hasWall() && buildingCount() === 21) {
             return {
@@ -141,6 +143,8 @@
         localTotal.cpRes = Math.round(((localTotal.lumber + localTotal.clay + localTotal.iron + localTotal.crop) / localTotal.cp)*100)/100
 
         total.value = localTotal
+
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const moreThanOne = (building) => {
@@ -437,7 +441,7 @@
             <div>+{{total.pop}} {{$t('population_short')}}</div>
             <div>+{{total.cp}} {{$t('cp_short')}}</div>
             <div class="flex items-center"><ResImg class="-mr-0.5" type="resources"></ResImg>/{{$t('cp_short')}}: {{ total.cpRes }}</div>
-            <div class="flex text-xs">{{total.cp + 108}} CP, including fields lv10</div>
+            <div class="flex text-xs">{{total.cp + 108}} {{$t('cp_short')}}, {{$t('resources')}} lv10</div>
         </div>
     </CalculatorWrapper>
 </template>

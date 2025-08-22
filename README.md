@@ -26,20 +26,25 @@ The tools included and their first version are:
        - (3.0) When to troop upgrades
        - (3.0) Crop scouter + cap sim
 
+## Contributors
+
+Translations: Pratoss (FR), Lin (CN)
+
 ## Open ideas list
 
-- [ ] Add Spartan troops and unique building (hospital)
 - [ ] Calculator: Hero travel time and res gain from animal kills vs putting all points in resources
 - [ ] Calculator: Hero damage from adventure based on adventure number and fighting strength
 - [ ] Calculator: Easy troop attributes per tribe
-- [ ] Add tasks to ultimateROI
-- [ ] Ability to reorganise calculators on the screen
+- [ ] Feature: Add Spartan troops and unique building (hospital) to buildings, tribes and as special case for hospital time
+- [ ] Feature: Add warehouse and granary levels to ultimateROI
 - [ ] Account for server speed in: feeder automation, res production overview, ROI, cropscouter, troop training times
-- [ ] Bug: build sim shows crop to 10 and mill to 4, discarding bakery
-- [ ] Bug: opening the same calculator mulitple times and closing one closes the last one. Sometimes two of the same calculators opened after one another are coupled with data also.
+- [ ] Add 18c to village output and ROI simulator
+- [ ] Bug: build sim sometimes shows crop to 10 and mill to 4, discarding bakery
 
 ## Completed 
 
+- [x] Feature: translations. Intially: English, Dutch, French and Chinese.
+- [x] Bug: opening the same calculator multiple times and closing one closes the last one. Sometimes two of the same calculators opened after one another are coupled with data also.
 - [x] Bug: Fix deleting tab (always deletes the first now)
 - [x] ROI calculator (how long for res to pay back)
 - [x] ROI calculator: building ROI simulate putting a field to 10
@@ -77,5 +82,5 @@ The tools included and their first version are:
 - [x] Unify UI of older calculators to match new styling
 - [x] CP efficiency overview
 
-## Not under consideration
+## No longer under consideration
 - [ ] When is great party worth it in cp/day (village cp vs. account cp), CP efficiency vs. goal

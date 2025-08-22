@@ -15,7 +15,7 @@
 </script>
 
 <template>
-    <CalculatorWrapper title="Calculator help" @close:calculator="close" :close="index >= 0">
+    <CalculatorWrapper :title="$t('menu.help')" @close:calculator="close" :close="index >= 0">
         <div class="px-4 pt-1 pb-3 text-sm flex flex-col space-y-3">
             <p><span class="font-semibold">{{$t('help.version')}}</span> {{$t('help.version_new')}}</p>
             <p class="whitespace-pre-wrap">{{$t('help.help')}}</p>

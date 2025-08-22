@@ -16,6 +16,7 @@
         index: Number
     })
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     // Variables
 
@@ -267,6 +268,9 @@
 
         calculator.build = build
 
+        setTimeout(() => {
+            emit('repaint')
+        }, 100)
     }
 
     const calculateFieldROI = (fields, fieldType) => {
@@ -610,6 +614,14 @@
         return tab
     }
 
+    const changeTab = (next = true) => {
+        if(next) calculator.tab++
+        else calculator.tab--
+        setTimeout(() => {
+            emit('repaint')
+        }, 100)
+    }
+
 </script>
 
 <template>
@@ -653,7 +665,7 @@
             </div>
 
             <div class="mt-4 flex mb-2 justify-end flex-1">
-                <div class="rounded-lg bg-green-600 mr-8 text-white py-2 px-6 cursor-pointer" @click="simROIBuild">{{$t('ultimateROI.simulate')}}</div>
+                <div class="rounded-lg bg-green-600 mr-8 text-white py-2 px-6 cursor-pointer" @click="simROIBuild()">{{$t('ultimateROI.simulate')}}</div>
             </div>
 
         </div>
@@ -677,12 +689,12 @@
                 </div>
             </div>
             <div class="flex justify-center gap-8 mt-2 mb-3">
-                <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab--"
+                <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="changeTab(false)"
                      v-if="calculator.tab > 0"
                 >
                     {{$t('previous')}}</div>
                 <div>{{ calculator.tab+1 }}/{{ Math.ceil(calculator.build.length/8) || 1 }}</div>
-                <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="calculator.tab++"
+                <div class="bg-green-600 rounded px-4 py-1 text-white cursor-pointer" @click="changeTab(true)"
                      v-if="calculator.build.length > (calculator.tab + 1) * 8"
                 >
                     {{$t('next')}}</div>

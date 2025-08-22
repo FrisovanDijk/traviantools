@@ -9,6 +9,7 @@
     })
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     onBeforeMount(() => {
         calculateTime()
@@ -38,10 +39,12 @@
             cp: 500,
             townHall: 1
         })
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const removeParty = (party) => {
         calculator.parties.splice(calculator.parties.indexOf(party), 1)
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const calculateTime = () => {
