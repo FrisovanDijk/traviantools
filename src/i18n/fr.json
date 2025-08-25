@@ -1,5 +1,7 @@
 {
     "site_title_byline": "Ajout de la localisation et de modifications de l'arrière-plan",
+    "translation": "Traduction",
+    "translator": "Pratoss",
     "help": {
        "help": "Utilisez les icônes sur la gauche pour ouvrir des calculateurs qui vous aideront à jouer à Travian. Survolez-les pour connaître la signification de chaque icône.\nVous pouvez ouvrir plusieurs onglets avec des calculateurs en mode bureau pour distinguer les comptes ou les serveurs.\nToutes les données sont stockées localement sur votre navigateur, elles disparaîtront donc lorsque vous supprimerez vos données locales.",
        "issues": "Problèmes connus:"
