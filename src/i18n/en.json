@@ -3,7 +3,7 @@
     "site_title_byline": "Added localisation and tweaks",
     "help": {
         "version": "Update 3.3",
-        "version_new": "Added translations and background fixes to how calculators work. You'll no longer be able to delete the wrong calculator.",
+        "version_new": "Added translations and background fixes to how calculators work. You'll no longer be able to delete the wrong calculator, and the layout updates when calculators change size now. If you want the tools in your language, reach out to faerland on Discord. Enjoy!",
         "help": "Use the icons on the left to open calculators to assist in your Travian gameplay. Hover over them to see what each icon means.\nYou can open multiple tabs with calculators in desktop mode to distinguish between accounts or servers.\nAll data is stored locally on your browser, so it will be gone when you remove your local data.\n\nQuestions, feedback or bugs?\nAdd faerland on Discord.",
         "issues": "Known issues:",
         "issues_text": "- 6c and 7c with 25/25 or 50% oasis shows wrong simulation for Bakery. Simulate without oases to get the right numbers"

@@ -9,15 +9,18 @@
     const i18n = useI18n()
     const t = i18n.t
 
+    const keyOld = 'v3.0'
+    const keyNew = 'v3.3'
+
     // Load from local storage
     onBeforeMount(() => {
         // Remove old version data
-        if(localStorage.getItem('v3.0')) {
-            // localStorage.removeItem('v3.0')
+        if(localStorage.getItem(keyOld)) {
+            localStorage.removeItem(keyOld)
         }
         // Get new version data
-        if(localStorage.getItem('v3.3')) {
-            userData.tabs = JSON.parse(localStorage.getItem('v3.3'))
+        if(localStorage.getItem(keyNew)) {
+            userData.tabs = JSON.parse(localStorage.getItem(keyNew))
         }
 
         // Get locale
@@ -28,7 +31,7 @@
 
     // Watch for changes to save to local storage
     watch(userData, () => {
-        localStorage.setItem("v3.3", JSON.stringify(userData.tabs))
+        localStorage.setItem(keyNew, JSON.stringify(userData.tabs))
     }, {
         deep: true
     })
