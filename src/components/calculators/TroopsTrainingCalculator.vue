@@ -25,6 +25,7 @@
         const mod_trainer = 1 - (calculator.artifact / 100)
         const mod_bonus = 1 - (calculator.recruitment / 100)
         const interval = 3600 * calculator.training_amount * getInterval(calculator.time_type);
+        console.log(calculator.time_type)
 
         const inf = troops[calculator.tribe].filter((e) => {return e.name === calculator.barracks.unit})[0]
         const cav = troops[calculator.tribe].filter((e) => {return e.name === calculator.stables.unit})[0]
@@ -163,7 +164,7 @@
                 {{$t('troopsTraining.training_time')}}
                 <input type="number" min="0" max="300" v-model="calculator.training_amount" class="px-2 py-0.5 border w-20">
                 <select v-model="calculator.time_type" class="border border-gray-500 px-1 ml-1">
-                    <option v-for="days in [$t('hour'), $t('day'), $t('week')]" v-bind:key="days">{{ days }}</option>
+                    <option v-for="days in ['hour', 'day', 'week']" v-bind:key="days" :value="days">{{ $t(`${days}`) }}</option>
                 </select>
             </label>
 
