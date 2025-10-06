@@ -13,6 +13,10 @@
         type: {
             type: String,
             default: 'village'
+        },
+        noMargin: {
+            type: Boolean,
+            default: false
         }
     })
 
@@ -21,7 +25,7 @@
 </script>
 
 <template>
-    <div class="relative border rounded-lg overflow-hidden shadow-md flex flex-col bg-white text-sm calculator" style="width: 310px">
+    <div class="relative group border rounded-lg overflow-hidden shadow-md flex flex-col bg-white text-sm calculator" style="width: 310px">
 
         <div class="bg-rose-800 hover:bg-rose-600 text-white absolute rounded px-2 font-semibold flex items-center justify-center cursor-pointer"
              style="right: 4px; top: 4px; width: 22px; height: 22px;"
@@ -30,11 +34,13 @@
         >
             <div style="margin-top: -1px;">X</div>
         </div>
-        <div class="flex w-full p-2 mb-2 items-center gap-2 text-gray-100"
+        <div class="flex w-full p-2 items-center gap-2 text-gray-100"
              :class="[
                  type === 'village' ? 'bg-emerald-600' : '',
                  type === 'economy' ? 'bg-amber-600' : '',
                  type === 'troops' ? 'bg-slate-600' : '',
+                 type === 'ak' ? 'bg-theme-600 group-hover:bg-theme-500' : '',
+                 noMargin ? '' : 'mb-2'
              ]"
         >
 

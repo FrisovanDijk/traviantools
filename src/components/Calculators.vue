@@ -15,6 +15,7 @@
     import CropScouter from "@/components/calculators/CropScouter.vue";
     import CPCostCalculator from "@/components/calculators/CPCostCalculator.vue";
     import Help from "@/components/calculators/Help.vue";
+    import AK_banner from "@/components/calculators/AK_banner.vue";
     import { userData } from '@/stores/userData.js'
     import { onMounted, onUpdated, watch } from 'vue'
 
@@ -73,7 +74,6 @@
 
 <template>
     <div class="masonry">
-
         <template v-for="(item, index) in userData.tabs[userData.currentTab].calculators" @change="setObservers()">
 
             <template v-if="item.name === 'NPCCalculator'">
@@ -179,8 +179,11 @@
             </template>
 
         </template>
+
         <template v-if="userData.tabs[userData.currentTab].calculators.length === 0" class="m-4 rounded border bg-white p-4" style="width: 310px">
             <Help :key="STATICHELP" />
         </template>
+
+        <AK_banner />
     </div>
 </template>
