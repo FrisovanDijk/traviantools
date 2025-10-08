@@ -79,6 +79,7 @@
             <template v-if="item.name === 'NPCCalculator'">
                 <NPCCalculator :index="index"
                                :key="item.key"
+                               @repaint="getMasonry()"
                 />
             </template>
             <template v-else-if="item.name === 'FeederAutomation'">

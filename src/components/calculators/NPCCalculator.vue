@@ -12,6 +12,7 @@
     const buildings = buildingsJson
 
     const calculator = userData.tabs[userData.currentTab].calculators[props.index].calculator
+    const emit = defineEmits(['repaint'])
 
     onBeforeMount(() => {
         if(calculator.selections.length < 1) {
@@ -46,11 +47,13 @@
             toLevel: 1
         })
         updateTotals()
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const removeSelection = (selection) => {
         calculator.selections.splice(calculator.selections.indexOf(selection), 1)
         updateTotals()
+        setTimeout(() => { emit('repaint') }, 100)
     }
 
     const updateTotals = () => {
